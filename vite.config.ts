@@ -7,8 +7,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      name: "createive-validator",
-      fileName: "createive-validator",
+      name: "creative-validator",
+      fileName: "creative-validator",
     },
   },
   plugins: [dts()],
