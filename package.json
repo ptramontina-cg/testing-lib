@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "./dist/creative-validator.umd.cjs",
-  "module": "./dist/creative-validator.js",
+  "main": "./dist/creative-validator.js",
+  "module": "./dist/creative-validator.umd.cjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -12,6 +12,9 @@
       "require": "./dist/creative-validator.umd.cjs"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

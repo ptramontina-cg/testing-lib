@@ -1,3 +1,3 @@
 export interface ValidatorStrategy {
-    validate(file: File): Promise<boolean>;
+    validate(file?: File): Promise<boolean>;
 }
