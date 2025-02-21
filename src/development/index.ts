@@ -20,5 +20,8 @@ button.addEventListener("click", async () => {
   };
   const [handle] = await window.showOpenFilePicker(opts);
 
-  console.log(await handle.getFile());
+  const file = await handle.getFile();
+
+  const cv = new CreativeValidator("frontend");
+  cv.validate(file);
 });

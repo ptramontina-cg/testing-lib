@@ -1,1 +1,1 @@
-export { default as CreativeValidator } from "./main/creative-validator";
+export { CreativeValidator } from "./main/creative-validator";

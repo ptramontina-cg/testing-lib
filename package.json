@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
+    "@types/wicg-file-system-access": "^2023.10.5",
     "typescript": "~5.7.2",
     "vite": "^6.1.0",
     "vite-plugin-dts": "^4.5.0"

@@ -3,7 +3,7 @@ import { BackendValidatorStrategy } from "../strategies/backend.strategy";
 import { FrontendValidatorStrategy } from "../strategies/frontend.strategy";
 import { AllowedValitators } from "../types/validator";
 
-export default class CreativeValidator {
+export class CreativeValidator {
   private validatorStrategy: ValidatorStrategy;
 
   constructor(validationType: AllowedValitators) {
