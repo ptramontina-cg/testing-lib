@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "./dist/creative-validator.js",
-  "module": "./dist/creative-validator.umd.cjs",
+  "main": "./dist/creative-validator.umd.cjs",
+  "module": "./dist/creative-validator.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
