@@ -34,14 +34,20 @@ import fs from "fs/promises";
 import path2 from "path";
 var BackendVideoAnalyser = class {
   constructor() {
+    if (process.platform === "win32") {
+      ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
+      ffmpeg.setFfprobePath(
+        "C:/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe"
+      );
+    }
   }
-  getResolutionQuality = (width, height) => {
+  getResolutionQuality(width, height) {
     if (width >= 3840 && height >= 2160) return "4K";
     if (width >= 2048 && height >= 1080) return "2K";
     if (width >= 1920 && height >= 1080) return "Full HD";
     if (width >= 1280 && height >= 720) return "HD";
     return "SD";
-  };
+  }
   test() {
     console.log("test from here");
     console.log(fs);
@@ -51,7 +57,7 @@ var BackendVideoAnalyser = class {
    * @param {Object} file - Express file object containing video data.
    * @returns {Promise<Buffer>} - A buffer of the generated screenshot.
    */
-  generateThumbnail = async (file) => {
+  async generateThumbnail(file) {
     const tempDir = path2.join(__dirname, "tmp");
     const tempInputPath = path2.join(tempDir, `temp_${Date.now()}`);
     const tempOutputPath = path2.join(tempDir, `screenshot_${Date.now()}.png`);
@@ -78,8 +84,8 @@ var BackendVideoAnalyser = class {
         folder: tempDir
       });
     });
-  };
-  analyzeMediaBuffer = async (file) => {
+  }
+  async analyzeMediaBuffer(file) {
     return new Promise((resolve, reject) => {
       const readableStreamBuffer = new StreamBuffers.ReadableStreamBuffer({
         frequency: 10,
@@ -122,7 +128,7 @@ var BackendVideoAnalyser = class {
         resolve(result);
       });
     });
-  };
+  }
 };
 
 // src/strategies/backend/backend-video-validator.ts

@@ -10,21 +10,21 @@ import { VideoOrImageMetadata } from "../types/validator";
 
 export class BackendVideoAnalyser {
   constructor() {
-    // if (process.platform === "win32") {
-    //   ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
-    //   ffmpeg.setFfprobePath(
-    //     "C:/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe"
-    //   );
-    // }
+    if (process.platform === "win32") {
+      ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
+      ffmpeg.setFfprobePath(
+        "C:/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe"
+      );
+    }
   }
 
-  private getResolutionQuality = (width: number, height: number): string => {
+  private getResolutionQuality(width: number, height: number): string {
     if (width >= 3840 && height >= 2160) return "4K";
     if (width >= 2048 && height >= 1080) return "2K";
     if (width >= 1920 && height >= 1080) return "Full HD";
     if (width >= 1280 && height >= 720) return "HD";
     return "SD";
-  };
+  }
 
   test() {
     console.log("test from here");
@@ -38,9 +38,7 @@ export class BackendVideoAnalyser {
    * @param {Object} file - Express file object containing video data.
    * @returns {Promise<Buffer>} - A buffer of the generated screenshot.
    */
-  private generateThumbnail = async (
-    file: Express.Multer.File
-  ): Promise<Buffer> => {
+  private async generateThumbnail(file: Express.Multer.File): Promise<Buffer> {
     const tempDir = path.join(__dirname, "tmp");
     const tempInputPath = path.join(tempDir, `temp_${Date.now()}`);
     const tempOutputPath = path.join(tempDir, `screenshot_${Date.now()}.png`);
@@ -70,11 +68,11 @@ export class BackendVideoAnalyser {
           folder: tempDir,
         });
     });
-  };
+  }
 
-  analyzeMediaBuffer = async (
+  async analyzeMediaBuffer(
     file: Express.Multer.File
-  ): Promise<VideoOrImageMetadata> => {
+  ): Promise<VideoOrImageMetadata> {
     return new Promise((resolve, reject) => {
       const readableStreamBuffer = new StreamBuffers.ReadableStreamBuffer({
         frequency: 10,
@@ -129,5 +127,5 @@ export class BackendVideoAnalyser {
         resolve(result);
       });
     });
-  };
+  }
 }
