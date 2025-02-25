@@ -4,6 +4,10 @@ import fs from "fs/promises";
 import path from "path";
 import { VideoOrImageMetadata } from "../types/validator";
 
+// import { fileURLToPath } from "url";
+// const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+// const __dirname = path.dirname(__filename); // get the name of the directory
+
 export class BackendVideoAnalyser {
   constructor() {
     // if (process.platform === "win32") {
@@ -21,6 +25,13 @@ export class BackendVideoAnalyser {
     if (width >= 1280 && height >= 720) return "HD";
     return "SD";
   };
+
+  test() {
+    console.log("test from here");
+    // console.log(ffmpeg);
+    // console.log(StreamBuffers);
+    console.log(fs);
+  }
 
   /**
    * Generates a screenshot from the middle of a video.
