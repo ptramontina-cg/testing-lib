@@ -1,7 +1,7 @@
 import { ValidatorStrategy } from "../interfaces/validator.interface";
-import { BackendValidatorStrategy } from "../strategies/backend.strategy";
-import { FrontendValidatorStrategy } from "../strategies/frontend.strategy";
-import { AllowedValitators } from "../types/validator";
+import { BackendValidatorStrategy } from "../strategies/backend/backend.strategy";
+import { FrontendValidatorStrategy } from "../strategies/frontend/frontend.strategy";
+import { AllowedFileTypes, AllowedValitators } from "../types/validator";
 
 export class CreativeValidator {
   private validatorStrategy: ValidatorStrategy;
@@ -13,7 +13,7 @@ export class CreativeValidator {
         : new FrontendValidatorStrategy();
   }
 
-  validate(file: File) {
-    this.validatorStrategy.validate(file);
+  validate(type: AllowedFileTypes, file: File | Express.Multer.File | string) {
+    this.validatorStrategy.validate(type, file);
   }
 }

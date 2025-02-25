@@ -23,5 +23,5 @@ button.addEventListener("click", async () => {
   const file = await handle.getFile();
 
   const cv = new CreativeValidator("frontend");
-  cv.validate(file);
+  cv.validate("image", file);
 });
