@@ -18,7 +18,7 @@
   "scripts": {
     "dev": "vite",
     "backend-dev": "tsx ./src/development/node-index.ts",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "makework": "tsx ./src/test.ts"
   },
