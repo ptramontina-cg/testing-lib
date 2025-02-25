@@ -6,12 +6,12 @@ import { VideoOrImageMetadata } from "../types/validator";
 
 export class BackendVideoAnalyser {
   constructor() {
-    if (process.platform === "win32") {
-      ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
-      ffmpeg.setFfprobePath(
-        "C:/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe"
-      );
-    }
+    // if (process.platform === "win32") {
+    //   ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
+    //   ffmpeg.setFfprobePath(
+    //     "C:/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe"
+    //   );
+    // }
   }
 
   private getResolutionQuality = (width: number, height: number): string => {

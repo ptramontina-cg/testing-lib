@@ -1,6 +1,6 @@
 var De = Object.defineProperty;
 var ke = (F, e, t) => e in F ? De(F, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : F[e] = t;
-var C = (F, e, t) => ke(F, typeof e != "symbol" ? e + "" : e, t);
+var L = (F, e, t) => ke(F, typeof e != "symbol" ? e + "" : e, t);
 function Be(F, e) {
   for (var t = 0; t < e.length; t++) {
     const y = e[t];
@@ -60,10 +60,10 @@ const Ge = {}, Xe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineP
   __proto__: null,
   default: Ge
 }, Symbol.toStringTag, { value: "Module" })), V = /* @__PURE__ */ We(Xe);
-var B = { exports: {} }, $, de;
+var k = { exports: {} }, B, pe;
 function Qe() {
-  if (de) return $;
-  de = 1, $ = y, y.sync = f;
+  if (pe) return B;
+  pe = 1, B = y, y.sync = f;
   var F = V;
   function e(n, h) {
     var u = h.pathExt !== void 0 ? h.pathExt : process.env.PATHEXT;
@@ -87,12 +87,12 @@ function Qe() {
   function f(n, h) {
     return t(F.statSync(n), n, h);
   }
-  return $;
+  return B;
 }
-var j, ve;
+var $, de;
 function Ze() {
-  if (ve) return j;
-  ve = 1, j = e, e.sync = t;
+  if (de) return $;
+  de = 1, $ = e, e.sync = t;
   var F = V;
   function e(n, h, u) {
     F.stat(n, function(i, c) {
@@ -106,17 +106,17 @@ function Ze() {
     return n.isFile() && f(n, h);
   }
   function f(n, h) {
-    var u = n.mode, i = n.uid, c = n.gid, a = h.uid !== void 0 ? h.uid : process.getuid && process.getuid(), d = h.gid !== void 0 ? h.gid : process.getgid && process.getgid(), v = parseInt("100", 8), S = parseInt("010", 8), x = parseInt("001", 8), _ = v | S, m = u & x || u & S && c === d || u & v && i === a || u & _ && a === 0;
+    var u = n.mode, i = n.uid, c = n.gid, a = h.uid !== void 0 ? h.uid : process.getuid && process.getuid(), d = h.gid !== void 0 ? h.gid : process.getgid && process.getgid(), v = parseInt("100", 8), S = parseInt("010", 8), A = parseInt("001", 8), _ = v | S, m = u & A || u & S && c === d || u & v && i === a || u & _ && a === 0;
     return m;
   }
-  return j;
+  return $;
 }
-var H, me;
+var j, ve;
 function Ye() {
-  if (me) return H;
-  me = 1;
+  if (ve) return j;
+  ve = 1;
   var F;
-  process.platform === "win32" || He.TESTING_WINDOWS ? F = Qe() : F = Ze(), H = e, e.sync = t;
+  process.platform === "win32" || He.TESTING_WINDOWS ? F = Qe() : F = Ze(), j = e, e.sync = t;
   function e(y, f, n) {
     if (typeof f == "function" && (n = f, f = {}), !n) {
       if (typeof Promise != "function")
@@ -140,12 +140,12 @@ function Ye() {
       throw n;
     }
   }
-  return H;
+  return j;
 }
-var U, ge;
+var H, me;
 function Je() {
-  if (ge) return U;
-  ge = 1, U = h, h.sync = u;
+  if (me) return H;
+  me = 1, H = h, h.sync = u;
   var F = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys", e = V, t = F ? ";" : ":", y = Ye();
   function f(i) {
     var c = new Error("not found: " + i);
@@ -163,17 +163,17 @@ function Je() {
   }
   function h(i, c, a) {
     typeof c == "function" && (a = c, c = {});
-    var d = n(i, c), v = d.env, S = d.ext, x = d.extExe, _ = [];
+    var d = n(i, c), v = d.env, S = d.ext, A = d.extExe, _ = [];
     (function m(b, O) {
       if (b === O)
         return c.all && _.length ? a(null, _) : a(f(i));
-      var A = v[b];
-      A.charAt(0) === '"' && A.slice(-1) === '"' && (A = A.slice(1, -1));
-      var E = e.join(A, i);
-      !A && /^\.[\\\/]/.test(i) && (E = i.slice(0, 2) + E), function g(r, s) {
+      var x = v[b];
+      x.charAt(0) === '"' && x.slice(-1) === '"' && (x = x.slice(1, -1));
+      var E = e.join(x, i);
+      !x && /^\.[\\\/]/.test(i) && (E = i.slice(0, 2) + E), function g(r, s) {
         if (r === s) return m(b + 1, O);
         var o = S[r];
-        y(E + o, { pathExt: x }, function(l, p) {
+        y(E + o, { pathExt: A }, function(l, p) {
           if (!l && p)
             if (c.all)
               _.push(E + o);
@@ -186,48 +186,48 @@ function Je() {
   }
   function u(i, c) {
     c = c || {};
-    for (var a = n(i, c), d = a.env, v = a.ext, S = a.extExe, x = [], _ = 0, m = d.length; _ < m; _++) {
+    for (var a = n(i, c), d = a.env, v = a.ext, S = a.extExe, A = [], _ = 0, m = d.length; _ < m; _++) {
       var b = d[_];
       b.charAt(0) === '"' && b.slice(-1) === '"' && (b = b.slice(1, -1));
       var O = e.join(b, i);
       !b && /^\.[\\\/]/.test(i) && (O = i.slice(0, 2) + O);
-      for (var A = 0, E = v.length; A < E; A++) {
-        var g = O + v[A], r;
+      for (var x = 0, E = v.length; x < E; x++) {
+        var g = O + v[x], r;
         try {
           if (r = y.sync(g, { pathExt: S }), r)
             if (c.all)
-              x.push(g);
+              A.push(g);
             else
               return g;
         } catch {
         }
       }
     }
-    if (c.all && x.length)
-      return x;
+    if (c.all && A.length)
+      return A;
     if (c.nothrow)
       return null;
     throw f(i);
   }
-  return U;
+  return H;
 }
-var we;
+var ge;
 function z() {
-  if (we) return B.exports;
-  we = 1, V.exec;
+  if (ge) return k.exports;
+  ge = 1, V.exec;
   var F = V.platform().match(/win(32|64)/), e = Je(), t = /\r\n|\r|\n/g, y = /^\[?(.*?)\]?$/, f = /[,]/, n = {};
   function h(i) {
     var c = {};
     i = i.replace(/=\s+/g, "=").trim();
     for (var a = i.split(" "), d = 0; d < a.length; d++) {
-      var v = a[d].split("=", 2), S = v[0], x = v[1];
-      if (typeof x > "u")
+      var v = a[d].split("=", 2), S = v[0], A = v[1];
+      if (typeof A > "u")
         return null;
-      c[S] = x;
+      c[S] = A;
     }
     return c;
   }
-  var u = B.exports = {
+  var u = k.exports = {
     isWindows: F,
     streamRegexp: y,
     /**
@@ -349,16 +349,16 @@ function z() {
      * @private
      */
     extractCodecData: function(i, c, a) {
-      var d = /Input #[0-9]+, ([^ ]+),/, v = /Duration\: ([^,]+)/, S = /Audio\: (.*)/, x = /Video\: (.*)/;
+      var d = /Input #[0-9]+, ([^ ]+),/, v = /Duration\: ([^,]+)/, S = /Audio\: (.*)/, A = /Video\: (.*)/;
       "inputStack" in a || (a.inputStack = [], a.inputIndex = -1, a.inInput = !1);
-      var _ = a.inputStack, m = a.inputIndex, b = a.inInput, O, A, E, g;
+      var _ = a.inputStack, m = a.inputIndex, b = a.inInput, O, x, E, g;
       if (O = c.match(d))
         b = a.inInput = !0, m = a.inputIndex = a.inputIndex + 1, _[m] = { format: O[1], audio: "", video: "", duration: "" };
-      else if (b && (A = c.match(v)))
-        _[m].duration = A[1];
+      else if (b && (x = c.match(v)))
+        _[m].duration = x[1];
       else if (b && (E = c.match(S)))
         E = E[1].split(", "), _[m].audio = E[0], _[m].audio_details = E;
-      else if (b && (g = c.match(x)))
+      else if (b && (g = c.match(A)))
         g = g[1].split(", "), _[m].video = g[0], _[m].video_details = g;
       else if (/Output #\d+/.test(c))
         b = a.inInput = !1;
@@ -414,7 +414,7 @@ function z() {
      */
     linesRing: function(i) {
       var c = [], a = [], d = null, v = !1, S = i - 1;
-      function x(_) {
+      function A(_) {
         c.forEach(function(m) {
           m(_);
         });
@@ -428,8 +428,8 @@ function z() {
         append: function(_) {
           if (!v && (_ instanceof Buffer && (_ = "" + _), !(!_ || _.length === 0))) {
             var m = _.split(t);
-            m.length === 1 ? d !== null ? d = d + m.shift() : d = m.shift() : (d !== null && (d = d + m.shift(), x(d), a.push(d)), d = m.pop(), m.forEach(function(b) {
-              x(b), a.push(b);
+            m.length === 1 ? d !== null ? d = d + m.shift() : d = m.shift() : (d !== null && (d = d + m.shift(), A(d), a.push(d)), d = m.pop(), m.forEach(function(b) {
+              A(b), a.push(b);
             }), S > -1 && a.length > S && a.splice(0, a.length - S));
           }
         },
@@ -439,19 +439,19 @@ function z() {
 `);
         },
         close: function() {
-          v || (d !== null && (x(d), a.push(d), S > -1 && a.length > S && a.shift(), d = null), v = !0);
+          v || (d !== null && (A(d), a.push(d), S > -1 && a.length > S && a.shift(), d = null), v = !0);
         }
       };
     }
   };
-  return B.exports;
+  return k.exports;
 }
-var W, ye;
+var U, we;
 function Ke() {
-  if (ye) return W;
-  ye = 1;
+  if (we) return U;
+  we = 1;
   var F = z();
-  return W = function(e) {
+  return U = function(e) {
     e.mergeAdd = e.addInput = e.input = function(t) {
       var y = !1, f = !1;
       if (typeof t != "string") {
@@ -494,14 +494,14 @@ function Ke() {
         throw new Error("No input specified");
       return this._currentInput.options("-loop", "1"), typeof t < "u" && this.duration(t), this;
     };
-  }, W;
+  }, U;
 }
-var G, _e;
+var W, ye;
 function et() {
-  if (_e) return G;
-  _e = 1;
+  if (ye) return W;
+  ye = 1;
   var F = z();
-  return G = function(e) {
+  return W = function(e) {
     e.withNoAudio = e.noAudio = function() {
       return this._currentOutput.audio.clear(), this._currentOutput.audioFilters.clear(), this._currentOutput.audio("-an"), this;
     }, e.withAudioCodec = e.audioCodec = function(t) {
@@ -517,14 +517,14 @@ function et() {
     }, e.withAudioFilter = e.withAudioFilters = e.audioFilter = e.audioFilters = function(t) {
       return arguments.length > 1 && (t = [].slice.call(arguments)), Array.isArray(t) || (t = [t]), this._currentOutput.audioFilters(F.makeFilterStrings(t)), this;
     };
-  }, G;
+  }, W;
 }
-var X, Ee;
+var G, _e;
 function tt() {
-  if (Ee) return X;
-  Ee = 1;
+  if (_e) return G;
+  _e = 1;
   var F = z();
-  return X = function(e) {
+  return G = function(e) {
     e.withNoVideo = e.noVideo = function() {
       return this._currentOutput.video.clear(), this._currentOutput.videoFilters.clear(), this._currentOutput.video("-vn"), this;
     }, e.withVideoCodec = e.videoCodec = function(t) {
@@ -545,12 +545,12 @@ function tt() {
     }, e.takeFrames = e.withFrames = e.frames = function(t) {
       return this._currentOutput.video("-vframes", t), this;
     };
-  }, X;
+  }, G;
 }
-var Q, Fe;
+var X, Ee;
 function nt() {
-  if (Fe) return Q;
-  Fe = 1;
+  if (Ee) return X;
+  Ee = 1;
   function F(t, y, f, n) {
     return [
       /*
@@ -614,7 +614,7 @@ function nt() {
       throw new Error("Invalid size specified: " + n.size);
     }
   }
-  return Q = function(t) {
+  return X = function(t) {
     t.keepPixelAspect = // Only for compatibility, this is not about keeping _pixel_ aspect ratio
     t.keepDisplayAspect = t.keepDisplayAspectRatio = t.keepDAR = function() {
       return this.videoFilters([
@@ -649,14 +649,14 @@ function nt() {
       var n = e(this._currentOutput, "pad", y ? f || "black" : !1);
       return this._currentOutput.sizeFilters.clear(), this._currentOutput.sizeFilters(n), this;
     };
-  }, Q;
+  }, X;
 }
-var Z, xe;
+var Q, Fe;
 function rt() {
-  if (xe) return Z;
-  xe = 1;
+  if (Fe) return Q;
+  Fe = 1;
   var F = z();
-  return Z = function(e) {
+  return Q = function(e) {
     e.addOutput = e.output = function(t, y) {
       var f = !1;
       if (!t && this._currentOutput)
@@ -701,14 +701,14 @@ function rt() {
     }, e.updateFlvMetadata = e.flvmeta = function() {
       return this._currentOutput.flags.flvmeta = !0, this;
     };
-  }, Z;
+  }, Q;
 }
-var Y, Ae;
+var Z, Ae;
 function it() {
-  if (Ae) return Y;
+  if (Ae) return Z;
   Ae = 1;
   var F = z();
-  return Y = function(e) {
+  return Z = function(e) {
     e.addInputOption = e.addInputOptions = e.withInputOption = e.withInputOptions = e.inputOption = e.inputOptions = function(t) {
       if (!this._currentInput)
         throw new Error("No input specified");
@@ -732,17 +732,17 @@ function it() {
       } else typeof y == "string" && this._complexFilters("-map", y.replace(F.streamRegexp, "[$1]"));
       return this;
     };
-  }, Y;
+  }, Z;
 }
 function ut(F) {
   throw new Error('Could not dynamically require "' + F + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
 }
-var J, Oe;
+var Y, xe;
 function at() {
-  if (Oe) return J;
-  Oe = 1;
+  if (xe) return Y;
+  xe = 1;
   var F = V;
-  return J = function(e) {
+  return Y = function(e) {
     e.usingPreset = e.preset = function(t) {
       if (typeof t == "function")
         t(this);
@@ -758,11 +758,11 @@ function at() {
         }
       return this;
     };
-  }, J;
+  }, Y;
 }
-var K = { exports: {} }, Ie;
-function fe() {
-  return Ie || (Ie = 1, function(F) {
+var J = { exports: {} }, Oe;
+function oe() {
+  return Oe || (Oe = 1, function(F) {
     (function() {
       var e = {}, t, y;
       t = this, t != null && (y = t.async), e.noConflict = function() {
@@ -875,9 +875,9 @@ function fe() {
         });
       };
       e.map = a(S), e.mapSeries = v(S), e.mapLimit = function(r, s, o, l) {
-        return x(s)(r, o, l);
+        return A(s)(r, o, l);
       };
-      var x = function(r) {
+      var A = function(r) {
         return d(r, S);
       };
       e.reduce = function(r, s, o, l) {
@@ -995,28 +995,28 @@ function fe() {
           i(l).length === o.length && (s(null, l), s = function() {
           });
         }), n(o, function(T) {
-          var N = r[T] instanceof Function ? [r[T]] : r[T], R = function(q) {
+          var N = r[T] instanceof Function ? [r[T]] : r[T], R = function(C) {
             var M = Array.prototype.slice.call(arguments, 1);
-            if (M.length <= 1 && (M = M[0]), q) {
-              var k = {};
-              n(i(l), function(pe) {
-                k[pe] = l[pe];
-              }), k[T] = M, s(q, k), s = function() {
+            if (M.length <= 1 && (M = M[0]), C) {
+              var D = {};
+              n(i(l), function(he) {
+                D[he] = l[he];
+              }), D[T] = M, s(C, D), s = function() {
               };
             } else
               l[T] = M, e.setImmediate(P);
-          }, qe = N.slice(0, Math.abs(N.length - 1)) || [], ce = function() {
-            return u(qe, function(q, M) {
-              return q && l.hasOwnProperty(M);
+          }, Ce = N.slice(0, Math.abs(N.length - 1)) || [], le = function() {
+            return u(Ce, function(C, M) {
+              return C && l.hasOwnProperty(M);
             }, !0) && !l.hasOwnProperty(T);
           };
-          if (ce())
+          if (le())
             N[N.length - 1](R, l);
           else {
-            var he = function() {
-              ce() && (I(he), N[N.length - 1](R, l));
+            var ce = function() {
+              le() && (I(ce), N[N.length - 1](R, l));
             };
-            w(he);
+            w(ce);
           }
         });
       }, e.waterfall = function(r, s) {
@@ -1066,7 +1066,7 @@ function fe() {
       e.parallel = function(r, s) {
         O({ map: e.map, each: e.each }, r, s);
       }, e.parallelLimit = function(r, s, o) {
-        O({ map: x(s), each: c(s) }, r, o);
+        O({ map: A(s), each: c(s) }, r, o);
       }, e.series = function(r, s) {
         if (s = s || function() {
         }, r.constructor === Array)
@@ -1106,7 +1106,7 @@ function fe() {
           );
         };
       };
-      var A = function(r, s, o, l) {
+      var x = function(r, s, o, l) {
         var p = [];
         r(s, function(w, I) {
           o(w, function(P, T) {
@@ -1116,7 +1116,7 @@ function fe() {
           l(w, p);
         });
       };
-      e.concat = a(A), e.concatSeries = v(A), e.whilst = function(r, s, o) {
+      e.concat = a(x), e.concatSeries = v(x), e.whilst = function(r, s, o) {
         r() ? s(function(l) {
           if (l)
             return o(l);
@@ -1310,19 +1310,19 @@ function fe() {
         o();
       }, F.exports ? F.exports = e : t.async = e;
     })();
-  }(K)), K.exports;
+  }(J)), J.exports;
 }
-var ee, be;
+var K, Ie;
 function st() {
-  if (be) return ee;
-  be = 1;
-  var F = V.spawn, e = fe(), t = z();
+  if (Ie) return K;
+  Ie = 1;
+  var F = V.spawn, e = oe(), t = z();
   function y(f) {
     f._inputs[0].isStream || f.ffprobe(0, function(h, u) {
       f._ffprobeData = u;
     });
   }
-  return ee = function(f) {
+  return K = function(f) {
     f._spawnFfmpeg = function(n, h, u, i) {
       typeof h == "function" && (i = u, u = h, h = {}), typeof i > "u" && (i = u, u = function() {
       });
@@ -1333,26 +1333,26 @@ function st() {
         if (!d || d.length === 0)
           return i(new Error("Cannot find ffmpeg"));
         h.niceness && h.niceness !== 0 && !t.isWindows && (n.unshift("-n", h.niceness, d), d = "nice");
-        var v = t.linesRing(c), S = !1, x = t.linesRing(c), _ = !1, m = F(d, n, h);
+        var v = t.linesRing(c), S = !1, A = t.linesRing(c), _ = !1, m = F(d, n, h);
         m.stderr && m.stderr.setEncoding("utf8"), m.on("error", function(E) {
           i(E);
         });
         var b = null;
         function O(E) {
-          E && (b = E), A && (S || !h.captureStdout) && _ && i(b, v, x);
+          E && (b = E), x && (S || !h.captureStdout) && _ && i(b, v, A);
         }
-        var A = !1;
+        var x = !1;
         m.on("exit", function(E, g) {
-          A = !0, g ? O(new Error("ffmpeg was killed with signal " + g)) : E ? O(new Error("ffmpeg exited with code " + E)) : O();
+          x = !0, g ? O(new Error("ffmpeg was killed with signal " + g)) : E ? O(new Error("ffmpeg exited with code " + E)) : O();
         }), h.captureStdout && (m.stdout.on("data", function(E) {
           v.append(E);
         }), m.stdout.on("close", function() {
           v.close(), S = !0, O();
         })), m.stderr.on("data", function(E) {
-          x.append(E);
+          A.append(E);
         }), m.stderr.on("close", function() {
-          x.close(), _ = !0, O();
-        }), u(m, v, x);
+          A.close(), _ = !0, O();
+        }), u(m, v, A);
       });
     }, f._getArguments = function() {
       var n = this._complexFilters.get(), h = this._outputs.some(function(u) {
@@ -1456,54 +1456,54 @@ function st() {
             cwd: n.options.cwd,
             windowsHide: !0
           },
-          function(x, _, m) {
-            if (n.ffmpegProc = x, n.emit("start", "ffmpeg " + v.join(" ")), i && (i.source.on("error", function(A) {
-              var E = new Error("Input stream error: " + A.message);
-              E.inputStreamError = A, a(E), x.kill();
-            }), i.source.resume(), i.source.pipe(x.stdin), x.stdin.on("error", function() {
+          function(A, _, m) {
+            if (n.ffmpegProc = A, n.emit("start", "ffmpeg " + v.join(" ")), i && (i.source.on("error", function(x) {
+              var E = new Error("Input stream error: " + x.message);
+              E.inputStreamError = x, a(E), A.kill();
+            }), i.source.resume(), i.source.pipe(A.stdin), A.stdin.on("error", function() {
             })), n.options.timeout && (n.processTimer = setTimeout(function() {
-              var A = "process ran into a timeout (" + n.options.timeout + "s)";
-              a(new Error(A), _.get(), m.get()), x.kill();
-            }, n.options.timeout * 1e3)), u && (x.stdout.pipe(u.target, u.pipeopts), u.target.on("close", function() {
+              var x = "process ran into a timeout (" + n.options.timeout + "s)";
+              a(new Error(x), _.get(), m.get()), A.kill();
+            }, n.options.timeout * 1e3)), u && (A.stdout.pipe(u.target, u.pipeopts), u.target.on("close", function() {
               n.logger.debug("Output stream closed, scheduling kill for ffmpeg process"), setTimeout(function() {
-                a(new Error("Output stream closed")), x.kill();
+                a(new Error("Output stream closed")), A.kill();
               }, 20);
-            }), u.target.on("error", function(A) {
+            }), u.target.on("error", function(x) {
               n.logger.debug("Output stream error, killing ffmpeg process");
-              var E = new Error("Output stream error: " + A.message);
-              E.outputStreamError = A, a(E, _.get(), m.get()), x.kill("SIGKILL");
+              var E = new Error("Output stream error: " + x.message);
+              E.outputStreamError = x, a(E, _.get(), m.get()), A.kill("SIGKILL");
             })), m) {
-              if (n.listeners("stderr").length && m.callback(function(A) {
-                n.emit("stderr", A);
+              if (n.listeners("stderr").length && m.callback(function(x) {
+                n.emit("stderr", x);
               }), n.listeners("codecData").length) {
                 var b = !1, O = {};
-                m.callback(function(A) {
-                  b || (b = t.extractCodecData(n, A, O));
+                m.callback(function(x) {
+                  b || (b = t.extractCodecData(n, x, O));
                 });
               }
-              n.listeners("progress").length && m.callback(function(A) {
-                t.extractProgress(n, A);
+              n.listeners("progress").length && m.callback(function(x) {
+                t.extractProgress(n, x);
               });
             }
           },
-          function(x, _, m) {
-            if (clearTimeout(n.processTimer), delete n.ffmpegProc, x)
-              x.message.match(/ffmpeg exited with code/) && (x.message += ": " + t.extractError(m.get())), a(x, _.get(), m.get());
+          function(A, _, m) {
+            if (clearTimeout(n.processTimer), delete n.ffmpegProc, A)
+              A.message.match(/ffmpeg exited with code/) && (A.message += ": " + t.extractError(m.get())), a(A, _.get(), m.get());
             else {
               var b = n._outputs.filter(function(O) {
                 return O.flags.flvmeta;
               });
-              b.length ? n._getFlvtoolPath(function(O, A) {
+              b.length ? n._getFlvtoolPath(function(O, x) {
                 if (O)
                   return a(O);
                 e.each(
                   b,
                   function(E, g) {
-                    F(A, ["-U", E.target], { windowsHide: !0 }).on("error", function(r) {
-                      g(new Error("Error running " + A + " on " + E.target + ": " + r.message));
+                    F(x, ["-U", E.target], { windowsHide: !0 }).on("error", function(r) {
+                      g(new Error("Error running " + x + " on " + E.target + ": " + r.message));
                     }).on("exit", function(r, s) {
                       r !== 0 || s ? g(
-                        new Error(A + " " + (s ? "received signal " + s : "exited with code " + r)) + " when running on " + E.target
+                        new Error(x + " " + (s ? "received signal " + s : "exited with code " + r)) + " when running on " + E.target
                       ) : g();
                     });
                   },
@@ -1529,25 +1529,25 @@ function st() {
     }, f.kill = function(n) {
       return this.ffmpegProc ? this.ffmpegProc.kill(n || "SIGKILL") : this.logger.warn("No running ffmpeg process, cannot send signal"), this;
     };
-  }, ee;
+  }, K;
 }
-var te, Se;
+var ee, be;
 function ot() {
-  if (Se) return te;
-  Se = 1;
-  var F = V, e = V, t = fe(), y = z(), f = /^\s*([D ])([E ])([VAS])([S ])([D ])([T ]) ([^ ]+) +(.*)$/, n = /^\s*([D\.])([E\.])([VAS])([I\.])([L\.])([S\.]) ([^ ]+) +(.*)$/, h = /\(encoders:([^\)]+)\)/, u = /\(decoders:([^\)]+)\)/, i = /^\s*([VAS\.])([F\.])([S\.])([X\.])([B\.])([D\.]) ([^ ]+) +(.*)$/, c = /^\s*([D ])([E ])\s+([^ ]+)\s+(.*)$/, a = /\r\n|\r|\n/, d = /^(?: [T\.][S\.][C\.] )?([^ ]+) +(AA?|VV?|\|)->(AA?|VV?|\|) +(.*)$/, v = {};
-  return te = function(S) {
-    S.setFfmpegPath = function(x) {
-      return v.ffmpegPath = x, this;
-    }, S.setFfprobePath = function(x) {
-      return v.ffprobePath = x, this;
-    }, S.setFlvtoolPath = function(x) {
-      return v.flvtoolPath = x, this;
+  if (be) return ee;
+  be = 1;
+  var F = V, e = V, t = oe(), y = z(), f = /^\s*([D ])([E ])([VAS])([S ])([D ])([T ]) ([^ ]+) +(.*)$/, n = /^\s*([D\.])([E\.])([VAS])([I\.])([L\.])([S\.]) ([^ ]+) +(.*)$/, h = /\(encoders:([^\)]+)\)/, u = /\(decoders:([^\)]+)\)/, i = /^\s*([VAS\.])([F\.])([S\.])([X\.])([B\.])([D\.]) ([^ ]+) +(.*)$/, c = /^\s*([D ])([E ])\s+([^ ]+)\s+(.*)$/, a = /\r\n|\r|\n/, d = /^(?: [T\.][S\.][C\.] )?([^ ]+) +(AA?|VV?|\|)->(AA?|VV?|\|) +(.*)$/, v = {};
+  return ee = function(S) {
+    S.setFfmpegPath = function(A) {
+      return v.ffmpegPath = A, this;
+    }, S.setFfprobePath = function(A) {
+      return v.ffprobePath = A, this;
+    }, S.setFlvtoolPath = function(A) {
+      return v.flvtoolPath = A, this;
     }, S._forgetPaths = function() {
       delete v.ffmpegPath, delete v.ffprobePath, delete v.flvtoolPath;
-    }, S._getFfmpegPath = function(x) {
+    }, S._getFfmpegPath = function(A) {
       if ("ffmpegPath" in v)
-        return x(null, v.ffmpegPath);
+        return A(null, v.ffmpegPath);
       t.waterfall([
         // Try FFMPEG_PATH
         function(_) {
@@ -1564,12 +1564,12 @@ function ot() {
           });
         }
       ], function(_, m) {
-        _ ? x(_) : x(null, v.ffmpegPath = m || "");
+        _ ? A(_) : A(null, v.ffmpegPath = m || "");
       });
-    }, S._getFfprobePath = function(x) {
+    }, S._getFfprobePath = function(A) {
       var _ = this;
       if ("ffprobePath" in v)
-        return x(null, v.ffprobePath);
+        return A(null, v.ffprobePath);
       t.waterfall([
         // Try FFPROBE_PATH
         function(m) {
@@ -1581,19 +1581,19 @@ function ot() {
         function(m, b) {
           if (m.length)
             return b(null, m);
-          y.which("ffprobe", function(O, A) {
-            b(O, A);
+          y.which("ffprobe", function(O, x) {
+            b(O, x);
           });
         },
         // Search in the same directory as ffmpeg
         function(m, b) {
           if (m.length)
             return b(null, m);
-          _._getFfmpegPath(function(O, A) {
+          _._getFfmpegPath(function(O, x) {
             if (O)
               b(O);
-            else if (A.length) {
-              var E = y.isWindows ? "ffprobe.exe" : "ffprobe", g = e.join(e.dirname(A), E);
+            else if (x.length) {
+              var E = y.isWindows ? "ffprobe.exe" : "ffprobe", g = e.join(e.dirname(x), E);
               F.exists(g, function(r) {
                 b(null, r ? g : "");
               });
@@ -1602,11 +1602,11 @@ function ot() {
           });
         }
       ], function(m, b) {
-        m ? x(m) : x(null, v.ffprobePath = b || "");
+        m ? A(m) : A(null, v.ffprobePath = b || "");
       });
-    }, S._getFlvtoolPath = function(x) {
+    }, S._getFlvtoolPath = function(A) {
       if ("flvtoolPath" in v)
-        return x(null, v.flvtoolPath);
+        return A(null, v.flvtoolPath);
       t.waterfall([
         // Try FLVMETA_PATH
         function(_) {
@@ -1639,37 +1639,37 @@ function ot() {
           });
         }
       ], function(_, m) {
-        _ ? x(_) : x(null, v.flvtoolPath = m || "");
+        _ ? A(_) : A(null, v.flvtoolPath = m || "");
       });
-    }, S.availableFilters = S.getAvailableFilters = function(x) {
+    }, S.availableFilters = S.getAvailableFilters = function(A) {
       if ("filters" in v)
-        return x(null, v.filters);
+        return A(null, v.filters);
       this._spawnFfmpeg(["-filters"], { captureStdout: !0, stdoutLines: 0 }, function(_, m) {
         if (_)
-          return x(_);
+          return A(_);
         var b = m.get(), O = b.split(`
-`), A = {}, E = { A: "audio", V: "video", "|": "none" };
+`), x = {}, E = { A: "audio", V: "video", "|": "none" };
         O.forEach(function(g) {
           var r = g.match(d);
-          r && (A[r[1]] = {
+          r && (x[r[1]] = {
             description: r[4],
             input: E[r[2].charAt(0)],
             multipleInputs: r[2].length > 1,
             output: E[r[3].charAt(0)],
             multipleOutputs: r[3].length > 1
           });
-        }), x(null, v.filters = A);
+        }), A(null, v.filters = x);
       });
-    }, S.availableCodecs = S.getAvailableCodecs = function(x) {
+    }, S.availableCodecs = S.getAvailableCodecs = function(A) {
       if ("codecs" in v)
-        return x(null, v.codecs);
+        return A(null, v.codecs);
       this._spawnFfmpeg(["-codecs"], { captureStdout: !0, stdoutLines: 0 }, function(_, m) {
         if (_)
-          return x(_);
-        var b = m.get(), O = b.split(a), A = {};
+          return A(_);
+        var b = m.get(), O = b.split(a), x = {};
         O.forEach(function(E) {
           var g = E.match(f);
-          if (g && g[7] !== "=" && (A[g[7]] = {
+          if (g && g[7] !== "=" && (x[g[7]] = {
             type: { V: "video", A: "audio", S: "subtitle" }[g[3]],
             description: g[8],
             canDecode: g[1] === "D",
@@ -1678,7 +1678,7 @@ function ot() {
             directRendering: g[5] === "D",
             weirdFrameTruncation: g[6] === "T"
           }), g = E.match(n), g && g[7] !== "=") {
-            var r = A[g[7]] = {
+            var r = x[g[7]] = {
               type: { V: "video", A: "audio", S: "subtitle" }[g[3]],
               description: g[8],
               canDecode: g[1] === "D",
@@ -1692,24 +1692,24 @@ function ot() {
             if (o = o ? o[1].trim().split(" ") : [], s.length || o.length) {
               var l = {};
               y.copy(r, l), delete l.canEncode, delete l.canDecode, s.forEach(function(p) {
-                A[p] = {}, y.copy(l, A[p]), A[p].canEncode = !0;
+                x[p] = {}, y.copy(l, x[p]), x[p].canEncode = !0;
               }), o.forEach(function(p) {
-                p in A || (A[p] = {}, y.copy(l, A[p])), A[p].canDecode = !0;
+                p in x || (x[p] = {}, y.copy(l, x[p])), x[p].canDecode = !0;
               });
             }
           }
-        }), x(null, v.codecs = A);
+        }), A(null, v.codecs = x);
       });
-    }, S.availableEncoders = S.getAvailableEncoders = function(x) {
+    }, S.availableEncoders = S.getAvailableEncoders = function(A) {
       if ("encoders" in v)
-        return x(null, v.encoders);
+        return A(null, v.encoders);
       this._spawnFfmpeg(["-encoders"], { captureStdout: !0, stdoutLines: 0 }, function(_, m) {
         if (_)
-          return x(_);
-        var b = m.get(), O = b.split(a), A = {};
+          return A(_);
+        var b = m.get(), O = b.split(a), x = {};
         O.forEach(function(E) {
           var g = E.match(i);
-          g && g[7] !== "=" && (A[g[7]] = {
+          g && g[7] !== "=" && (x[g[7]] = {
             type: { V: "video", A: "audio", S: "subtitle" }[g[1]],
             description: g[8],
             frameMT: g[2] === "F",
@@ -1718,27 +1718,27 @@ function ot() {
             drawHorizBand: g[5] === "B",
             directRendering: g[6] === "D"
           });
-        }), x(null, v.encoders = A);
+        }), A(null, v.encoders = x);
       });
-    }, S.availableFormats = S.getAvailableFormats = function(x) {
+    }, S.availableFormats = S.getAvailableFormats = function(A) {
       if ("formats" in v)
-        return x(null, v.formats);
+        return A(null, v.formats);
       this._spawnFfmpeg(["-formats"], { captureStdout: !0, stdoutLines: 0 }, function(_, m) {
         if (_)
-          return x(_);
-        var b = m.get(), O = b.split(a), A = {};
+          return A(_);
+        var b = m.get(), O = b.split(a), x = {};
         O.forEach(function(E) {
           var g = E.match(c);
           g && g[3].split(",").forEach(function(r) {
-            r in A || (A[r] = {
+            r in x || (x[r] = {
               description: g[4],
               canDemux: !1,
               canMux: !1
-            }), g[1] === "D" && (A[r].canDemux = !0), g[2] === "E" && (A[r].canMux = !0);
+            }), g[1] === "D" && (x[r].canDemux = !0), g[2] === "E" && (x[r].canMux = !0);
           });
-        }), x(null, v.formats = A);
+        }), A(null, v.formats = x);
       });
-    }, S._checkCapabilities = function(x) {
+    }, S._checkCapabilities = function(A) {
       var _ = this;
       t.waterfall([
         // Get available formats
@@ -1748,16 +1748,16 @@ function ot() {
         // Check whether specified formats are available
         function(m, b) {
           var O;
-          if (O = _._outputs.reduce(function(A, E) {
+          if (O = _._outputs.reduce(function(x, E) {
             var g = E.options.find("-f", 1);
-            return g && (!(g[0] in m) || !m[g[0]].canMux) && A.push(g), A;
+            return g && (!(g[0] in m) || !m[g[0]].canMux) && x.push(g), x;
           }, []), O.length === 1)
             return b(new Error("Output format " + O[0] + " is not available"));
           if (O.length > 1)
             return b(new Error("Output formats " + O.join(", ") + " are not available"));
-          if (O = _._inputs.reduce(function(A, E) {
+          if (O = _._inputs.reduce(function(x, E) {
             var g = E.options.find("-f", 1);
-            return g && (!(g[0] in m) || !m[g[0]].canDemux) && A.push(g[0]), A;
+            return g && (!(g[0] in m) || !m[g[0]].canDemux) && x.push(g[0]), x;
           }, []), O.length === 1)
             return b(new Error("Input format " + O[0] + " is not available"));
           if (O.length > 1)
@@ -1771,30 +1771,30 @@ function ot() {
         // Check whether specified codecs are available and add strict experimental options if needed
         function(m, b) {
           var O;
-          if (O = _._outputs.reduce(function(A, E) {
+          if (O = _._outputs.reduce(function(x, E) {
             var g = E.audio.find("-acodec", 1);
-            return g && g[0] !== "copy" && (!(g[0] in m) || m[g[0]].type !== "audio") && A.push(g[0]), A;
+            return g && g[0] !== "copy" && (!(g[0] in m) || m[g[0]].type !== "audio") && x.push(g[0]), x;
           }, []), O.length === 1)
             return b(new Error("Audio codec " + O[0] + " is not available"));
           if (O.length > 1)
             return b(new Error("Audio codecs " + O.join(", ") + " are not available"));
-          if (O = _._outputs.reduce(function(A, E) {
+          if (O = _._outputs.reduce(function(x, E) {
             var g = E.video.find("-vcodec", 1);
-            return g && g[0] !== "copy" && (!(g[0] in m) || m[g[0]].type !== "video") && A.push(g[0]), A;
+            return g && g[0] !== "copy" && (!(g[0] in m) || m[g[0]].type !== "video") && x.push(g[0]), x;
           }, []), O.length === 1)
             return b(new Error("Video codec " + O[0] + " is not available"));
           if (O.length > 1)
             return b(new Error("Video codecs " + O.join(", ") + " are not available"));
           b();
         }
-      ], x);
+      ], A);
     };
-  }, te;
+  }, ee;
 }
-var ne, Pe;
+var te, Se;
 function ft() {
-  if (Pe) return ne;
-  Pe = 1;
+  if (Se) return te;
+  Se = 1;
   var F = V.spawn;
   function e(f) {
     return f.match(/^TAG:/);
@@ -1820,8 +1820,8 @@ function ft() {
           S = n.shift();
           continue;
         }
-        var x = S.match(/^([^=]+)=(.*)$/);
-        x && (!x[1].match(/^TAG:/) && x[2].match(/^[0-9]+(\.[0-9]+)?$/) ? v[x[1]] = Number(x[2]) : v[x[1]] = x[2]), S = n.shift();
+        var A = S.match(/^([^=]+)=(.*)$/);
+        A && (!A[1].match(/^TAG:/) && A[2].match(/^[0-9]+(\.[0-9]+)?$/) ? v[A[1]] = Number(A[2]) : v[A[1]] = A[2]), S = n.shift();
       }
       return v;
     }
@@ -1837,7 +1837,7 @@ function ft() {
     }
     return h;
   }
-  return ne = function(f) {
+  return te = function(f) {
     f.ffprobe = function() {
       var n, h = null, u = [], i, i = arguments[arguments.length - 1], c = !1;
       function a(d, v) {
@@ -1862,18 +1862,18 @@ function ft() {
           return a(d);
         if (!v)
           return a(new Error("Cannot find ffprobe"));
-        var S = "", x = !1, _ = "", m = !1, b = n.isStream ? "pipe:0" : n.source, O = F(v, ["-show_streams", "-show_format"].concat(u, b), { windowsHide: !0 });
+        var S = "", A = !1, _ = "", m = !1, b = n.isStream ? "pipe:0" : n.source, O = F(v, ["-show_streams", "-show_format"].concat(u, b), { windowsHide: !0 });
         n.isStream && (O.stdin.on("error", function(r) {
           ["ECONNRESET", "EPIPE", "EOF"].indexOf(r.code) >= 0 || a(r);
         }), O.stdin.on("close", function() {
           n.source.pause(), n.source.unpipe(O.stdin);
         }), n.source.pipe(O.stdin)), O.on("error", i);
-        var A = null;
+        var x = null;
         function E(r) {
-          if (r && (A = r), g && x && m) {
-            if (A)
-              return _ && (A.message += `
-` + _), a(A);
+          if (r && (x = r), g && A && m) {
+            if (x)
+              return _ && (x.message += `
+` + _), a(x);
             var s = y(S);
             [s.format].concat(s.streams).forEach(function(o) {
               if (o) {
@@ -1895,7 +1895,7 @@ function ft() {
         }), O.stdout.on("data", function(r) {
           S += r;
         }), O.stdout.on("close", function() {
-          x = !0, E();
+          A = !0, E();
         }), O.stderr.on("data", function(r) {
           _ += r;
         }), O.stderr.on("close", function() {
@@ -1903,14 +1903,14 @@ function ft() {
         });
       });
     };
-  }, ne;
+  }, te;
 }
-var re, Te;
+var ne, Pe;
 function lt() {
-  if (Te) return re;
-  Te = 1;
-  var F = V, e = V, t = V.PassThrough, y = fe(), f = z();
-  return re = function(h) {
+  if (Pe) return ne;
+  Pe = 1;
+  var F = V, e = V, t = V.PassThrough, y = oe(), f = z();
+  return ne = function(h) {
     h.saveToFile = h.save = function(u) {
       return this.output(u).run(), this;
     }, h.writeToStream = h.pipe = h.stream = function(u, i) {
@@ -1933,14 +1933,14 @@ function lt() {
           u.timemarks.push(d * (v + 1) + "%");
       }
       if ("size" in u) {
-        var S = u.size.match(/^(\d+)x(\d+)$/), x = u.size.match(/^(\d+)x\?$/), _ = u.size.match(/^\?x(\d+)$/), m = u.size.match(/^(\d+)%$/);
-        if (!S && !x && !_ && !m)
+        var S = u.size.match(/^(\d+)x(\d+)$/), A = u.size.match(/^(\d+)x\?$/), _ = u.size.match(/^\?x(\d+)$/), m = u.size.match(/^(\d+)%$/);
+        if (!S && !A && !_ && !m)
           throw new Error("Invalid size parameter: " + u.size);
       }
       var b;
-      function O(A) {
-        b ? A(null, b) : c.ffprobe(function(E, g) {
-          b = g, A(E, g);
+      function O(x) {
+        b ? x(null, b) : c.ffprobe(function(E, g) {
+          b = g, x(E, g);
         });
       }
       return y.waterfall([
@@ -2011,7 +2011,7 @@ function lt() {
               if (o.width === 0)
                 return g(new Error("No video stream in input, cannot replace %w, %h or %r"));
               var l = o.width, p = o.height;
-              x ? (p = p * Number(x[1]) / l, l = Number(x[1])) : _ ? (l = l * Number(_[1]) / p, p = Number(_[1])) : m && (l = l * Number(m[1]) / 100, p = p * Number(m[1]) / 100), g(null, E, Math.round(l / 2) * 2, Math.round(p / 2) * 2);
+              A ? (p = p * Number(A[1]) / l, l = Number(A[1])) : _ ? (l = l * Number(_[1]) / p, p = Number(_[1])) : m && (l = l * Number(m[1]) / 100, p = p * Number(m[1]) / 100), g(null, E, Math.round(l / 2) * 2, Math.round(p / 2) * 2);
             });
           } else
             g(null, E, -1, -1);
@@ -2068,25 +2068,25 @@ function lt() {
           return a.emit("error", d);
         var S = v.streams.some(function(_) {
           return _.codec_type === "audio";
-        }), x = v.streams.some(function(_) {
+        }), A = v.streams.some(function(_) {
           return _.codec_type === "video";
         });
         a.output(u, i).complexFilter({
           filter: "concat",
           options: {
             n: a._inputs.length,
-            v: x ? 1 : 0,
+            v: A ? 1 : 0,
             a: S ? 1 : 0
           }
         }).run();
       }), this;
     };
-  }, re;
+  }, ne;
 }
-var ie, Ne;
+var re, Te;
 function ct() {
-  if (Ne) return ie;
-  Ne = 1;
+  if (Te) return re;
+  Te = 1;
   var F = V, e = V, t = V.EventEmitter, y = z();
   function f(n, h) {
     if (!(this instanceof f))
@@ -2106,7 +2106,7 @@ function ct() {
       }
     };
   }
-  return e.inherits(f, t), ie = f, f.prototype.clone = function() {
+  return e.inherits(f, t), re = f, f.prototype.clone = function() {
     var n = new f(), h = this;
     return n.options = this.options, n.logger = this.logger, n._inputs = this._inputs.map(function(u) {
       return {
@@ -2139,31 +2139,31 @@ function ct() {
   }, ft()(f.prototype), f.ffprobe = function(n) {
     var h = new f(n);
     h.ffprobe.apply(h, Array.prototype.slice.call(arguments, 1));
-  }, lt()(f.prototype), ie;
+  }, lt()(f.prototype), re;
 }
-var ue, Ve;
+var ie, Ne;
 function ht() {
-  return Ve || (Ve = 1, ue = ct()), ue;
+  return Ne || (Ne = 1, ie = ct()), ie;
 }
-var D = ht();
-const pt = /* @__PURE__ */ Ue(D), ze = /* @__PURE__ */ Be({
+var qe = ht();
+const pt = /* @__PURE__ */ Ue(qe), Ve = /* @__PURE__ */ Be({
   __proto__: null,
   default: pt
-}, [D]);
-var L = { exports: {} }, ae, Re;
-function le() {
-  return Re || (Re = 1, ae = {
+}, [qe]);
+var q = { exports: {} }, ue, ze;
+function fe() {
+  return ze || (ze = 1, ue = {
     DEFAULT_INITIAL_SIZE: 8 * 1024,
     DEFAULT_INCREMENT_AMOUNT: 8 * 1024,
     DEFAULT_FREQUENCY: 1,
     DEFAULT_CHUNK_SIZE: 1024
-  }), ae;
+  }), ue;
 }
-var se = { exports: {} }, Me;
+var ae = { exports: {} }, Re;
 function dt() {
-  if (Me) return se.exports;
-  Me = 1;
-  var F = V, e = le(), t = V, y = se.exports = function(f) {
+  if (Re) return ae.exports;
+  Re = 1;
+  var F = V, e = fe(), t = V, y = ae.exports = function(f) {
     var n = this;
     f = f || {}, F.Readable.call(this, f), this.stopped = !1;
     var h = f.hasOwnProperty("frequency") ? f.frequency : e.DEFAULT_FREQUENCY, u = f.chunkSize || e.DEFAULT_CHUNK_SIZE, i = f.initialSize || e.DEFAULT_INITIAL_SIZE, c = f.incrementAmount || e.DEFAULT_INCREMENT_AMOUNT, a = 0, d = new Buffer(i), v = !1, S = function() {
@@ -2183,7 +2183,7 @@ function dt() {
     }, this.maxSize = function() {
       return d.length;
     };
-    var x = function(m) {
+    var A = function(m) {
       if (d.length - a < m) {
         var b = Math.ceil((m - (d.length - a)) / c), O = new Buffer(d.length + c * b);
         d.copy(O, 0, 0, a), d = O;
@@ -2195,24 +2195,24 @@ function dt() {
       if (n.stopped)
         throw new Error("Tried to write data to a stopped ReadableStreamBuffer");
       if (Buffer.isBuffer(m))
-        x(m.length), m.copy(d, a, 0), a += m.length;
+        A(m.length), m.copy(d, a, 0), a += m.length;
       else {
         m = m + "";
         var O = Buffer.byteLength(m);
-        x(O), d.write(m, a, b || "utf8"), a += O;
+        A(O), d.write(m, a, b || "utf8"), a += O;
       }
       _();
     }, this._read = function() {
       v = !0, _();
     };
   };
-  return t.inherits(y, F.Readable), se.exports;
+  return t.inherits(y, F.Readable), ae.exports;
 }
-var oe = { exports: {} }, Ce;
+var se = { exports: {} }, Me;
 function vt() {
-  if (Ce) return oe.exports;
-  Ce = 1;
-  var F = V, e = V, t = le(), y = oe.exports = function(f) {
+  if (Me) return se.exports;
+  Me = 1;
+  var F = V, e = V, t = fe(), y = se.exports = function(f) {
     f = f || {}, f.decodeStrings = !0, e.Writable.call(this, f);
     var n = f.initialSize || t.DEFAULT_INITIAL_SIZE, h = f.incrementAmount || t.DEFAULT_INCREMENT_AMOUNT, u = new Buffer(n), i = 0;
     this.size = function() {
@@ -2238,25 +2238,25 @@ function vt() {
       c(a.length), a.copy(u, i, 0), i += a.length, v();
     };
   };
-  return F.inherits(y, e.Writable), oe.exports;
+  return F.inherits(y, e.Writable), se.exports;
 }
 var Le;
 function mt() {
-  return Le || (Le = 1, L.exports = le(), L.exports.ReadableStreamBuffer = dt(), L.exports.WritableStreamBuffer = vt()), L.exports;
+  return Le || (Le = 1, q.exports = fe(), q.exports.ReadableStreamBuffer = dt(), q.exports.WritableStreamBuffer = vt()), q.exports;
 }
 var gt = mt();
 class wt {
   constructor() {
-    C(this, "getResolutionQuality", (e, t) => e >= 3840 && t >= 2160 ? "4K" : e >= 2048 && t >= 1080 ? "2K" : e >= 1920 && t >= 1080 ? "Full HD" : e >= 1280 && t >= 720 ? "HD" : "SD");
+    L(this, "getResolutionQuality", (e, t) => e >= 3840 && t >= 2160 ? "4K" : e >= 2048 && t >= 1080 ? "2K" : e >= 1920 && t >= 1080 ? "Full HD" : e >= 1280 && t >= 720 ? "HD" : "SD");
     /**
      * Generates a screenshot from the middle of a video.
      * @param {Object} file - Express file object containing video data.
      * @returns {Promise<Buffer>} - A buffer of the generated screenshot.
      */
-    C(this, "generateThumbnail", async (e) => {
+    L(this, "generateThumbnail", async (e) => {
       const t = (void 0)(__dirname, "tmp"), y = (void 0)(t, `temp_${Date.now()}`), f = (void 0)(t, `screenshot_${Date.now()}.png`);
       return await (void 0)(t, { recursive: !0 }), await (void 0)(y, e.buffer), new Promise((n, h) => {
-        ze(y).on("error", async (u) => {
+        Ve(y).on("error", async (u) => {
           console.error("Error generating screenshot:", u), h(u);
         }).on("end", async () => {
           try {
@@ -2274,12 +2274,12 @@ class wt {
         });
       });
     });
-    C(this, "analyzeMediaBuffer", async (e) => new Promise((t, y) => {
+    L(this, "analyzeMediaBuffer", async (e) => new Promise((t, y) => {
       const f = new gt.ReadableStreamBuffer({
         frequency: 10,
         chunkSize: 2048
       });
-      f.put(e.buffer), f.stop(), ze(f).ffprobe(async (n, h) => {
+      f.put(e.buffer), f.stop(), Ve(f).ffprobe(async (n, h) => {
         if (n) {
           y(n);
           return;
@@ -2312,9 +2312,6 @@ class wt {
         t(i);
       });
     }));
-    process.platform === "win32" && (D.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe"), D.setFfprobePath(
-      "C:/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe"
-    ));
   }
 }
 class yt {
@@ -2354,7 +2351,7 @@ class _t {
     return await new je(e).validate();
   }
 }
-const Et = 50, Ft = 2e3, xt = 50, At = 2e3, Ot = ["JPEG", "JPG", "PNG", "GIF"], It = 1e8;
+const Et = 50, Ft = 2e3, At = 50, xt = 2e3, Ot = ["JPEG", "JPG", "PNG", "GIF"], It = 1e8;
 function bt(F) {
   return (F.includes("/") ? F.split("/")[1] : F).toUpperCase();
 }
@@ -2372,7 +2369,7 @@ class St {
   }
   async validateResolution() {
     const e = await this.getImageFromFile(this.file);
-    return e.width > At || e.width < xt || e.height > Ft || e.height < Et;
+    return e.width > xt || e.width < At || e.height > Ft || e.height < Et;
   }
   validateType() {
     return Ot.includes(bt(this.file.type));
@@ -2432,7 +2429,7 @@ class Nt {
 }
 class zt {
   constructor(e) {
-    C(this, "validatorStrategy");
+    L(this, "validatorStrategy");
     this.validatorStrategy = e === "backend" ? new _t() : new Nt();
   }
   validate(e, t) {
