@@ -4,7 +4,7 @@ type AllowedFileTypes = "image" | "video" | "vast";
 declare class CreativeValidator {
     private validatorStrategy;
     constructor(validationType: AllowedValitators);
-    validate(type: AllowedFileTypes, file: File | Express.Multer.File | string): void;
+    validate(type: AllowedFileTypes, file: File | Express.Multer.File | string): Promise<boolean>;
 }
 
 export { CreativeValidator };

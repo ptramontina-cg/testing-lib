@@ -13,7 +13,10 @@ export class CreativeValidator {
         : new FrontendValidatorStrategy();
   }
 
-  validate(type: AllowedFileTypes, file: File | Express.Multer.File | string) {
-    this.validatorStrategy.validate(type, file);
+  async validate(
+    type: AllowedFileTypes,
+    file: File | Express.Multer.File | string
+  ) {
+    return await this.validatorStrategy.validate(type, file);
   }
 }
