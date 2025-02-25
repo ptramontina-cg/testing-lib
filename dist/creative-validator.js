@@ -1,22 +1,6 @@
-var De = Object.defineProperty;
-var ke = (F, e, t) => e in F ? De(F, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : F[e] = t;
-var L = (F, e, t) => ke(F, typeof e != "symbol" ? e + "" : e, t);
-function Be(F, e) {
-  for (var t = 0; t < e.length; t++) {
-    const y = e[t];
-    if (typeof y != "string" && !Array.isArray(y)) {
-      for (const f in y)
-        if (f !== "default" && !(f in F)) {
-          const n = Object.getOwnPropertyDescriptor(y, f);
-          n && Object.defineProperty(F, f, n.get ? n : {
-            enumerable: !0,
-            get: () => y[f]
-          });
-        }
-    }
-  }
-  return Object.freeze(Object.defineProperty(F, Symbol.toStringTag, { value: "Module" }));
-}
+var ke = Object.defineProperty;
+var Be = (x, e, t) => e in x ? ke(x, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : x[e] = t;
+var q = (x, e, t) => Be(x, typeof e != "symbol" ? e + "" : e, t);
 class $e {
   constructor(e) {
     this.file = e;
@@ -25,7 +9,7 @@ class $e {
     return console.log(this.file), !0;
   }
 }
-class je {
+class He {
   constructor(e) {
     this.url = e;
   }
@@ -33,38 +17,38 @@ class je {
     return console.log(this.url), !0;
   }
 }
-var He = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Ue(F) {
-  return F && F.__esModule && Object.prototype.hasOwnProperty.call(F, "default") ? F.default : F;
+var je = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function Ce(x) {
+  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x.default : x;
 }
-function We(F) {
-  if (F.__esModule) return F;
-  var e = F.default;
+function Ue(x) {
+  if (x.__esModule) return x;
+  var e = x.default;
   if (typeof e == "function") {
     var t = function y() {
       return this instanceof y ? Reflect.construct(e, arguments, this.constructor) : e.apply(this, arguments);
     };
     t.prototype = e.prototype;
   } else t = {};
-  return Object.defineProperty(t, "__esModule", { value: !0 }), Object.keys(F).forEach(function(y) {
-    var f = Object.getOwnPropertyDescriptor(F, y);
-    Object.defineProperty(t, y, f.get ? f : {
+  return Object.defineProperty(t, "__esModule", { value: !0 }), Object.keys(x).forEach(function(y) {
+    var l = Object.getOwnPropertyDescriptor(x, y);
+    Object.defineProperty(t, y, l.get ? l : {
       enumerable: !0,
       get: function() {
-        return F[y];
+        return x[y];
       }
     });
   }), t;
 }
-const Ge = {}, Xe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const z = {}, We = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: Ge
-}, Symbol.toStringTag, { value: "Module" })), V = /* @__PURE__ */ We(Xe);
-var k = { exports: {} }, B, pe;
-function Qe() {
-  if (pe) return B;
-  pe = 1, B = y, y.sync = f;
-  var F = V;
+  default: z
+}, Symbol.toStringTag, { value: "Module" })), V = /* @__PURE__ */ Ue(We);
+var B = { exports: {} }, $, de;
+function Ge() {
+  if (de) return $;
+  de = 1, $ = y, y.sync = l;
+  var x = V;
   function e(n, h) {
     var u = h.pathExt !== void 0 ? h.pathExt : process.env.PATHEXT;
     if (!u || (u = u.split(";"), u.indexOf("") !== -1))
@@ -80,74 +64,74 @@ function Qe() {
     return !n.isSymbolicLink() && !n.isFile() ? !1 : e(h, u);
   }
   function y(n, h, u) {
-    F.stat(n, function(i, c) {
+    x.stat(n, function(i, c) {
       u(i, i ? !1 : t(c, n, h));
     });
   }
-  function f(n, h) {
-    return t(F.statSync(n), n, h);
+  function l(n, h) {
+    return t(x.statSync(n), n, h);
   }
-  return B;
+  return $;
 }
-var $, de;
-function Ze() {
-  if (de) return $;
-  de = 1, $ = e, e.sync = t;
-  var F = V;
+var H, ve;
+function Xe() {
+  if (ve) return H;
+  ve = 1, H = e, e.sync = t;
+  var x = V;
   function e(n, h, u) {
-    F.stat(n, function(i, c) {
+    x.stat(n, function(i, c) {
       u(i, i ? !1 : y(c, h));
     });
   }
   function t(n, h) {
-    return y(F.statSync(n), h);
+    return y(x.statSync(n), h);
   }
   function y(n, h) {
-    return n.isFile() && f(n, h);
+    return n.isFile() && l(n, h);
   }
-  function f(n, h) {
-    var u = n.mode, i = n.uid, c = n.gid, a = h.uid !== void 0 ? h.uid : process.getuid && process.getuid(), d = h.gid !== void 0 ? h.gid : process.getgid && process.getgid(), v = parseInt("100", 8), S = parseInt("010", 8), A = parseInt("001", 8), _ = v | S, m = u & A || u & S && c === d || u & v && i === a || u & _ && a === 0;
+  function l(n, h) {
+    var u = n.mode, i = n.uid, c = n.gid, a = h.uid !== void 0 ? h.uid : process.getuid && process.getuid(), d = h.gid !== void 0 ? h.gid : process.getgid && process.getgid(), v = parseInt("100", 8), S = parseInt("010", 8), F = parseInt("001", 8), _ = v | S, m = u & F || u & S && c === d || u & v && i === a || u & _ && a === 0;
     return m;
   }
-  return $;
+  return H;
 }
-var j, ve;
-function Ye() {
-  if (ve) return j;
-  ve = 1;
-  var F;
-  process.platform === "win32" || He.TESTING_WINDOWS ? F = Qe() : F = Ze(), j = e, e.sync = t;
-  function e(y, f, n) {
-    if (typeof f == "function" && (n = f, f = {}), !n) {
+var j, me;
+function Qe() {
+  if (me) return j;
+  me = 1;
+  var x;
+  process.platform === "win32" || je.TESTING_WINDOWS ? x = Ge() : x = Xe(), j = e, e.sync = t;
+  function e(y, l, n) {
+    if (typeof l == "function" && (n = l, l = {}), !n) {
       if (typeof Promise != "function")
         throw new TypeError("callback not provided");
       return new Promise(function(h, u) {
-        e(y, f || {}, function(i, c) {
+        e(y, l || {}, function(i, c) {
           i ? u(i) : h(c);
         });
       });
     }
-    F(y, f || {}, function(h, u) {
-      h && (h.code === "EACCES" || f && f.ignoreErrors) && (h = null, u = !1), n(h, u);
+    x(y, l || {}, function(h, u) {
+      h && (h.code === "EACCES" || l && l.ignoreErrors) && (h = null, u = !1), n(h, u);
     });
   }
-  function t(y, f) {
+  function t(y, l) {
     try {
-      return F.sync(y, f || {});
+      return x.sync(y, l || {});
     } catch (n) {
-      if (f && f.ignoreErrors || n.code === "EACCES")
+      if (l && l.ignoreErrors || n.code === "EACCES")
         return !1;
       throw n;
     }
   }
   return j;
 }
-var H, me;
-function Je() {
-  if (me) return H;
-  me = 1, H = h, h.sync = u;
-  var F = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys", e = V, t = F ? ";" : ":", y = Ye();
-  function f(i) {
+var U, ge;
+function Ze() {
+  if (ge) return U;
+  ge = 1, U = h, h.sync = u;
+  var x = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys", e = V, t = x ? ";" : ":", y = Qe();
+  function l(i) {
     var c = new Error("not found: " + i);
     return c.code = "ENOENT", c;
   }
@@ -155,7 +139,7 @@ function Je() {
     var a = c.colon || t, d = c.path || process.env.PATH || "", v = [""];
     d = d.split(a);
     var S = "";
-    return F && (d.unshift(process.cwd()), S = c.pathExt || process.env.PATHEXT || ".EXE;.CMD;.BAT;.COM", v = S.split(a), i.indexOf(".") !== -1 && v[0] !== "" && v.unshift("")), (i.match(/\//) || F && i.match(/\\/)) && (d = [""]), {
+    return x && (d.unshift(process.cwd()), S = c.pathExt || process.env.PATHEXT || ".EXE;.CMD;.BAT;.COM", v = S.split(a), i.indexOf(".") !== -1 && v[0] !== "" && v.unshift("")), (i.match(/\//) || x && i.match(/\\/)) && (d = [""]), {
       env: d,
       ext: v,
       extExe: S
@@ -163,18 +147,18 @@ function Je() {
   }
   function h(i, c, a) {
     typeof c == "function" && (a = c, c = {});
-    var d = n(i, c), v = d.env, S = d.ext, A = d.extExe, _ = [];
-    (function m(b, O) {
-      if (b === O)
-        return c.all && _.length ? a(null, _) : a(f(i));
-      var x = v[b];
-      x.charAt(0) === '"' && x.slice(-1) === '"' && (x = x.slice(1, -1));
-      var E = e.join(x, i);
-      !x && /^\.[\\\/]/.test(i) && (E = i.slice(0, 2) + E), function g(r, s) {
-        if (r === s) return m(b + 1, O);
+    var d = n(i, c), v = d.env, S = d.ext, F = d.extExe, _ = [];
+    (function m(b, I) {
+      if (b === I)
+        return c.all && _.length ? a(null, _) : a(l(i));
+      var A = v[b];
+      A.charAt(0) === '"' && A.slice(-1) === '"' && (A = A.slice(1, -1));
+      var E = e.join(A, i);
+      !A && /^\.[\\\/]/.test(i) && (E = i.slice(0, 2) + E), function g(r, s) {
+        if (r === s) return m(b + 1, I);
         var o = S[r];
-        y(E + o, { pathExt: A }, function(l, p) {
-          if (!l && p)
+        y(E + o, { pathExt: F }, function(f, p) {
+          if (!f && p)
             if (c.all)
               _.push(E + o);
             else
@@ -186,49 +170,49 @@ function Je() {
   }
   function u(i, c) {
     c = c || {};
-    for (var a = n(i, c), d = a.env, v = a.ext, S = a.extExe, A = [], _ = 0, m = d.length; _ < m; _++) {
+    for (var a = n(i, c), d = a.env, v = a.ext, S = a.extExe, F = [], _ = 0, m = d.length; _ < m; _++) {
       var b = d[_];
       b.charAt(0) === '"' && b.slice(-1) === '"' && (b = b.slice(1, -1));
-      var O = e.join(b, i);
-      !b && /^\.[\\\/]/.test(i) && (O = i.slice(0, 2) + O);
-      for (var x = 0, E = v.length; x < E; x++) {
-        var g = O + v[x], r;
+      var I = e.join(b, i);
+      !b && /^\.[\\\/]/.test(i) && (I = i.slice(0, 2) + I);
+      for (var A = 0, E = v.length; A < E; A++) {
+        var g = I + v[A], r;
         try {
           if (r = y.sync(g, { pathExt: S }), r)
             if (c.all)
-              A.push(g);
+              F.push(g);
             else
               return g;
         } catch {
         }
       }
     }
-    if (c.all && A.length)
-      return A;
+    if (c.all && F.length)
+      return F;
     if (c.nothrow)
       return null;
-    throw f(i);
+    throw l(i);
   }
-  return H;
+  return U;
 }
-var ge;
-function z() {
-  if (ge) return k.exports;
-  ge = 1, V.exec;
-  var F = V.platform().match(/win(32|64)/), e = Je(), t = /\r\n|\r|\n/g, y = /^\[?(.*?)\]?$/, f = /[,]/, n = {};
+var we;
+function R() {
+  if (we) return B.exports;
+  we = 1, V.exec;
+  var x = V.platform().match(/win(32|64)/), e = Ze(), t = /\r\n|\r|\n/g, y = /^\[?(.*?)\]?$/, l = /[,]/, n = {};
   function h(i) {
     var c = {};
     i = i.replace(/=\s+/g, "=").trim();
     for (var a = i.split(" "), d = 0; d < a.length; d++) {
-      var v = a[d].split("=", 2), S = v[0], A = v[1];
-      if (typeof A > "u")
+      var v = a[d].split("=", 2), S = v[0], F = v[1];
+      if (typeof F > "u")
         return null;
-      c[S] = A;
+      c[S] = F;
     }
     return c;
   }
-  var u = k.exports = {
-    isWindows: F,
+  var u = B.exports = {
+    isWindows: x,
     streamRegexp: y,
     /**
      * Copy an object keys into another one
@@ -296,10 +280,10 @@ function z() {
         return Array.isArray(c.inputs) ? a += c.inputs.map(function(d) {
           return d.replace(y, "[$1]");
         }).join("") : typeof c.inputs == "string" && (a += c.inputs.replace(y, "[$1]")), a += c.filter, c.options && (typeof c.options == "string" || typeof c.options == "number" ? a += "=" + c.options : Array.isArray(c.options) ? a += "=" + c.options.map(function(d) {
-          return typeof d == "string" && d.match(f) ? "'" + d + "'" : d;
+          return typeof d == "string" && d.match(l) ? "'" + d + "'" : d;
         }).join(":") : Object.keys(c.options).length && (a += "=" + Object.keys(c.options).map(function(d) {
           var v = c.options[d];
-          return typeof v == "string" && v.match(f) && (v = "'" + v + "'"), d + "=" + v;
+          return typeof v == "string" && v.match(l) && (v = "'" + v + "'"), d + "=" + v;
         }).join(":"))), Array.isArray(c.outputs) ? a += c.outputs.map(function(d) {
           return d.replace(y, "[$1]");
         }).join("") : typeof c.outputs == "string" && (a += c.outputs.replace(y, "[$1]")), a;
@@ -349,16 +333,16 @@ function z() {
      * @private
      */
     extractCodecData: function(i, c, a) {
-      var d = /Input #[0-9]+, ([^ ]+),/, v = /Duration\: ([^,]+)/, S = /Audio\: (.*)/, A = /Video\: (.*)/;
+      var d = /Input #[0-9]+, ([^ ]+),/, v = /Duration\: ([^,]+)/, S = /Audio\: (.*)/, F = /Video\: (.*)/;
       "inputStack" in a || (a.inputStack = [], a.inputIndex = -1, a.inInput = !1);
-      var _ = a.inputStack, m = a.inputIndex, b = a.inInput, O, x, E, g;
-      if (O = c.match(d))
-        b = a.inInput = !0, m = a.inputIndex = a.inputIndex + 1, _[m] = { format: O[1], audio: "", video: "", duration: "" };
-      else if (b && (x = c.match(v)))
-        _[m].duration = x[1];
+      var _ = a.inputStack, m = a.inputIndex, b = a.inInput, I, A, E, g;
+      if (I = c.match(d))
+        b = a.inInput = !0, m = a.inputIndex = a.inputIndex + 1, _[m] = { format: I[1], audio: "", video: "", duration: "" };
+      else if (b && (A = c.match(v)))
+        _[m].duration = A[1];
       else if (b && (E = c.match(S)))
         E = E[1].split(", "), _[m].audio = E[0], _[m].audio_details = E;
-      else if (b && (g = c.match(A)))
+      else if (b && (g = c.match(F)))
         g = g[1].split(", "), _[m].video = g[0], _[m].video_details = g;
       else if (/Output #\d+/.test(c))
         b = a.inInput = !1;
@@ -414,7 +398,7 @@ function z() {
      */
     linesRing: function(i) {
       var c = [], a = [], d = null, v = !1, S = i - 1;
-      function A(_) {
+      function F(_) {
         c.forEach(function(m) {
           m(_);
         });
@@ -428,8 +412,8 @@ function z() {
         append: function(_) {
           if (!v && (_ instanceof Buffer && (_ = "" + _), !(!_ || _.length === 0))) {
             var m = _.split(t);
-            m.length === 1 ? d !== null ? d = d + m.shift() : d = m.shift() : (d !== null && (d = d + m.shift(), A(d), a.push(d)), d = m.pop(), m.forEach(function(b) {
-              A(b), a.push(b);
+            m.length === 1 ? d !== null ? d = d + m.shift() : d = m.shift() : (d !== null && (d = d + m.shift(), F(d), a.push(d)), d = m.pop(), m.forEach(function(b) {
+              F(b), a.push(b);
             }), S > -1 && a.length > S && a.splice(0, a.length - S));
           }
         },
@@ -439,21 +423,21 @@ function z() {
 `);
         },
         close: function() {
-          v || (d !== null && (A(d), a.push(d), S > -1 && a.length > S && a.shift(), d = null), v = !0);
+          v || (d !== null && (F(d), a.push(d), S > -1 && a.length > S && a.shift(), d = null), v = !0);
         }
       };
     }
   };
-  return k.exports;
+  return B.exports;
 }
-var U, we;
-function Ke() {
-  if (we) return U;
-  we = 1;
-  var F = z();
-  return U = function(e) {
+var W, ye;
+function Ye() {
+  if (ye) return W;
+  ye = 1;
+  var x = R();
+  return W = function(e) {
     e.mergeAdd = e.addInput = e.input = function(t) {
-      var y = !1, f = !1;
+      var y = !1, l = !1;
       if (typeof t != "string") {
         if (!("readable" in t) || !t.readable)
           throw new Error("Invalid input");
@@ -462,7 +446,7 @@ function Ke() {
         });
         if (n)
           throw new Error("Only one input stream is supported");
-        f = !0, t.pause();
+        l = !0, t.pause();
       } else {
         var h = t.match(/^([a-z]{2,}):/i);
         y = !h || h[0] === "file";
@@ -470,8 +454,8 @@ function Ke() {
       return this._inputs.push(this._currentInput = {
         source: t,
         isFile: y,
-        isStream: f,
-        options: F.args()
+        isStream: l,
+        options: x.args()
       }), this;
     }, e.withInputFormat = e.inputFormat = e.fromFormat = function(t) {
       if (!this._currentInput)
@@ -494,14 +478,14 @@ function Ke() {
         throw new Error("No input specified");
       return this._currentInput.options("-loop", "1"), typeof t < "u" && this.duration(t), this;
     };
-  }, U;
+  }, W;
 }
-var W, ye;
-function et() {
-  if (ye) return W;
-  ye = 1;
-  var F = z();
-  return W = function(e) {
+var G, _e;
+function Je() {
+  if (_e) return G;
+  _e = 1;
+  var x = R();
+  return G = function(e) {
     e.withNoAudio = e.noAudio = function() {
       return this._currentOutput.audio.clear(), this._currentOutput.audioFilters.clear(), this._currentOutput.audio("-an"), this;
     }, e.withAudioCodec = e.audioCodec = function(t) {
@@ -515,16 +499,16 @@ function et() {
     }, e.withAudioQuality = e.audioQuality = function(t) {
       return this._currentOutput.audio("-aq", t), this;
     }, e.withAudioFilter = e.withAudioFilters = e.audioFilter = e.audioFilters = function(t) {
-      return arguments.length > 1 && (t = [].slice.call(arguments)), Array.isArray(t) || (t = [t]), this._currentOutput.audioFilters(F.makeFilterStrings(t)), this;
+      return arguments.length > 1 && (t = [].slice.call(arguments)), Array.isArray(t) || (t = [t]), this._currentOutput.audioFilters(x.makeFilterStrings(t)), this;
     };
-  }, W;
+  }, G;
 }
-var G, _e;
-function tt() {
-  if (_e) return G;
-  _e = 1;
-  var F = z();
-  return G = function(e) {
+var X, Ee;
+function Ke() {
+  if (Ee) return X;
+  Ee = 1;
+  var x = R();
+  return X = function(e) {
     e.withNoVideo = e.noVideo = function() {
       return this._currentOutput.video.clear(), this._currentOutput.videoFilters.clear(), this._currentOutput.video("-vn"), this;
     }, e.withVideoCodec = e.videoCodec = function(t) {
@@ -539,19 +523,19 @@ function tt() {
         "3M"
       ), this;
     }, e.withVideoFilter = e.withVideoFilters = e.videoFilter = e.videoFilters = function(t) {
-      return arguments.length > 1 && (t = [].slice.call(arguments)), Array.isArray(t) || (t = [t]), this._currentOutput.videoFilters(F.makeFilterStrings(t)), this;
+      return arguments.length > 1 && (t = [].slice.call(arguments)), Array.isArray(t) || (t = [t]), this._currentOutput.videoFilters(x.makeFilterStrings(t)), this;
     }, e.withOutputFps = e.withOutputFPS = e.withFpsOutput = e.withFPSOutput = e.withFps = e.withFPS = e.outputFPS = e.outputFps = e.fpsOutput = e.FPSOutput = e.fps = e.FPS = function(t) {
       return this._currentOutput.video("-r", t), this;
     }, e.takeFrames = e.withFrames = e.frames = function(t) {
       return this._currentOutput.video("-vframes", t), this;
     };
-  }, G;
+  }, X;
 }
-var X, Ee;
-function nt() {
-  if (Ee) return X;
-  Ee = 1;
-  function F(t, y, f, n) {
+var Q, Fe;
+function et() {
+  if (Fe) return Q;
+  Fe = 1;
+  function x(t, y, l, n) {
     return [
       /*
         In both cases, we first have to scale the input to match the requested size.
@@ -560,8 +544,8 @@ function nt() {
       {
         filter: "scale",
         options: {
-          w: "if(gt(a," + f + ")," + t + ",trunc(" + y + "*a/2)*2)",
-          h: "if(lt(a," + f + ")," + y + ",trunc(" + t + "/a/2)*2)"
+          w: "if(gt(a," + l + ")," + t + ",trunc(" + y + "*a/2)*2)",
+          h: "if(lt(a," + l + ")," + y + ",trunc(" + t + "/a/2)*2)"
         }
       },
       /*
@@ -573,16 +557,16 @@ function nt() {
         options: {
           w: t,
           h: y,
-          x: "if(gt(a," + f + "),0,(" + t + "-iw)/2)",
-          y: "if(lt(a," + f + "),0,(" + y + "-ih)/2)",
+          x: "if(gt(a," + l + "),0,(" + t + "-iw)/2)",
+          y: "if(lt(a," + l + "),0,(" + y + "-ih)/2)",
           color: n
         }
       }
     ];
   }
-  function e(t, y, f) {
+  function e(t, y, l) {
     var n = t.sizeData = t.sizeData || {};
-    if (n[y] = f, !("size" in n))
+    if (n[y] = l, !("size" in n))
       return [];
     var h = n.size.match(/([0-9]+)x([0-9]+)/), u = n.size.match(/([0-9]+)x\?/), i = n.size.match(/\?x([0-9]+)/), c = n.size.match(/\b([0-9]{1,3})%/), a, d, v;
     if (c) {
@@ -596,9 +580,9 @@ function nt() {
       }];
     } else {
       if (h)
-        return a = Math.round(Number(h[1]) / 2) * 2, d = Math.round(Number(h[2]) / 2) * 2, v = a / d, n.pad ? F(a, d, v, n.pad) : [{ filter: "scale", options: { w: a, h: d } }];
+        return a = Math.round(Number(h[1]) / 2) * 2, d = Math.round(Number(h[2]) / 2) * 2, v = a / d, n.pad ? x(a, d, v, n.pad) : [{ filter: "scale", options: { w: a, h: d } }];
       if (u || i)
-        return "aspect" in n ? (a = u ? u[1] : Math.round(Number(i[1]) * n.aspect), d = i ? i[1] : Math.round(Number(u[1]) / n.aspect), a = Math.round(a / 2) * 2, d = Math.round(d / 2) * 2, n.pad ? F(a, d, n.aspect, n.pad) : [{ filter: "scale", options: { w: a, h: d } }]) : u ? [{
+        return "aspect" in n ? (a = u ? u[1] : Math.round(Number(i[1]) * n.aspect), d = i ? i[1] : Math.round(Number(u[1]) / n.aspect), a = Math.round(a / 2) * 2, d = Math.round(d / 2) * 2, n.pad ? x(a, d, n.aspect, n.pad) : [{ filter: "scale", options: { w: a, h: d } }]) : u ? [{
           filter: "scale",
           options: {
             w: Math.round(Number(u[1]) / 2) * 2,
@@ -614,7 +598,7 @@ function nt() {
       throw new Error("Invalid size specified: " + n.size);
     }
   }
-  return X = function(t) {
+  return Q = function(t) {
     t.keepPixelAspect = // Only for compatibility, this is not about keeping _pixel_ aspect ratio
     t.keepDisplayAspect = t.keepDisplayAspectRatio = t.keepDAR = function() {
       return this.videoFilters([
@@ -631,34 +615,34 @@ function nt() {
         }
       ]);
     }, t.withSize = t.setSize = t.size = function(y) {
-      var f = e(this._currentOutput, "size", y);
-      return this._currentOutput.sizeFilters.clear(), this._currentOutput.sizeFilters(f), this;
+      var l = e(this._currentOutput, "size", y);
+      return this._currentOutput.sizeFilters.clear(), this._currentOutput.sizeFilters(l), this;
     }, t.withAspect = t.withAspectRatio = t.setAspect = t.setAspectRatio = t.aspect = t.aspectRatio = function(y) {
-      var f = Number(y);
-      if (isNaN(f)) {
+      var l = Number(y);
+      if (isNaN(l)) {
         var n = y.match(/^(\d+):(\d+)$/);
         if (n)
-          f = Number(n[1]) / Number(n[2]);
+          l = Number(n[1]) / Number(n[2]);
         else
           throw new Error("Invalid aspect ratio: " + y);
       }
-      var h = e(this._currentOutput, "aspect", f);
+      var h = e(this._currentOutput, "aspect", l);
       return this._currentOutput.sizeFilters.clear(), this._currentOutput.sizeFilters(h), this;
-    }, t.applyAutopadding = t.applyAutoPadding = t.applyAutopad = t.applyAutoPad = t.withAutopadding = t.withAutoPadding = t.withAutopad = t.withAutoPad = t.autoPad = t.autopad = function(y, f) {
-      typeof y == "string" && (f = y, y = !0), typeof y > "u" && (y = !0);
-      var n = e(this._currentOutput, "pad", y ? f || "black" : !1);
+    }, t.applyAutopadding = t.applyAutoPadding = t.applyAutopad = t.applyAutoPad = t.withAutopadding = t.withAutoPadding = t.withAutopad = t.withAutoPad = t.autoPad = t.autopad = function(y, l) {
+      typeof y == "string" && (l = y, y = !0), typeof y > "u" && (y = !0);
+      var n = e(this._currentOutput, "pad", y ? l || "black" : !1);
       return this._currentOutput.sizeFilters.clear(), this._currentOutput.sizeFilters(n), this;
     };
-  }, X;
+  }, Q;
 }
-var Q, Fe;
-function rt() {
-  if (Fe) return Q;
-  Fe = 1;
-  var F = z();
-  return Q = function(e) {
+var Z, Ae;
+function tt() {
+  if (Ae) return Z;
+  Ae = 1;
+  var x = R();
+  return Z = function(e) {
     e.addOutput = e.output = function(t, y) {
-      var f = !1;
+      var l = !1;
       if (!t && this._currentOutput)
         throw new Error("Invalid output");
       if (t && typeof t != "string") {
@@ -666,10 +650,10 @@ function rt() {
           throw new Error("Invalid output");
       } else if (typeof t == "string") {
         var n = t.match(/^([a-z]{2,}):/i);
-        f = !n || n[0] === "file";
+        l = !n || n[0] === "file";
       }
       if (t && !("target" in this._currentOutput))
-        this._currentOutput.target = t, this._currentOutput.isFile = f, this._currentOutput.pipeopts = y || {};
+        this._currentOutput.target = t, this._currentOutput.isFile = l, this._currentOutput.pipeopts = y || {};
       else {
         if (t && typeof t != "string") {
           var h = this._outputs.some(function(i) {
@@ -680,13 +664,13 @@ function rt() {
         }
         this._outputs.push(this._currentOutput = {
           target: t,
-          isFile: f,
+          isFile: l,
           flags: {},
           pipeopts: y || {}
         });
         var u = this;
         ["audio", "audioFilters", "video", "videoFilters", "sizeFilters", "options"].forEach(function(i) {
-          u._currentOutput[i] = F.args();
+          u._currentOutput[i] = x.args();
         }), t || delete this._currentOutput.target;
       }
       return this;
@@ -697,60 +681,60 @@ function rt() {
     }, e.toFormat = e.withOutputFormat = e.outputFormat = e.format = function(t) {
       return this._currentOutput.options("-f", t), this;
     }, e.map = function(t) {
-      return this._currentOutput.options("-map", t.replace(F.streamRegexp, "[$1]")), this;
+      return this._currentOutput.options("-map", t.replace(x.streamRegexp, "[$1]")), this;
     }, e.updateFlvMetadata = e.flvmeta = function() {
       return this._currentOutput.flags.flvmeta = !0, this;
     };
-  }, Q;
+  }, Z;
 }
-var Z, Ae;
-function it() {
-  if (Ae) return Z;
-  Ae = 1;
-  var F = z();
-  return Z = function(e) {
+var Y, xe;
+function nt() {
+  if (xe) return Y;
+  xe = 1;
+  var x = R();
+  return Y = function(e) {
     e.addInputOption = e.addInputOptions = e.withInputOption = e.withInputOptions = e.inputOption = e.inputOptions = function(t) {
       if (!this._currentInput)
         throw new Error("No input specified");
       var y = !0;
-      return arguments.length > 1 && (t = [].slice.call(arguments), y = !1), Array.isArray(t) || (t = [t]), this._currentInput.options(t.reduce(function(f, n) {
+      return arguments.length > 1 && (t = [].slice.call(arguments), y = !1), Array.isArray(t) || (t = [t]), this._currentInput.options(t.reduce(function(l, n) {
         var h = String(n).split(" ");
-        return y && h.length === 2 ? f.push(h[0], h[1]) : f.push(n), f;
+        return y && h.length === 2 ? l.push(h[0], h[1]) : l.push(n), l;
       }, [])), this;
     }, e.addOutputOption = e.addOutputOptions = e.addOption = e.addOptions = e.withOutputOption = e.withOutputOptions = e.withOption = e.withOptions = e.outputOption = e.outputOptions = function(t) {
       var y = !0;
-      return arguments.length > 1 && (t = [].slice.call(arguments), y = !1), Array.isArray(t) || (t = [t]), this._currentOutput.options(t.reduce(function(f, n) {
+      return arguments.length > 1 && (t = [].slice.call(arguments), y = !1), Array.isArray(t) || (t = [t]), this._currentOutput.options(t.reduce(function(l, n) {
         var h = String(n).split(" ");
-        return y && h.length === 2 ? f.push(h[0], h[1]) : f.push(n), f;
+        return y && h.length === 2 ? l.push(h[0], h[1]) : l.push(n), l;
       }, [])), this;
     }, e.filterGraph = e.complexFilter = function(t, y) {
-      if (this._complexFilters.clear(), Array.isArray(t) || (t = [t]), this._complexFilters("-filter_complex", F.makeFilterStrings(t).join(";")), Array.isArray(y)) {
-        var f = this;
+      if (this._complexFilters.clear(), Array.isArray(t) || (t = [t]), this._complexFilters("-filter_complex", x.makeFilterStrings(t).join(";")), Array.isArray(y)) {
+        var l = this;
         y.forEach(function(n) {
-          f._complexFilters("-map", n.replace(F.streamRegexp, "[$1]"));
+          l._complexFilters("-map", n.replace(x.streamRegexp, "[$1]"));
         });
-      } else typeof y == "string" && this._complexFilters("-map", y.replace(F.streamRegexp, "[$1]"));
+      } else typeof y == "string" && this._complexFilters("-map", y.replace(x.streamRegexp, "[$1]"));
       return this;
     };
-  }, Z;
+  }, Y;
 }
-function ut(F) {
-  throw new Error('Could not dynamically require "' + F + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
+function rt(x) {
+  throw new Error('Could not dynamically require "' + x + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
 }
-var Y, xe;
-function at() {
-  if (xe) return Y;
-  xe = 1;
-  var F = V;
-  return Y = function(e) {
+var J, Ie;
+function it() {
+  if (Ie) return J;
+  Ie = 1;
+  var x = V;
+  return J = function(e) {
     e.usingPreset = e.preset = function(t) {
       if (typeof t == "function")
         t(this);
       else
         try {
-          var y = F.join(this.options.presets, t), f = ut(y);
-          if (typeof f.load == "function")
-            f.load(this);
+          var y = x.join(this.options.presets, t), l = rt(y);
+          if (typeof l.load == "function")
+            l.load(this);
           else
             throw new Error("preset " + y + " has no load() function");
         } catch (n) {
@@ -758,17 +742,17 @@ function at() {
         }
       return this;
     };
-  }, Y;
+  }, J;
 }
-var J = { exports: {} }, Oe;
-function oe() {
-  return Oe || (Oe = 1, function(F) {
+var K = { exports: {} }, Oe;
+function fe() {
+  return Oe || (Oe = 1, function(x) {
     (function() {
       var e = {}, t, y;
       t = this, t != null && (y = t.async), e.noConflict = function() {
         return t.async = y, e;
       };
-      function f(r) {
+      function l(r) {
         var s = !1;
         return function() {
           if (s) throw new Error("Callback was already called.");
@@ -784,12 +768,12 @@ function oe() {
         if (r.map)
           return r.map(s);
         var o = [];
-        return n(r, function(l, p, w) {
-          o.push(s(l, p, w));
+        return n(r, function(f, p, w) {
+          o.push(s(f, p, w));
         }), o;
       }, u = function(r, s, o) {
-        return r.reduce ? r.reduce(s, o) : (n(r, function(l, p, w) {
-          o = s(o, l, p, w);
+        return r.reduce ? r.reduce(s, o) : (n(r, function(f, p, w) {
+          o = s(o, f, p, w);
         }), o);
       }, i = function(r) {
         if (Object.keys)
@@ -809,41 +793,41 @@ function oe() {
         if (o = o || function() {
         }, !r.length)
           return o();
-        var l = 0;
+        var f = 0;
         n(r, function(p) {
-          s(p, f(function(w) {
+          s(p, l(function(w) {
             w ? (o(w), o = function() {
-            }) : (l += 1, l >= r.length && o(null));
+            }) : (f += 1, f >= r.length && o(null));
           }));
         });
       }, e.forEach = e.each, e.eachSeries = function(r, s, o) {
         if (o = o || function() {
         }, !r.length)
           return o();
-        var l = 0, p = function() {
-          s(r[l], function(w) {
+        var f = 0, p = function() {
+          s(r[f], function(w) {
             w ? (o(w), o = function() {
-            }) : (l += 1, l >= r.length ? o(null) : p());
+            }) : (f += 1, f >= r.length ? o(null) : p());
           });
         };
         p();
-      }, e.forEachSeries = e.eachSeries, e.eachLimit = function(r, s, o, l) {
+      }, e.forEachSeries = e.eachSeries, e.eachLimit = function(r, s, o, f) {
         var p = c(s);
-        p.apply(null, [r, o, l]);
+        p.apply(null, [r, o, f]);
       }, e.forEachLimit = e.eachLimit;
       var c = function(r) {
-        return function(s, o, l) {
-          if (l = l || function() {
+        return function(s, o, f) {
+          if (f = f || function() {
           }, !s.length || r <= 0)
-            return l();
-          var p = 0, w = 0, I = 0;
+            return f();
+          var p = 0, w = 0, O = 0;
           (function P() {
             if (p >= s.length)
-              return l();
-            for (; I < r && w < s.length; )
-              w += 1, I += 1, o(s[w - 1], function(T) {
-                T ? (l(T), l = function() {
-                }) : (p += 1, I -= 1, p >= s.length ? l() : P());
+              return f();
+            for (; O < r && w < s.length; )
+              w += 1, O += 1, o(s[w - 1], function(T) {
+                T ? (f(T), f = function() {
+                }) : (p += 1, O -= 1, p >= s.length ? f() : P());
               });
           })();
         };
@@ -862,114 +846,114 @@ function oe() {
           var s = Array.prototype.slice.call(arguments);
           return r.apply(null, [e.eachSeries].concat(s));
         };
-      }, S = function(r, s, o, l) {
+      }, S = function(r, s, o, f) {
         var p = [];
-        s = h(s, function(w, I) {
-          return { index: I, value: w };
-        }), r(s, function(w, I) {
+        s = h(s, function(w, O) {
+          return { index: O, value: w };
+        }), r(s, function(w, O) {
           o(w.value, function(P, T) {
-            p[w.index] = T, I(P);
+            p[w.index] = T, O(P);
           });
         }, function(w) {
-          l(w, p);
+          f(w, p);
         });
       };
-      e.map = a(S), e.mapSeries = v(S), e.mapLimit = function(r, s, o, l) {
-        return A(s)(r, o, l);
+      e.map = a(S), e.mapSeries = v(S), e.mapLimit = function(r, s, o, f) {
+        return F(s)(r, o, f);
       };
-      var A = function(r) {
+      var F = function(r) {
         return d(r, S);
       };
-      e.reduce = function(r, s, o, l) {
+      e.reduce = function(r, s, o, f) {
         e.eachSeries(r, function(p, w) {
-          o(s, p, function(I, P) {
-            s = P, w(I);
+          o(s, p, function(O, P) {
+            s = P, w(O);
           });
         }, function(p) {
-          l(p, s);
+          f(p, s);
         });
-      }, e.inject = e.reduce, e.foldl = e.reduce, e.reduceRight = function(r, s, o, l) {
+      }, e.inject = e.reduce, e.foldl = e.reduce, e.reduceRight = function(r, s, o, f) {
         var p = h(r, function(w) {
           return w;
         }).reverse();
-        e.reduce(p, s, o, l);
+        e.reduce(p, s, o, f);
       }, e.foldr = e.reduceRight;
-      var _ = function(r, s, o, l) {
+      var _ = function(r, s, o, f) {
         var p = [];
-        s = h(s, function(w, I) {
-          return { index: I, value: w };
-        }), r(s, function(w, I) {
+        s = h(s, function(w, O) {
+          return { index: O, value: w };
+        }), r(s, function(w, O) {
           o(w.value, function(P) {
-            P && p.push(w), I();
+            P && p.push(w), O();
           });
         }, function(w) {
-          l(h(p.sort(function(I, P) {
-            return I.index - P.index;
-          }), function(I) {
-            return I.value;
+          f(h(p.sort(function(O, P) {
+            return O.index - P.index;
+          }), function(O) {
+            return O.value;
           }));
         });
       };
       e.filter = a(_), e.filterSeries = v(_), e.select = e.filter, e.selectSeries = e.filterSeries;
-      var m = function(r, s, o, l) {
+      var m = function(r, s, o, f) {
         var p = [];
-        s = h(s, function(w, I) {
-          return { index: I, value: w };
-        }), r(s, function(w, I) {
+        s = h(s, function(w, O) {
+          return { index: O, value: w };
+        }), r(s, function(w, O) {
           o(w.value, function(P) {
-            P || p.push(w), I();
+            P || p.push(w), O();
           });
         }, function(w) {
-          l(h(p.sort(function(I, P) {
-            return I.index - P.index;
-          }), function(I) {
-            return I.value;
+          f(h(p.sort(function(O, P) {
+            return O.index - P.index;
+          }), function(O) {
+            return O.value;
           }));
         });
       };
       e.reject = a(m), e.rejectSeries = v(m);
-      var b = function(r, s, o, l) {
+      var b = function(r, s, o, f) {
         r(s, function(p, w) {
-          o(p, function(I) {
-            I ? (l(p), l = function() {
+          o(p, function(O) {
+            O ? (f(p), f = function() {
             }) : w();
           });
         }, function(p) {
-          l();
+          f();
         });
       };
       e.detect = a(b), e.detectSeries = v(b), e.some = function(r, s, o) {
-        e.each(r, function(l, p) {
-          s(l, function(w) {
+        e.each(r, function(f, p) {
+          s(f, function(w) {
             w && (o(!0), o = function() {
             }), p();
           });
-        }, function(l) {
+        }, function(f) {
           o(!1);
         });
       }, e.any = e.some, e.every = function(r, s, o) {
-        e.each(r, function(l, p) {
-          s(l, function(w) {
+        e.each(r, function(f, p) {
+          s(f, function(w) {
             w || (o(!1), o = function() {
             }), p();
           });
-        }, function(l) {
+        }, function(f) {
           o(!0);
         });
       }, e.all = e.every, e.sortBy = function(r, s, o) {
-        e.map(r, function(l, p) {
-          s(l, function(w, I) {
-            w ? p(w) : p(null, { value: l, criteria: I });
+        e.map(r, function(f, p) {
+          s(f, function(w, O) {
+            w ? p(w) : p(null, { value: f, criteria: O });
           });
-        }, function(l, p) {
-          if (l)
-            return o(l);
-          var w = function(I, P) {
-            var T = I.criteria, N = P.criteria;
+        }, function(f, p) {
+          if (f)
+            return o(f);
+          var w = function(O, P) {
+            var T = O.criteria, N = P.criteria;
             return T < N ? -1 : T > N ? 1 : 0;
           };
-          o(null, h(p.sort(w), function(I) {
-            return I.value;
+          o(null, h(p.sort(w), function(O) {
+            return O.value;
           }));
         });
       }, e.auto = function(r, s) {
@@ -978,9 +962,9 @@ function oe() {
         var o = i(r);
         if (!o.length)
           return s(null);
-        var l = {}, p = [], w = function(T) {
+        var f = {}, p = [], w = function(T) {
           p.unshift(T);
-        }, I = function(T) {
+        }, O = function(T) {
           for (var N = 0; N < p.length; N += 1)
             if (p[N] === T) {
               p.splice(N, 1);
@@ -992,31 +976,31 @@ function oe() {
           });
         };
         w(function() {
-          i(l).length === o.length && (s(null, l), s = function() {
+          i(f).length === o.length && (s(null, f), s = function() {
           });
         }), n(o, function(T) {
-          var N = r[T] instanceof Function ? [r[T]] : r[T], R = function(C) {
-            var M = Array.prototype.slice.call(arguments, 1);
-            if (M.length <= 1 && (M = M[0]), C) {
-              var D = {};
-              n(i(l), function(he) {
-                D[he] = l[he];
-              }), D[T] = M, s(C, D), s = function() {
+          var N = r[T] instanceof Function ? [r[T]] : r[T], M = function(D) {
+            var L = Array.prototype.slice.call(arguments, 1);
+            if (L.length <= 1 && (L = L[0]), D) {
+              var k = {};
+              n(i(f), function(pe) {
+                k[pe] = f[pe];
+              }), k[T] = L, s(D, k), s = function() {
               };
             } else
-              l[T] = M, e.setImmediate(P);
-          }, Ce = N.slice(0, Math.abs(N.length - 1)) || [], le = function() {
-            return u(Ce, function(C, M) {
-              return C && l.hasOwnProperty(M);
-            }, !0) && !l.hasOwnProperty(T);
+              f[T] = L, e.setImmediate(P);
+          }, De = N.slice(0, Math.abs(N.length - 1)) || [], ce = function() {
+            return u(De, function(D, L) {
+              return D && f.hasOwnProperty(L);
+            }, !0) && !f.hasOwnProperty(T);
           };
-          if (le())
-            N[N.length - 1](R, l);
+          if (ce())
+            N[N.length - 1](M, f);
           else {
-            var ce = function() {
-              le() && (I(ce), N[N.length - 1](R, l));
+            var he = function() {
+              ce() && (O(he), N[N.length - 1](M, f));
             };
-            w(ce);
+            w(he);
           }
         });
       }, e.waterfall = function(r, s) {
@@ -1027,74 +1011,74 @@ function oe() {
         }
         if (!r.length)
           return s();
-        var l = function(p) {
+        var f = function(p) {
           return function(w) {
             if (w)
               s.apply(null, arguments), s = function() {
               };
             else {
-              var I = Array.prototype.slice.call(arguments, 1), P = p.next();
-              P ? I.push(l(P)) : I.push(s), e.setImmediate(function() {
-                p.apply(null, I);
+              var O = Array.prototype.slice.call(arguments, 1), P = p.next();
+              P ? O.push(f(P)) : O.push(s), e.setImmediate(function() {
+                p.apply(null, O);
               });
             }
           };
         };
-        l(e.iterator(r))();
+        f(e.iterator(r))();
       };
-      var O = function(r, s, o) {
+      var I = function(r, s, o) {
         if (o = o || function() {
         }, s.constructor === Array)
           r.map(s, function(p, w) {
-            p && p(function(I) {
+            p && p(function(O) {
               var P = Array.prototype.slice.call(arguments, 1);
-              P.length <= 1 && (P = P[0]), w.call(null, I, P);
+              P.length <= 1 && (P = P[0]), w.call(null, O, P);
             });
           }, o);
         else {
-          var l = {};
+          var f = {};
           r.each(i(s), function(p, w) {
-            s[p](function(I) {
+            s[p](function(O) {
               var P = Array.prototype.slice.call(arguments, 1);
-              P.length <= 1 && (P = P[0]), l[p] = P, w(I);
+              P.length <= 1 && (P = P[0]), f[p] = P, w(O);
             });
           }, function(p) {
-            o(p, l);
+            o(p, f);
           });
         }
       };
       e.parallel = function(r, s) {
-        O({ map: e.map, each: e.each }, r, s);
+        I({ map: e.map, each: e.each }, r, s);
       }, e.parallelLimit = function(r, s, o) {
-        O({ map: A(s), each: c(s) }, r, o);
+        I({ map: F(s), each: c(s) }, r, o);
       }, e.series = function(r, s) {
         if (s = s || function() {
         }, r.constructor === Array)
-          e.mapSeries(r, function(l, p) {
-            l && l(function(w) {
-              var I = Array.prototype.slice.call(arguments, 1);
-              I.length <= 1 && (I = I[0]), p.call(null, w, I);
+          e.mapSeries(r, function(f, p) {
+            f && f(function(w) {
+              var O = Array.prototype.slice.call(arguments, 1);
+              O.length <= 1 && (O = O[0]), p.call(null, w, O);
             });
           }, s);
         else {
           var o = {};
-          e.eachSeries(i(r), function(l, p) {
-            r[l](function(w) {
-              var I = Array.prototype.slice.call(arguments, 1);
-              I.length <= 1 && (I = I[0]), o[l] = I, p(w);
+          e.eachSeries(i(r), function(f, p) {
+            r[f](function(w) {
+              var O = Array.prototype.slice.call(arguments, 1);
+              O.length <= 1 && (O = O[0]), o[f] = O, p(w);
             });
-          }, function(l) {
-            s(l, o);
+          }, function(f) {
+            s(f, o);
           });
         }
       }, e.iterator = function(r) {
         var s = function(o) {
-          var l = function() {
-            return r.length && r[o].apply(null, arguments), l.next();
+          var f = function() {
+            return r.length && r[o].apply(null, arguments), f.next();
           };
-          return l.next = function() {
+          return f.next = function() {
             return o < r.length - 1 ? s(o + 1) : null;
-          }, l;
+          }, f;
         };
         return s(0);
       }, e.apply = function(r) {
@@ -1106,70 +1090,70 @@ function oe() {
           );
         };
       };
-      var x = function(r, s, o, l) {
+      var A = function(r, s, o, f) {
         var p = [];
-        r(s, function(w, I) {
+        r(s, function(w, O) {
           o(w, function(P, T) {
-            p = p.concat(T || []), I(P);
+            p = p.concat(T || []), O(P);
           });
         }, function(w) {
-          l(w, p);
+          f(w, p);
         });
       };
-      e.concat = a(x), e.concatSeries = v(x), e.whilst = function(r, s, o) {
-        r() ? s(function(l) {
-          if (l)
-            return o(l);
+      e.concat = a(A), e.concatSeries = v(A), e.whilst = function(r, s, o) {
+        r() ? s(function(f) {
+          if (f)
+            return o(f);
           e.whilst(r, s, o);
         }) : o();
       }, e.doWhilst = function(r, s, o) {
-        r(function(l) {
-          if (l)
-            return o(l);
+        r(function(f) {
+          if (f)
+            return o(f);
           s() ? e.doWhilst(r, s, o) : o();
         });
       }, e.until = function(r, s, o) {
-        r() ? o() : s(function(l) {
-          if (l)
-            return o(l);
+        r() ? o() : s(function(f) {
+          if (f)
+            return o(f);
           e.until(r, s, o);
         });
       }, e.doUntil = function(r, s, o) {
-        r(function(l) {
-          if (l)
-            return o(l);
+        r(function(f) {
+          if (f)
+            return o(f);
           s() ? o() : e.doUntil(r, s, o);
         });
       }, e.queue = function(r, s) {
         s === void 0 && (s = 1);
-        function o(w, I, P, T) {
-          I.constructor !== Array && (I = [I]), n(I, function(N) {
-            var R = {
+        function o(w, O, P, T) {
+          O.constructor !== Array && (O = [O]), n(O, function(N) {
+            var M = {
               data: N,
               callback: typeof T == "function" ? T : null
             };
-            P ? w.tasks.unshift(R) : w.tasks.push(R), w.saturated && w.tasks.length === s && w.saturated(), e.setImmediate(w.process);
+            P ? w.tasks.unshift(M) : w.tasks.push(M), w.saturated && w.tasks.length === s && w.saturated(), e.setImmediate(w.process);
           });
         }
-        var l = 0, p = {
+        var f = 0, p = {
           tasks: [],
           concurrency: s,
           saturated: null,
           empty: null,
           drain: null,
-          push: function(w, I) {
-            o(p, w, !1, I);
+          push: function(w, O) {
+            o(p, w, !1, O);
           },
-          unshift: function(w, I) {
-            o(p, w, !0, I);
+          unshift: function(w, O) {
+            o(p, w, !0, O);
           },
           process: function() {
-            if (l < p.concurrency && p.tasks.length) {
+            if (f < p.concurrency && p.tasks.length) {
               var w = p.tasks.shift();
-              p.empty && p.tasks.length === 0 && p.empty(), l += 1;
-              var I = function() {
-                l -= 1, w.callback && w.callback.apply(w, arguments), p.drain && p.tasks.length + l === 0 && p.drain(), p.process();
-              }, P = f(I);
+              p.empty && p.tasks.length === 0 && p.empty(), f += 1;
+              var O = function() {
+                f -= 1, w.callback && w.callback.apply(w, arguments), p.drain && p.tasks.length + f === 0 && p.drain(), p.process();
+              }, P = l(O);
               r(w.data, P);
             }
           },
@@ -1177,45 +1161,45 @@ function oe() {
             return p.tasks.length;
           },
           running: function() {
-            return l;
+            return f;
           }
         };
         return p;
       }, e.cargo = function(r, s) {
-        var o = !1, l = [], p = {
-          tasks: l,
+        var o = !1, f = [], p = {
+          tasks: f,
           payload: s,
           saturated: null,
           empty: null,
           drain: null,
-          push: function(w, I) {
+          push: function(w, O) {
             w.constructor !== Array && (w = [w]), n(w, function(P) {
-              l.push({
+              f.push({
                 data: P,
-                callback: typeof I == "function" ? I : null
-              }), p.saturated && l.length === s && p.saturated();
+                callback: typeof O == "function" ? O : null
+              }), p.saturated && f.length === s && p.saturated();
             }), e.setImmediate(p.process);
           },
           process: function w() {
             if (!o) {
-              if (l.length === 0) {
+              if (f.length === 0) {
                 p.drain && p.drain();
                 return;
               }
-              var I = typeof s == "number" ? l.splice(0, s) : l.splice(0), P = h(I, function(T) {
+              var O = typeof s == "number" ? f.splice(0, s) : f.splice(0), P = h(O, function(T) {
                 return T.data;
               });
               p.empty && p.empty(), o = !0, r(P, function() {
                 o = !1;
                 var T = arguments;
-                n(I, function(N) {
+                n(O, function(N) {
                   N.callback && N.callback.apply(null, T);
                 }), w();
               });
             }
           },
           length: function() {
-            return l.length;
+            return f.length;
           },
           running: function() {
             return o;
@@ -1226,26 +1210,26 @@ function oe() {
       var E = function(r) {
         return function(s) {
           var o = Array.prototype.slice.call(arguments, 1);
-          s.apply(null, o.concat([function(l) {
+          s.apply(null, o.concat([function(f) {
             var p = Array.prototype.slice.call(arguments, 1);
-            typeof console < "u" && (l ? console.error && console.error(l) : console[r] && n(p, function(w) {
+            typeof console < "u" && (f ? console.error && console.error(f) : console[r] && n(p, function(w) {
               console[r](w);
             }));
           }]));
         };
       };
       e.log = E("log"), e.dir = E("dir"), e.memoize = function(r, s) {
-        var o = {}, l = {};
+        var o = {}, f = {};
         s = s || function(w) {
           return w;
         };
         var p = function() {
-          var w = Array.prototype.slice.call(arguments), I = w.pop(), P = s.apply(null, w);
-          P in o ? I.apply(null, o[P]) : P in l ? l[P].push(I) : (l[P] = [I], r.apply(null, w.concat([function() {
+          var w = Array.prototype.slice.call(arguments), O = w.pop(), P = s.apply(null, w);
+          P in o ? O.apply(null, o[P]) : P in f ? f[P].push(O) : (f[P] = [O], r.apply(null, w.concat([function() {
             o[P] = arguments;
-            var T = l[P];
-            delete l[P];
-            for (var N = 0, R = T.length; N < R; N++)
+            var T = f[P];
+            delete f[P];
+            for (var N = 0, M = T.length; N < M; N++)
               T[N].apply(null, arguments);
           }])));
         };
@@ -1255,75 +1239,75 @@ function oe() {
           return (r.unmemoized || r).apply(null, arguments);
         };
       }, e.times = function(r, s, o) {
-        for (var l = [], p = 0; p < r; p++)
-          l.push(p);
-        return e.map(l, s, o);
+        for (var f = [], p = 0; p < r; p++)
+          f.push(p);
+        return e.map(f, s, o);
       }, e.timesSeries = function(r, s, o) {
-        for (var l = [], p = 0; p < r; p++)
-          l.push(p);
-        return e.mapSeries(l, s, o);
+        for (var f = [], p = 0; p < r; p++)
+          f.push(p);
+        return e.mapSeries(f, s, o);
       }, e.compose = function() {
         var r = Array.prototype.reverse.call(arguments);
         return function() {
-          var s = this, o = Array.prototype.slice.call(arguments), l = o.pop();
+          var s = this, o = Array.prototype.slice.call(arguments), f = o.pop();
           e.reduce(
             r,
             o,
-            function(p, w, I) {
+            function(p, w, O) {
               w.apply(s, p.concat([function() {
                 var P = arguments[0], T = Array.prototype.slice.call(arguments, 1);
-                I(P, T);
+                O(P, T);
               }]));
             },
             function(p, w) {
-              l.apply(s, [p].concat(w));
+              f.apply(s, [p].concat(w));
             }
           );
         };
       };
       var g = function(r, s) {
         var o = function() {
-          var p = this, w = Array.prototype.slice.call(arguments), I = w.pop();
+          var p = this, w = Array.prototype.slice.call(arguments), O = w.pop();
           return r(
             s,
             function(P, T) {
               P.apply(p, w.concat([T]));
             },
-            I
+            O
           );
         };
         if (arguments.length > 2) {
-          var l = Array.prototype.slice.call(arguments, 2);
-          return o.apply(this, l);
+          var f = Array.prototype.slice.call(arguments, 2);
+          return o.apply(this, f);
         } else
           return o;
       };
       e.applyEach = a(g), e.applyEachSeries = v(g), e.forever = function(r, s) {
-        function o(l) {
-          if (l) {
+        function o(f) {
+          if (f) {
             if (s)
-              return s(l);
-            throw l;
+              return s(f);
+            throw f;
           }
           r(o);
         }
         o();
-      }, F.exports ? F.exports = e : t.async = e;
+      }, x.exports ? x.exports = e : t.async = e;
     })();
-  }(J)), J.exports;
+  }(K)), K.exports;
 }
-var K, Ie;
-function st() {
-  if (Ie) return K;
-  Ie = 1;
-  var F = V.spawn, e = oe(), t = z();
-  function y(f) {
-    f._inputs[0].isStream || f.ffprobe(0, function(h, u) {
-      f._ffprobeData = u;
+var ee, be;
+function ut() {
+  if (be) return ee;
+  be = 1;
+  var x = V.spawn, e = fe(), t = R();
+  function y(l) {
+    l._inputs[0].isStream || l.ffprobe(0, function(h, u) {
+      l._ffprobeData = u;
     });
   }
-  return K = function(f) {
-    f._spawnFfmpeg = function(n, h, u, i) {
+  return ee = function(l) {
+    l._spawnFfmpeg = function(n, h, u, i) {
       typeof h == "function" && (i = u, u = h, h = {}), typeof i > "u" && (i = u, u = function() {
       });
       var c = "stdoutLines" in h ? h.stdoutLines : this.options.stdoutLines;
@@ -1333,28 +1317,28 @@ function st() {
         if (!d || d.length === 0)
           return i(new Error("Cannot find ffmpeg"));
         h.niceness && h.niceness !== 0 && !t.isWindows && (n.unshift("-n", h.niceness, d), d = "nice");
-        var v = t.linesRing(c), S = !1, A = t.linesRing(c), _ = !1, m = F(d, n, h);
+        var v = t.linesRing(c), S = !1, F = t.linesRing(c), _ = !1, m = x(d, n, h);
         m.stderr && m.stderr.setEncoding("utf8"), m.on("error", function(E) {
           i(E);
         });
         var b = null;
-        function O(E) {
-          E && (b = E), x && (S || !h.captureStdout) && _ && i(b, v, A);
+        function I(E) {
+          E && (b = E), A && (S || !h.captureStdout) && _ && i(b, v, F);
         }
-        var x = !1;
+        var A = !1;
         m.on("exit", function(E, g) {
-          x = !0, g ? O(new Error("ffmpeg was killed with signal " + g)) : E ? O(new Error("ffmpeg exited with code " + E)) : O();
+          A = !0, g ? I(new Error("ffmpeg was killed with signal " + g)) : E ? I(new Error("ffmpeg exited with code " + E)) : I();
         }), h.captureStdout && (m.stdout.on("data", function(E) {
           v.append(E);
         }), m.stdout.on("close", function() {
-          v.close(), S = !0, O();
+          v.close(), S = !0, I();
         })), m.stderr.on("data", function(E) {
-          A.append(E);
+          F.append(E);
         }), m.stderr.on("close", function() {
-          A.close(), _ = !0, O();
-        }), u(m, v, A);
+          F.close(), _ = !0, I();
+        }), u(m, v, F);
       });
-    }, f._getArguments = function() {
+    }, l._getArguments = function() {
       var n = this._complexFilters.get(), h = this._outputs.some(function(u) {
         return u.isFile;
       });
@@ -1386,7 +1370,7 @@ function st() {
           );
         }, [])
       );
-    }, f._prepare = function(n, h) {
+    }, l._prepare = function(n, h) {
       var u = this;
       e.waterfall([
         // Check codecs and formats
@@ -1431,7 +1415,7 @@ function st() {
       ], n), h || (this.listeners("progress").length > 0 ? y(this) : this.once("newListener", function(i) {
         i === "progress" && y(this);
       }));
-    }, f.exec = f.execute = f.run = function() {
+    }, l.exec = l.execute = l.run = function() {
       var n = this, h = this._outputs.some(function(d) {
         return "target" in d;
       });
@@ -1456,54 +1440,54 @@ function st() {
             cwd: n.options.cwd,
             windowsHide: !0
           },
-          function(A, _, m) {
-            if (n.ffmpegProc = A, n.emit("start", "ffmpeg " + v.join(" ")), i && (i.source.on("error", function(x) {
-              var E = new Error("Input stream error: " + x.message);
-              E.inputStreamError = x, a(E), A.kill();
-            }), i.source.resume(), i.source.pipe(A.stdin), A.stdin.on("error", function() {
+          function(F, _, m) {
+            if (n.ffmpegProc = F, n.emit("start", "ffmpeg " + v.join(" ")), i && (i.source.on("error", function(A) {
+              var E = new Error("Input stream error: " + A.message);
+              E.inputStreamError = A, a(E), F.kill();
+            }), i.source.resume(), i.source.pipe(F.stdin), F.stdin.on("error", function() {
             })), n.options.timeout && (n.processTimer = setTimeout(function() {
-              var x = "process ran into a timeout (" + n.options.timeout + "s)";
-              a(new Error(x), _.get(), m.get()), A.kill();
-            }, n.options.timeout * 1e3)), u && (A.stdout.pipe(u.target, u.pipeopts), u.target.on("close", function() {
+              var A = "process ran into a timeout (" + n.options.timeout + "s)";
+              a(new Error(A), _.get(), m.get()), F.kill();
+            }, n.options.timeout * 1e3)), u && (F.stdout.pipe(u.target, u.pipeopts), u.target.on("close", function() {
               n.logger.debug("Output stream closed, scheduling kill for ffmpeg process"), setTimeout(function() {
-                a(new Error("Output stream closed")), A.kill();
+                a(new Error("Output stream closed")), F.kill();
               }, 20);
-            }), u.target.on("error", function(x) {
+            }), u.target.on("error", function(A) {
               n.logger.debug("Output stream error, killing ffmpeg process");
-              var E = new Error("Output stream error: " + x.message);
-              E.outputStreamError = x, a(E, _.get(), m.get()), A.kill("SIGKILL");
+              var E = new Error("Output stream error: " + A.message);
+              E.outputStreamError = A, a(E, _.get(), m.get()), F.kill("SIGKILL");
             })), m) {
-              if (n.listeners("stderr").length && m.callback(function(x) {
-                n.emit("stderr", x);
+              if (n.listeners("stderr").length && m.callback(function(A) {
+                n.emit("stderr", A);
               }), n.listeners("codecData").length) {
-                var b = !1, O = {};
-                m.callback(function(x) {
-                  b || (b = t.extractCodecData(n, x, O));
+                var b = !1, I = {};
+                m.callback(function(A) {
+                  b || (b = t.extractCodecData(n, A, I));
                 });
               }
-              n.listeners("progress").length && m.callback(function(x) {
-                t.extractProgress(n, x);
+              n.listeners("progress").length && m.callback(function(A) {
+                t.extractProgress(n, A);
               });
             }
           },
-          function(A, _, m) {
-            if (clearTimeout(n.processTimer), delete n.ffmpegProc, A)
-              A.message.match(/ffmpeg exited with code/) && (A.message += ": " + t.extractError(m.get())), a(A, _.get(), m.get());
+          function(F, _, m) {
+            if (clearTimeout(n.processTimer), delete n.ffmpegProc, F)
+              F.message.match(/ffmpeg exited with code/) && (F.message += ": " + t.extractError(m.get())), a(F, _.get(), m.get());
             else {
-              var b = n._outputs.filter(function(O) {
-                return O.flags.flvmeta;
+              var b = n._outputs.filter(function(I) {
+                return I.flags.flvmeta;
               });
-              b.length ? n._getFlvtoolPath(function(O, x) {
-                if (O)
-                  return a(O);
+              b.length ? n._getFlvtoolPath(function(I, A) {
+                if (I)
+                  return a(I);
                 e.each(
                   b,
                   function(E, g) {
-                    F(x, ["-U", E.target], { windowsHide: !0 }).on("error", function(r) {
-                      g(new Error("Error running " + x + " on " + E.target + ": " + r.message));
+                    x(A, ["-U", E.target], { windowsHide: !0 }).on("error", function(r) {
+                      g(new Error("Error running " + A + " on " + E.target + ": " + r.message));
                     }).on("exit", function(r, s) {
                       r !== 0 || s ? g(
-                        new Error(x + " " + (s ? "received signal " + s : "exited with code " + r)) + " when running on " + E.target
+                        new Error(A + " " + (s ? "received signal " + s : "exited with code " + r)) + " when running on " + E.target
                       ) : g();
                     });
                   },
@@ -1516,9 +1500,9 @@ function st() {
           }
         );
       }), this;
-    }, f.renice = function(n) {
+    }, l.renice = function(n) {
       if (!t.isWindows && (n = n || 0, (n < -20 || n > 20) && this.logger.warn("Invalid niceness value: " + n + ", must be between -20 and 20"), n = Math.min(20, Math.max(-20, n)), this.options.niceness = n, this.ffmpegProc)) {
-        var h = this.logger, u = this.ffmpegProc.pid, i = F("renice", [n, "-p", u], { windowsHide: !0 });
+        var h = this.logger, u = this.ffmpegProc.pid, i = x("renice", [n, "-p", u], { windowsHide: !0 });
         i.on("error", function(c) {
           h.warn("could not renice process " + u + ": " + c.message);
         }), i.on("exit", function(c, a) {
@@ -1526,32 +1510,32 @@ function st() {
         });
       }
       return this;
-    }, f.kill = function(n) {
+    }, l.kill = function(n) {
       return this.ffmpegProc ? this.ffmpegProc.kill(n || "SIGKILL") : this.logger.warn("No running ffmpeg process, cannot send signal"), this;
     };
-  }, K;
+  }, ee;
 }
-var ee, be;
-function ot() {
-  if (be) return ee;
-  be = 1;
-  var F = V, e = V, t = oe(), y = z(), f = /^\s*([D ])([E ])([VAS])([S ])([D ])([T ]) ([^ ]+) +(.*)$/, n = /^\s*([D\.])([E\.])([VAS])([I\.])([L\.])([S\.]) ([^ ]+) +(.*)$/, h = /\(encoders:([^\)]+)\)/, u = /\(decoders:([^\)]+)\)/, i = /^\s*([VAS\.])([F\.])([S\.])([X\.])([B\.])([D\.]) ([^ ]+) +(.*)$/, c = /^\s*([D ])([E ])\s+([^ ]+)\s+(.*)$/, a = /\r\n|\r|\n/, d = /^(?: [T\.][S\.][C\.] )?([^ ]+) +(AA?|VV?|\|)->(AA?|VV?|\|) +(.*)$/, v = {};
-  return ee = function(S) {
-    S.setFfmpegPath = function(A) {
-      return v.ffmpegPath = A, this;
-    }, S.setFfprobePath = function(A) {
-      return v.ffprobePath = A, this;
-    }, S.setFlvtoolPath = function(A) {
-      return v.flvtoolPath = A, this;
+var te, Se;
+function at() {
+  if (Se) return te;
+  Se = 1;
+  var x = V, e = V, t = fe(), y = R(), l = /^\s*([D ])([E ])([VAS])([S ])([D ])([T ]) ([^ ]+) +(.*)$/, n = /^\s*([D\.])([E\.])([VAS])([I\.])([L\.])([S\.]) ([^ ]+) +(.*)$/, h = /\(encoders:([^\)]+)\)/, u = /\(decoders:([^\)]+)\)/, i = /^\s*([VAS\.])([F\.])([S\.])([X\.])([B\.])([D\.]) ([^ ]+) +(.*)$/, c = /^\s*([D ])([E ])\s+([^ ]+)\s+(.*)$/, a = /\r\n|\r|\n/, d = /^(?: [T\.][S\.][C\.] )?([^ ]+) +(AA?|VV?|\|)->(AA?|VV?|\|) +(.*)$/, v = {};
+  return te = function(S) {
+    S.setFfmpegPath = function(F) {
+      return v.ffmpegPath = F, this;
+    }, S.setFfprobePath = function(F) {
+      return v.ffprobePath = F, this;
+    }, S.setFlvtoolPath = function(F) {
+      return v.flvtoolPath = F, this;
     }, S._forgetPaths = function() {
       delete v.ffmpegPath, delete v.ffprobePath, delete v.flvtoolPath;
-    }, S._getFfmpegPath = function(A) {
+    }, S._getFfmpegPath = function(F) {
       if ("ffmpegPath" in v)
-        return A(null, v.ffmpegPath);
+        return F(null, v.ffmpegPath);
       t.waterfall([
         // Try FFMPEG_PATH
         function(_) {
-          process.env.FFMPEG_PATH ? F.exists(process.env.FFMPEG_PATH, function(m) {
+          process.env.FFMPEG_PATH ? x.exists(process.env.FFMPEG_PATH, function(m) {
             m ? _(null, process.env.FFMPEG_PATH) : _(null, "");
           }) : _(null, "");
         },
@@ -1559,21 +1543,21 @@ function ot() {
         function(_, m) {
           if (_.length)
             return m(null, _);
-          y.which("ffmpeg", function(b, O) {
-            m(b, O);
+          y.which("ffmpeg", function(b, I) {
+            m(b, I);
           });
         }
       ], function(_, m) {
-        _ ? A(_) : A(null, v.ffmpegPath = m || "");
+        _ ? F(_) : F(null, v.ffmpegPath = m || "");
       });
-    }, S._getFfprobePath = function(A) {
+    }, S._getFfprobePath = function(F) {
       var _ = this;
       if ("ffprobePath" in v)
-        return A(null, v.ffprobePath);
+        return F(null, v.ffprobePath);
       t.waterfall([
         // Try FFPROBE_PATH
         function(m) {
-          process.env.FFPROBE_PATH ? F.exists(process.env.FFPROBE_PATH, function(b) {
+          process.env.FFPROBE_PATH ? x.exists(process.env.FFPROBE_PATH, function(b) {
             m(null, b ? process.env.FFPROBE_PATH : "");
           }) : m(null, "");
         },
@@ -1581,20 +1565,20 @@ function ot() {
         function(m, b) {
           if (m.length)
             return b(null, m);
-          y.which("ffprobe", function(O, x) {
-            b(O, x);
+          y.which("ffprobe", function(I, A) {
+            b(I, A);
           });
         },
         // Search in the same directory as ffmpeg
         function(m, b) {
           if (m.length)
             return b(null, m);
-          _._getFfmpegPath(function(O, x) {
-            if (O)
-              b(O);
-            else if (x.length) {
-              var E = y.isWindows ? "ffprobe.exe" : "ffprobe", g = e.join(e.dirname(x), E);
-              F.exists(g, function(r) {
+          _._getFfmpegPath(function(I, A) {
+            if (I)
+              b(I);
+            else if (A.length) {
+              var E = y.isWindows ? "ffprobe.exe" : "ffprobe", g = e.join(e.dirname(A), E);
+              x.exists(g, function(r) {
                 b(null, r ? g : "");
               });
             } else
@@ -1602,15 +1586,15 @@ function ot() {
           });
         }
       ], function(m, b) {
-        m ? A(m) : A(null, v.ffprobePath = b || "");
+        m ? F(m) : F(null, v.ffprobePath = b || "");
       });
-    }, S._getFlvtoolPath = function(A) {
+    }, S._getFlvtoolPath = function(F) {
       if ("flvtoolPath" in v)
-        return A(null, v.flvtoolPath);
+        return F(null, v.flvtoolPath);
       t.waterfall([
         // Try FLVMETA_PATH
         function(_) {
-          process.env.FLVMETA_PATH ? F.exists(process.env.FLVMETA_PATH, function(m) {
+          process.env.FLVMETA_PATH ? x.exists(process.env.FLVMETA_PATH, function(m) {
             _(null, m ? process.env.FLVMETA_PATH : "");
           }) : _(null, "");
         },
@@ -1618,7 +1602,7 @@ function ot() {
         function(_, m) {
           if (_.length)
             return m(null, _);
-          process.env.FLVTOOL2_PATH ? F.exists(process.env.FLVTOOL2_PATH, function(b) {
+          process.env.FLVTOOL2_PATH ? x.exists(process.env.FLVTOOL2_PATH, function(b) {
             m(null, b ? process.env.FLVTOOL2_PATH : "");
           }) : m(null, "");
         },
@@ -1626,50 +1610,50 @@ function ot() {
         function(_, m) {
           if (_.length)
             return m(null, _);
-          y.which("flvmeta", function(b, O) {
-            m(b, O);
+          y.which("flvmeta", function(b, I) {
+            m(b, I);
           });
         },
         // Search for flvtool2 in the PATH
         function(_, m) {
           if (_.length)
             return m(null, _);
-          y.which("flvtool2", function(b, O) {
-            m(b, O);
+          y.which("flvtool2", function(b, I) {
+            m(b, I);
           });
         }
       ], function(_, m) {
-        _ ? A(_) : A(null, v.flvtoolPath = m || "");
+        _ ? F(_) : F(null, v.flvtoolPath = m || "");
       });
-    }, S.availableFilters = S.getAvailableFilters = function(A) {
+    }, S.availableFilters = S.getAvailableFilters = function(F) {
       if ("filters" in v)
-        return A(null, v.filters);
+        return F(null, v.filters);
       this._spawnFfmpeg(["-filters"], { captureStdout: !0, stdoutLines: 0 }, function(_, m) {
         if (_)
-          return A(_);
-        var b = m.get(), O = b.split(`
-`), x = {}, E = { A: "audio", V: "video", "|": "none" };
-        O.forEach(function(g) {
+          return F(_);
+        var b = m.get(), I = b.split(`
+`), A = {}, E = { A: "audio", V: "video", "|": "none" };
+        I.forEach(function(g) {
           var r = g.match(d);
-          r && (x[r[1]] = {
+          r && (A[r[1]] = {
             description: r[4],
             input: E[r[2].charAt(0)],
             multipleInputs: r[2].length > 1,
             output: E[r[3].charAt(0)],
             multipleOutputs: r[3].length > 1
           });
-        }), A(null, v.filters = x);
+        }), F(null, v.filters = A);
       });
-    }, S.availableCodecs = S.getAvailableCodecs = function(A) {
+    }, S.availableCodecs = S.getAvailableCodecs = function(F) {
       if ("codecs" in v)
-        return A(null, v.codecs);
+        return F(null, v.codecs);
       this._spawnFfmpeg(["-codecs"], { captureStdout: !0, stdoutLines: 0 }, function(_, m) {
         if (_)
-          return A(_);
-        var b = m.get(), O = b.split(a), x = {};
-        O.forEach(function(E) {
-          var g = E.match(f);
-          if (g && g[7] !== "=" && (x[g[7]] = {
+          return F(_);
+        var b = m.get(), I = b.split(a), A = {};
+        I.forEach(function(E) {
+          var g = E.match(l);
+          if (g && g[7] !== "=" && (A[g[7]] = {
             type: { V: "video", A: "audio", S: "subtitle" }[g[3]],
             description: g[8],
             canDecode: g[1] === "D",
@@ -1678,7 +1662,7 @@ function ot() {
             directRendering: g[5] === "D",
             weirdFrameTruncation: g[6] === "T"
           }), g = E.match(n), g && g[7] !== "=") {
-            var r = x[g[7]] = {
+            var r = A[g[7]] = {
               type: { V: "video", A: "audio", S: "subtitle" }[g[3]],
               description: g[8],
               canDecode: g[1] === "D",
@@ -1690,26 +1674,26 @@ function ot() {
             s = s ? s[1].trim().split(" ") : [];
             var o = r.description.match(u);
             if (o = o ? o[1].trim().split(" ") : [], s.length || o.length) {
-              var l = {};
-              y.copy(r, l), delete l.canEncode, delete l.canDecode, s.forEach(function(p) {
-                x[p] = {}, y.copy(l, x[p]), x[p].canEncode = !0;
+              var f = {};
+              y.copy(r, f), delete f.canEncode, delete f.canDecode, s.forEach(function(p) {
+                A[p] = {}, y.copy(f, A[p]), A[p].canEncode = !0;
               }), o.forEach(function(p) {
-                p in x || (x[p] = {}, y.copy(l, x[p])), x[p].canDecode = !0;
+                p in A || (A[p] = {}, y.copy(f, A[p])), A[p].canDecode = !0;
               });
             }
           }
-        }), A(null, v.codecs = x);
+        }), F(null, v.codecs = A);
       });
-    }, S.availableEncoders = S.getAvailableEncoders = function(A) {
+    }, S.availableEncoders = S.getAvailableEncoders = function(F) {
       if ("encoders" in v)
-        return A(null, v.encoders);
+        return F(null, v.encoders);
       this._spawnFfmpeg(["-encoders"], { captureStdout: !0, stdoutLines: 0 }, function(_, m) {
         if (_)
-          return A(_);
-        var b = m.get(), O = b.split(a), x = {};
-        O.forEach(function(E) {
+          return F(_);
+        var b = m.get(), I = b.split(a), A = {};
+        I.forEach(function(E) {
           var g = E.match(i);
-          g && g[7] !== "=" && (x[g[7]] = {
+          g && g[7] !== "=" && (A[g[7]] = {
             type: { V: "video", A: "audio", S: "subtitle" }[g[1]],
             description: g[8],
             frameMT: g[2] === "F",
@@ -1718,27 +1702,27 @@ function ot() {
             drawHorizBand: g[5] === "B",
             directRendering: g[6] === "D"
           });
-        }), A(null, v.encoders = x);
+        }), F(null, v.encoders = A);
       });
-    }, S.availableFormats = S.getAvailableFormats = function(A) {
+    }, S.availableFormats = S.getAvailableFormats = function(F) {
       if ("formats" in v)
-        return A(null, v.formats);
+        return F(null, v.formats);
       this._spawnFfmpeg(["-formats"], { captureStdout: !0, stdoutLines: 0 }, function(_, m) {
         if (_)
-          return A(_);
-        var b = m.get(), O = b.split(a), x = {};
-        O.forEach(function(E) {
+          return F(_);
+        var b = m.get(), I = b.split(a), A = {};
+        I.forEach(function(E) {
           var g = E.match(c);
           g && g[3].split(",").forEach(function(r) {
-            r in x || (x[r] = {
+            r in A || (A[r] = {
               description: g[4],
               canDemux: !1,
               canMux: !1
-            }), g[1] === "D" && (x[r].canDemux = !0), g[2] === "E" && (x[r].canMux = !0);
+            }), g[1] === "D" && (A[r].canDemux = !0), g[2] === "E" && (A[r].canMux = !0);
           });
-        }), A(null, v.formats = x);
+        }), F(null, v.formats = A);
       });
-    }, S._checkCapabilities = function(A) {
+    }, S._checkCapabilities = function(F) {
       var _ = this;
       t.waterfall([
         // Get available formats
@@ -1747,21 +1731,21 @@ function ot() {
         },
         // Check whether specified formats are available
         function(m, b) {
-          var O;
-          if (O = _._outputs.reduce(function(x, E) {
+          var I;
+          if (I = _._outputs.reduce(function(A, E) {
             var g = E.options.find("-f", 1);
-            return g && (!(g[0] in m) || !m[g[0]].canMux) && x.push(g), x;
-          }, []), O.length === 1)
-            return b(new Error("Output format " + O[0] + " is not available"));
-          if (O.length > 1)
-            return b(new Error("Output formats " + O.join(", ") + " are not available"));
-          if (O = _._inputs.reduce(function(x, E) {
+            return g && (!(g[0] in m) || !m[g[0]].canMux) && A.push(g), A;
+          }, []), I.length === 1)
+            return b(new Error("Output format " + I[0] + " is not available"));
+          if (I.length > 1)
+            return b(new Error("Output formats " + I.join(", ") + " are not available"));
+          if (I = _._inputs.reduce(function(A, E) {
             var g = E.options.find("-f", 1);
-            return g && (!(g[0] in m) || !m[g[0]].canDemux) && x.push(g[0]), x;
-          }, []), O.length === 1)
-            return b(new Error("Input format " + O[0] + " is not available"));
-          if (O.length > 1)
-            return b(new Error("Input formats " + O.join(", ") + " are not available"));
+            return g && (!(g[0] in m) || !m[g[0]].canDemux) && A.push(g[0]), A;
+          }, []), I.length === 1)
+            return b(new Error("Input format " + I[0] + " is not available"));
+          if (I.length > 1)
+            return b(new Error("Input formats " + I.join(", ") + " are not available"));
           b();
         },
         // Get available codecs
@@ -1770,40 +1754,40 @@ function ot() {
         },
         // Check whether specified codecs are available and add strict experimental options if needed
         function(m, b) {
-          var O;
-          if (O = _._outputs.reduce(function(x, E) {
+          var I;
+          if (I = _._outputs.reduce(function(A, E) {
             var g = E.audio.find("-acodec", 1);
-            return g && g[0] !== "copy" && (!(g[0] in m) || m[g[0]].type !== "audio") && x.push(g[0]), x;
-          }, []), O.length === 1)
-            return b(new Error("Audio codec " + O[0] + " is not available"));
-          if (O.length > 1)
-            return b(new Error("Audio codecs " + O.join(", ") + " are not available"));
-          if (O = _._outputs.reduce(function(x, E) {
+            return g && g[0] !== "copy" && (!(g[0] in m) || m[g[0]].type !== "audio") && A.push(g[0]), A;
+          }, []), I.length === 1)
+            return b(new Error("Audio codec " + I[0] + " is not available"));
+          if (I.length > 1)
+            return b(new Error("Audio codecs " + I.join(", ") + " are not available"));
+          if (I = _._outputs.reduce(function(A, E) {
             var g = E.video.find("-vcodec", 1);
-            return g && g[0] !== "copy" && (!(g[0] in m) || m[g[0]].type !== "video") && x.push(g[0]), x;
-          }, []), O.length === 1)
-            return b(new Error("Video codec " + O[0] + " is not available"));
-          if (O.length > 1)
-            return b(new Error("Video codecs " + O.join(", ") + " are not available"));
+            return g && g[0] !== "copy" && (!(g[0] in m) || m[g[0]].type !== "video") && A.push(g[0]), A;
+          }, []), I.length === 1)
+            return b(new Error("Video codec " + I[0] + " is not available"));
+          if (I.length > 1)
+            return b(new Error("Video codecs " + I.join(", ") + " are not available"));
           b();
         }
-      ], A);
+      ], F);
     };
-  }, ee;
+  }, te;
 }
-var te, Se;
-function ft() {
-  if (Se) return te;
-  Se = 1;
-  var F = V.spawn;
-  function e(f) {
-    return f.match(/^TAG:/);
+var ne, Pe;
+function st() {
+  if (Pe) return ne;
+  Pe = 1;
+  var x = V.spawn;
+  function e(l) {
+    return l.match(/^TAG:/);
   }
-  function t(f) {
-    return f.match(/^DISPOSITION:/);
+  function t(l) {
+    return l.match(/^DISPOSITION:/);
   }
-  function y(f) {
-    var n = f.split(/\r\n|\r|\n/);
+  function y(l) {
+    var n = l.split(/\r\n|\r|\n/);
     n = n.filter(function(d) {
       return d.length > 0;
     });
@@ -1820,8 +1804,8 @@ function ft() {
           S = n.shift();
           continue;
         }
-        var A = S.match(/^([^=]+)=(.*)$/);
-        A && (!A[1].match(/^TAG:/) && A[2].match(/^[0-9]+(\.[0-9]+)?$/) ? v[A[1]] = Number(A[2]) : v[A[1]] = A[2]), S = n.shift();
+        var F = S.match(/^([^=]+)=(.*)$/);
+        F && (!F[1].match(/^TAG:/) && F[2].match(/^[0-9]+(\.[0-9]+)?$/) ? v[F[1]] = Number(F[2]) : v[F[1]] = F[2]), S = n.shift();
       }
       return v;
     }
@@ -1837,8 +1821,8 @@ function ft() {
     }
     return h;
   }
-  return te = function(f) {
-    f.ffprobe = function() {
+  return ne = function(l) {
+    l.ffprobe = function() {
       var n, h = null, u = [], i, i = arguments[arguments.length - 1], c = !1;
       function a(d, v) {
         c || (c = !0, i(d, v));
@@ -1862,23 +1846,23 @@ function ft() {
           return a(d);
         if (!v)
           return a(new Error("Cannot find ffprobe"));
-        var S = "", A = !1, _ = "", m = !1, b = n.isStream ? "pipe:0" : n.source, O = F(v, ["-show_streams", "-show_format"].concat(u, b), { windowsHide: !0 });
-        n.isStream && (O.stdin.on("error", function(r) {
+        var S = "", F = !1, _ = "", m = !1, b = n.isStream ? "pipe:0" : n.source, I = x(v, ["-show_streams", "-show_format"].concat(u, b), { windowsHide: !0 });
+        n.isStream && (I.stdin.on("error", function(r) {
           ["ECONNRESET", "EPIPE", "EOF"].indexOf(r.code) >= 0 || a(r);
-        }), O.stdin.on("close", function() {
-          n.source.pause(), n.source.unpipe(O.stdin);
-        }), n.source.pipe(O.stdin)), O.on("error", i);
-        var x = null;
+        }), I.stdin.on("close", function() {
+          n.source.pause(), n.source.unpipe(I.stdin);
+        }), n.source.pipe(I.stdin)), I.on("error", i);
+        var A = null;
         function E(r) {
-          if (r && (x = r), g && A && m) {
-            if (x)
-              return _ && (x.message += `
-` + _), a(x);
+          if (r && (A = r), g && F && m) {
+            if (A)
+              return _ && (A.message += `
+` + _), a(A);
             var s = y(S);
             [s.format].concat(s.streams).forEach(function(o) {
               if (o) {
-                var l = Object.keys(o).filter(e);
-                l.length && (o.tags = o.tags || {}, l.forEach(function(w) {
+                var f = Object.keys(o).filter(e);
+                f.length && (o.tags = o.tags || {}, f.forEach(function(w) {
                   o.tags[w.substr(4)] = o[w], delete o[w];
                 }));
                 var p = Object.keys(o).filter(t);
@@ -1890,27 +1874,27 @@ function ft() {
           }
         }
         var g = !1;
-        O.on("exit", function(r, s) {
+        I.on("exit", function(r, s) {
           g = !0, r ? E(new Error("ffprobe exited with code " + r)) : s ? E(new Error("ffprobe was killed with signal " + s)) : E();
-        }), O.stdout.on("data", function(r) {
+        }), I.stdout.on("data", function(r) {
           S += r;
-        }), O.stdout.on("close", function() {
-          A = !0, E();
-        }), O.stderr.on("data", function(r) {
+        }), I.stdout.on("close", function() {
+          F = !0, E();
+        }), I.stderr.on("data", function(r) {
           _ += r;
-        }), O.stderr.on("close", function() {
+        }), I.stderr.on("close", function() {
           m = !0, E();
         });
       });
     };
-  }, te;
+  }, ne;
 }
-var ne, Pe;
-function lt() {
-  if (Pe) return ne;
-  Pe = 1;
-  var F = V, e = V, t = V.PassThrough, y = oe(), f = z();
-  return ne = function(h) {
+var re, Te;
+function ot() {
+  if (Te) return re;
+  Te = 1;
+  var x = V, e = V, t = V.PassThrough, y = fe(), l = R();
+  return re = function(h) {
     h.saveToFile = h.save = function(u) {
       return this.output(u).run(), this;
     }, h.writeToStream = h.pipe = h.stream = function(u, i) {
@@ -1933,14 +1917,14 @@ function lt() {
           u.timemarks.push(d * (v + 1) + "%");
       }
       if ("size" in u) {
-        var S = u.size.match(/^(\d+)x(\d+)$/), A = u.size.match(/^(\d+)x\?$/), _ = u.size.match(/^\?x(\d+)$/), m = u.size.match(/^(\d+)%$/);
-        if (!S && !A && !_ && !m)
+        var S = u.size.match(/^(\d+)x(\d+)$/), F = u.size.match(/^(\d+)x\?$/), _ = u.size.match(/^\?x(\d+)$/), m = u.size.match(/^(\d+)%$/);
+        if (!S && !F && !_ && !m)
           throw new Error("Invalid size parameter: " + u.size);
       }
       var b;
-      function O(x) {
-        b ? x(null, b) : c.ffprobe(function(E, g) {
-          b = g, x(E, g);
+      function I(A) {
+        b ? A(null, b) : c.ffprobe(function(E, g) {
+          b = g, A(E, g);
         });
       }
       return y.waterfall([
@@ -1951,20 +1935,20 @@ function lt() {
           })) {
             if (typeof a != "string")
               return E(new Error("Cannot compute screenshot timemarks with an input stream, please specify fixed timemarks"));
-            O(function(g, r) {
+            I(function(g, r) {
               if (g)
                 E(g);
               else {
-                var s = r.streams.reduce(function(l, p) {
-                  return p.codec_type === "video" && p.width * p.height > l.width * l.height ? p : l;
+                var s = r.streams.reduce(function(f, p) {
+                  return p.codec_type === "video" && p.width * p.height > f.width * f.height ? p : f;
                 }, { width: 0, height: 0 });
                 if (s.width === 0)
                   return E(new Error("No video stream in input, cannot take screenshots"));
                 var o = Number(s.duration);
                 if (isNaN(o) && (o = Number(r.format.duration)), isNaN(o))
                   return E(new Error("Could not get input duration, please specify fixed timemarks"));
-                u.timemarks = u.timemarks.map(function(l) {
-                  return ("" + l).match(/^([\d.]+)%$/) ? o * parseFloat(l) / 100 : l;
+                u.timemarks = u.timemarks.map(function(f) {
+                  return ("" + f).match(/^([\d.]+)%$/) ? o * parseFloat(f) / 100 : f;
                 }), E();
               }
             });
@@ -1974,7 +1958,7 @@ function lt() {
         // Turn all timemarks into numbers and sort them
         function(E) {
           u.timemarks = u.timemarks.map(function(g) {
-            return f.timemarkToSeconds(g);
+            return l.timemarkToSeconds(g);
           }).sort(function(g, r) {
             return g - r;
           }), E();
@@ -2002,16 +1986,16 @@ function lt() {
           if (E.match(/%[whr]/)) {
             if (S)
               return g(null, E, S[1], S[2]);
-            O(function(r, s) {
+            I(function(r, s) {
               if (r)
                 return g(new Error("Could not determine video resolution to replace %w, %h or %r"));
-              var o = s.streams.reduce(function(w, I) {
-                return I.codec_type === "video" && I.width * I.height > w.width * w.height ? I : w;
+              var o = s.streams.reduce(function(w, O) {
+                return O.codec_type === "video" && O.width * O.height > w.width * w.height ? O : w;
               }, { width: 0, height: 0 });
               if (o.width === 0)
                 return g(new Error("No video stream in input, cannot replace %w, %h or %r"));
-              var l = o.width, p = o.height;
-              A ? (p = p * Number(A[1]) / l, l = Number(A[1])) : _ ? (l = l * Number(_[1]) / p, p = Number(_[1])) : m && (l = l * Number(m[1]) / 100, p = p * Number(m[1]) / 100), g(null, E, Math.round(l / 2) * 2, Math.round(p / 2) * 2);
+              var f = o.width, p = o.height;
+              F ? (p = p * Number(F[1]) / f, f = Number(F[1])) : _ ? (f = f * Number(_[1]) / p, p = Number(_[1])) : m && (f = f * Number(m[1]) / 100, p = p * Number(m[1]) / 100), g(null, E, Math.round(f / 2) * 2, Math.round(p / 2) * 2);
             });
           } else
             g(null, E, -1, -1);
@@ -2023,7 +2007,7 @@ function lt() {
         // Replace variable tokens in pattern (%s, %i) and generate filename list
         function(E, g) {
           var r = u.timemarks.map(function(s, o) {
-            return E.replace(/%s/g, f.timemarkToSeconds(s)).replace(/%(0*)i/g, function(l, p) {
+            return E.replace(/%s/g, l.timemarkToSeconds(s)).replace(/%(0*)i/g, function(f, p) {
               var w = "" + (o + 1);
               return p.substr(0, Math.max(0, p.length + 1 - w.length)) + w;
             });
@@ -2032,8 +2016,8 @@ function lt() {
         },
         // Create output directory
         function(E, g) {
-          F.exists(u.folder, function(r) {
-            r ? g(null, E) : F.mkdir(u.folder, function(s) {
+          x.exists(u.folder, function(r) {
+            r ? g(null, E) : x.mkdir(u.folder, function(s) {
               s ? g(s) : g(null, E);
             });
           });
@@ -2048,14 +2032,14 @@ function lt() {
         }];
         if ("size" in u) {
           c.size(u.size);
-          var l = c._currentOutput.sizeFilters.get().map(function(P, T) {
+          var f = c._currentOutput.sizeFilters.get().map(function(P, T) {
             return T > 0 && (P.inputs = "size" + (T - 1)), P.outputs = "size" + T, P;
           });
-          s.inputs = "size" + (l.length - 1), o = l.concat(o), c._currentOutput.sizeFilters.clear();
+          s.inputs = "size" + (f.length - 1), o = f.concat(o), c._currentOutput.sizeFilters.clear();
         }
         for (var p = 0, w = 0; w < r; w++) {
-          var I = "screen" + w;
-          s.outputs.push(I), w === 0 && (p = u.timemarks[w], c.seekInput(p)), c.output(e.join(u.folder, g[w])).frames(1).map(I), w > 0 && c.seek(u.timemarks[w] - p);
+          var O = "screen" + w;
+          s.outputs.push(O), w === 0 && (p = u.timemarks[w], c.seekInput(p)), c.output(e.join(u.folder, g[w])).frames(1).map(O), w > 0 && c.seek(u.timemarks[w] - p);
         }
         c.complexFilter(o), c.run();
       }), this;
@@ -2068,34 +2052,34 @@ function lt() {
           return a.emit("error", d);
         var S = v.streams.some(function(_) {
           return _.codec_type === "audio";
-        }), A = v.streams.some(function(_) {
+        }), F = v.streams.some(function(_) {
           return _.codec_type === "video";
         });
         a.output(u, i).complexFilter({
           filter: "concat",
           options: {
             n: a._inputs.length,
-            v: A ? 1 : 0,
+            v: F ? 1 : 0,
             a: S ? 1 : 0
           }
         }).run();
       }), this;
     };
-  }, ne;
+  }, re;
 }
-var re, Te;
-function ct() {
-  if (Te) return re;
-  Te = 1;
-  var F = V, e = V, t = V.EventEmitter, y = z();
-  function f(n, h) {
-    if (!(this instanceof f))
-      return new f(n, h);
+var ie, Ne;
+function ft() {
+  if (Ne) return ie;
+  Ne = 1;
+  var x = V, e = V, t = V.EventEmitter, y = R();
+  function l(n, h) {
+    if (!(this instanceof l))
+      return new l(n, h);
     t.call(this), typeof n == "object" && !("readable" in n) ? h = n : (h = h || {}, h.source = n), this._inputs = [], h.source && this.input(h.source), this._outputs = [], this.output();
     var u = this;
     ["_global", "_complexFilters"].forEach(function(i) {
       u[i] = y.args();
-    }), h.stdoutLines = "stdoutLines" in h ? h.stdoutLines : 100, h.presets = h.presets || h.preset || F.join(__dirname, "presets"), h.niceness = h.niceness || h.priority || 0, this.options = h, this.logger = h.logger || {
+    }), h.stdoutLines = "stdoutLines" in h ? h.stdoutLines : 100, h.presets = h.presets || h.preset || x.join(__dirname, "presets"), h.niceness = h.niceness || h.priority || 0, this.options = h, this.logger = h.logger || {
       debug: function() {
       },
       info: function() {
@@ -2106,8 +2090,8 @@ function ct() {
       }
     };
   }
-  return e.inherits(f, t), re = f, f.prototype.clone = function() {
-    var n = new f(), h = this;
+  return e.inherits(l, t), ie = l, l.prototype.clone = function() {
+    var n = new l(), h = this;
     return n.options = this.options, n.logger = this.logger, n._inputs = this._inputs.map(function(u) {
       return {
         source: u.source,
@@ -2122,55 +2106,52 @@ function ct() {
     }), this._currentOutput.sizeData && (n._currentOutput.sizeData = {}, y.copy(this._currentOutput.sizeData, n._currentOutput.sizeData)), y.copy(this._currentOutput.flags, n._currentOutput.flags)), ["_global", "_complexFilters"].forEach(function(u) {
       n[u] = h[u].clone();
     }), n;
-  }, Ke()(f.prototype), et()(f.prototype), tt()(f.prototype), nt()(f.prototype), rt()(f.prototype), it()(f.prototype), at()(f.prototype), st()(f.prototype), ot()(f.prototype), f.setFfmpegPath = function(n) {
-    new f().setFfmpegPath(n);
-  }, f.setFfprobePath = function(n) {
-    new f().setFfprobePath(n);
-  }, f.setFlvtoolPath = function(n) {
-    new f().setFlvtoolPath(n);
-  }, f.availableFilters = f.getAvailableFilters = function(n) {
-    new f().availableFilters(n);
-  }, f.availableCodecs = f.getAvailableCodecs = function(n) {
-    new f().availableCodecs(n);
-  }, f.availableFormats = f.getAvailableFormats = function(n) {
-    new f().availableFormats(n);
-  }, f.availableEncoders = f.getAvailableEncoders = function(n) {
-    new f().availableEncoders(n);
-  }, ft()(f.prototype), f.ffprobe = function(n) {
-    var h = new f(n);
+  }, Ye()(l.prototype), Je()(l.prototype), Ke()(l.prototype), et()(l.prototype), tt()(l.prototype), nt()(l.prototype), it()(l.prototype), ut()(l.prototype), at()(l.prototype), l.setFfmpegPath = function(n) {
+    new l().setFfmpegPath(n);
+  }, l.setFfprobePath = function(n) {
+    new l().setFfprobePath(n);
+  }, l.setFlvtoolPath = function(n) {
+    new l().setFlvtoolPath(n);
+  }, l.availableFilters = l.getAvailableFilters = function(n) {
+    new l().availableFilters(n);
+  }, l.availableCodecs = l.getAvailableCodecs = function(n) {
+    new l().availableCodecs(n);
+  }, l.availableFormats = l.getAvailableFormats = function(n) {
+    new l().availableFormats(n);
+  }, l.availableEncoders = l.getAvailableEncoders = function(n) {
+    new l().availableEncoders(n);
+  }, st()(l.prototype), l.ffprobe = function(n) {
+    var h = new l(n);
     h.ffprobe.apply(h, Array.prototype.slice.call(arguments, 1));
-  }, lt()(f.prototype), re;
+  }, ot()(l.prototype), ie;
 }
-var ie, Ne;
-function ht() {
-  return Ne || (Ne = 1, ie = ct()), ie;
+var ue, Ve;
+function lt() {
+  return Ve || (Ve = 1, ue = ft()), ue;
 }
-var qe = ht();
-const pt = /* @__PURE__ */ Ue(qe), Ve = /* @__PURE__ */ Be({
-  __proto__: null,
-  default: pt
-}, [qe]);
-var q = { exports: {} }, ue, ze;
-function fe() {
-  return ze || (ze = 1, ue = {
+var ct = lt();
+const ze = /* @__PURE__ */ Ce(ct);
+var C = { exports: {} }, ae, Re;
+function le() {
+  return Re || (Re = 1, ae = {
     DEFAULT_INITIAL_SIZE: 8 * 1024,
     DEFAULT_INCREMENT_AMOUNT: 8 * 1024,
     DEFAULT_FREQUENCY: 1,
     DEFAULT_CHUNK_SIZE: 1024
-  }), ue;
+  }), ae;
 }
-var ae = { exports: {} }, Re;
-function dt() {
-  if (Re) return ae.exports;
-  Re = 1;
-  var F = V, e = fe(), t = V, y = ae.exports = function(f) {
+var se = { exports: {} }, Me;
+function ht() {
+  if (Me) return se.exports;
+  Me = 1;
+  var x = V, e = le(), t = V, y = se.exports = function(l) {
     var n = this;
-    f = f || {}, F.Readable.call(this, f), this.stopped = !1;
-    var h = f.hasOwnProperty("frequency") ? f.frequency : e.DEFAULT_FREQUENCY, u = f.chunkSize || e.DEFAULT_CHUNK_SIZE, i = f.initialSize || e.DEFAULT_INITIAL_SIZE, c = f.incrementAmount || e.DEFAULT_INCREMENT_AMOUNT, a = 0, d = new Buffer(i), v = !1, S = function() {
+    l = l || {}, x.Readable.call(this, l), this.stopped = !1;
+    var h = l.hasOwnProperty("frequency") ? l.frequency : e.DEFAULT_FREQUENCY, u = l.chunkSize || e.DEFAULT_CHUNK_SIZE, i = l.initialSize || e.DEFAULT_INITIAL_SIZE, c = l.incrementAmount || e.DEFAULT_INCREMENT_AMOUNT, a = 0, d = new Buffer(i), v = !1, S = function() {
       var m = Math.min(u, a), b = !1;
       if (m > 0) {
-        var O = null;
-        O = new Buffer(m), d.copy(O, 0, 0, m), b = n.push(O) !== !1, v = b, d.copy(d, 0, m, a), a -= m;
+        var I = null;
+        I = new Buffer(m), d.copy(I, 0, 0, m), b = n.push(I) !== !1, v = b, d.copy(d, 0, m, a), a -= m;
       }
       a === 0 && n.stopped && n.push(null), b ? S.timeout = setTimeout(S, h) : S.timeout = null;
     };
@@ -2183,10 +2164,10 @@ function dt() {
     }, this.maxSize = function() {
       return d.length;
     };
-    var A = function(m) {
+    var F = function(m) {
       if (d.length - a < m) {
-        var b = Math.ceil((m - (d.length - a)) / c), O = new Buffer(d.length + c * b);
-        d.copy(O, 0, 0, a), d = O;
+        var b = Math.ceil((m - (d.length - a)) / c), I = new Buffer(d.length + c * b);
+        d.copy(I, 0, 0, a), d = I;
       }
     }, _ = function() {
       !S.timeout && v && (S.timeout = setTimeout(S, h));
@@ -2195,26 +2176,26 @@ function dt() {
       if (n.stopped)
         throw new Error("Tried to write data to a stopped ReadableStreamBuffer");
       if (Buffer.isBuffer(m))
-        A(m.length), m.copy(d, a, 0), a += m.length;
+        F(m.length), m.copy(d, a, 0), a += m.length;
       else {
         m = m + "";
-        var O = Buffer.byteLength(m);
-        A(O), d.write(m, a, b || "utf8"), a += O;
+        var I = Buffer.byteLength(m);
+        F(I), d.write(m, a, b || "utf8"), a += I;
       }
       _();
     }, this._read = function() {
       v = !0, _();
     };
   };
-  return t.inherits(y, F.Readable), ae.exports;
+  return t.inherits(y, x.Readable), se.exports;
 }
-var se = { exports: {} }, Me;
-function vt() {
-  if (Me) return se.exports;
-  Me = 1;
-  var F = V, e = V, t = fe(), y = se.exports = function(f) {
-    f = f || {}, f.decodeStrings = !0, e.Writable.call(this, f);
-    var n = f.initialSize || t.DEFAULT_INITIAL_SIZE, h = f.incrementAmount || t.DEFAULT_INCREMENT_AMOUNT, u = new Buffer(n), i = 0;
+var oe = { exports: {} }, Le;
+function pt() {
+  if (Le) return oe.exports;
+  Le = 1;
+  var x = V, e = V, t = le(), y = oe.exports = function(l) {
+    l = l || {}, l.decodeStrings = !0, e.Writable.call(this, l);
+    var n = l.initialSize || t.DEFAULT_INITIAL_SIZE, h = l.incrementAmount || t.DEFAULT_INCREMENT_AMOUNT, u = new Buffer(n), i = 0;
     this.size = function() {
       return i;
     }, this.maxSize = function() {
@@ -2238,48 +2219,49 @@ function vt() {
       c(a.length), a.copy(u, i, 0), i += a.length, v();
     };
   };
-  return F.inherits(y, e.Writable), se.exports;
+  return x.inherits(y, e.Writable), oe.exports;
 }
-var Le;
-function mt() {
-  return Le || (Le = 1, q.exports = fe(), q.exports.ReadableStreamBuffer = dt(), q.exports.WritableStreamBuffer = vt()), q.exports;
+var qe;
+function dt() {
+  return qe || (qe = 1, C.exports = le(), C.exports.ReadableStreamBuffer = ht(), C.exports.WritableStreamBuffer = pt()), C.exports;
 }
-var gt = mt();
-class wt {
+var vt = dt();
+const mt = /* @__PURE__ */ Ce(vt);
+class gt {
   constructor() {
-    L(this, "getResolutionQuality", (e, t) => e >= 3840 && t >= 2160 ? "4K" : e >= 2048 && t >= 1080 ? "2K" : e >= 1920 && t >= 1080 ? "Full HD" : e >= 1280 && t >= 720 ? "HD" : "SD");
+    q(this, "getResolutionQuality", (e, t) => e >= 3840 && t >= 2160 ? "4K" : e >= 2048 && t >= 1080 ? "2K" : e >= 1920 && t >= 1080 ? "Full HD" : e >= 1280 && t >= 720 ? "HD" : "SD");
     /**
      * Generates a screenshot from the middle of a video.
      * @param {Object} file - Express file object containing video data.
      * @returns {Promise<Buffer>} - A buffer of the generated screenshot.
      */
-    L(this, "generateThumbnail", async (e) => {
-      const t = (void 0)(__dirname, "tmp"), y = (void 0)(t, `temp_${Date.now()}`), f = (void 0)(t, `screenshot_${Date.now()}.png`);
-      return await (void 0)(t, { recursive: !0 }), await (void 0)(y, e.buffer), new Promise((n, h) => {
-        Ve(y).on("error", async (u) => {
+    q(this, "generateThumbnail", async (e) => {
+      const t = z.join(__dirname, "tmp"), y = z.join(t, `temp_${Date.now()}`), l = z.join(t, `screenshot_${Date.now()}.png`);
+      return await z.mkdir(t, { recursive: !0 }), await z.writeFile(y, e.buffer), new Promise((n, h) => {
+        ze(y).on("error", async (u) => {
           console.error("Error generating screenshot:", u), h(u);
         }).on("end", async () => {
           try {
-            const u = await (void 0)(f);
-            await (void 0)(y).catch(() => {
-            }), await (void 0)(f).catch(() => {
+            const u = await z.readFile(l);
+            await z.unlink(y).catch(() => {
+            }), await z.unlink(l).catch(() => {
             }), n(u);
           } catch (u) {
             h(u);
           }
         }).screenshots({
           timestamps: ["50%"],
-          filename: (void 0)(f),
+          filename: z.basename(l),
           folder: t
         });
       });
     });
-    L(this, "analyzeMediaBuffer", async (e) => new Promise((t, y) => {
-      const f = new gt.ReadableStreamBuffer({
+    q(this, "analyzeMediaBuffer", async (e) => new Promise((t, y) => {
+      const l = new mt.ReadableStreamBuffer({
         frequency: 10,
         chunkSize: 2048
       });
-      f.put(e.buffer), f.stop(), Ve(f).ffprobe(async (n, h) => {
+      l.put(e.buffer), l.stop(), ze(l).ffprobe(async (n, h) => {
         if (n) {
           y(n);
           return;
@@ -2314,16 +2296,16 @@ class wt {
     }));
   }
 }
-class yt {
+class wt {
   constructor(e) {
     this.file = e;
   }
   async validate() {
-    const t = await new wt().analyzeMediaBuffer(this.file);
+    const t = await new gt().analyzeMediaBuffer(this.file);
     return console.log(t), !0;
   }
 }
-class _t {
+class yt {
   async validate(e, t) {
     if ((e === "image" || e === "video") && !this.isMulterFile(t))
       throw new Error("Invalid type for backend validation.");
@@ -2342,20 +2324,20 @@ class _t {
     return "buffer" in e && "originalname" in e && "mimetype" in e && "size" in e;
   }
   async validateVideo(e) {
-    return await new yt(e).validate();
+    return await new wt(e).validate();
   }
   async validateImage(e) {
     return await new $e(e).validate();
   }
   async validateVast(e) {
-    return await new je(e).validate();
+    return await new He(e).validate();
   }
 }
-const Et = 50, Ft = 2e3, At = 50, xt = 2e3, Ot = ["JPEG", "JPG", "PNG", "GIF"], It = 1e8;
-function bt(F) {
-  return (F.includes("/") ? F.split("/")[1] : F).toUpperCase();
+const _t = 50, Et = 2e3, Ft = 50, At = 2e3, xt = ["JPEG", "JPG", "PNG", "GIF"], It = 1e8;
+function Ot(x) {
+  return (x.includes("/") ? x.split("/")[1] : x).toUpperCase();
 }
-class St {
+class bt {
   constructor(e) {
     this.file = e;
   }
@@ -2369,18 +2351,26 @@ class St {
   }
   async validateResolution() {
     const e = await this.getImageFromFile(this.file);
-    return e.width > xt || e.width < At || e.height > Ft || e.height < Et;
+    return e.width > At || e.width < Ft || e.height > Et || e.height < _t;
   }
   validateType() {
-    return Ot.includes(bt(this.file.type));
+    return xt.includes(Ot(this.file.type));
   }
   async getImageFromFile(e) {
     return new Promise((t, y) => {
-      e.arrayBuffer().then((f) => {
-        const n = new Blob([f], { type: e.type }), h = URL.createObjectURL(n), u = new Image();
+      e.arrayBuffer().then((l) => {
+        const n = new Blob([l], { type: e.type }), h = URL.createObjectURL(n), u = new Image();
         u.src = h, u.onload = () => t(u), u.onerror = y;
       });
     });
+  }
+}
+class St {
+  constructor(e) {
+    this.file = e;
+  }
+  async validate() {
+    return console.log(this.file), !0;
   }
 }
 class Pt {
@@ -2392,14 +2382,6 @@ class Pt {
   }
 }
 class Tt {
-  constructor(e) {
-    this.file = e;
-  }
-  async validate() {
-    return console.log(this.file), !0;
-  }
-}
-class Nt {
   async validate(e, t) {
     if ((e === "image" || e === "video") && !this.isFile(t))
       throw new Error("Invalid type for backend validation.");
@@ -2418,24 +2400,24 @@ class Nt {
     return "fileBits" in e && "fileName" in e && "options" in e;
   }
   async validateVideo(e) {
-    return await new Tt(e).validate();
-  }
-  async validateImage(e) {
-    return await new St(e).validate();
-  }
-  async validateVast(e) {
     return await new Pt(e).validate();
   }
+  async validateImage(e) {
+    return await new bt(e).validate();
+  }
+  async validateVast(e) {
+    return await new St(e).validate();
+  }
 }
-class zt {
+class Vt {
   constructor(e) {
-    L(this, "validatorStrategy");
-    this.validatorStrategy = e === "backend" ? new _t() : new Nt();
+    q(this, "validatorStrategy");
+    this.validatorStrategy = e === "backend" ? new yt() : new Tt();
   }
   validate(e, t) {
     this.validatorStrategy.validate(e, t);
   }
 }
 export {
-  zt as CreativeValidator
+  Vt as CreativeValidator
 };

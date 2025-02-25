@@ -1,7 +1,7 @@
-import * as ffmpeg from "fluent-ffmpeg";
-import * as StreamBuffers from "stream-buffers";
-import * as fs from "fs/promises";
-import * as path from "path";
+import ffmpeg from "fluent-ffmpeg";
+import StreamBuffers from "stream-buffers";
+import fs from "fs/promises";
+import path from "path";
 import { VideoOrImageMetadata } from "../types/validator";
 
 export class BackendVideoAnalyser {
