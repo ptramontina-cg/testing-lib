@@ -1,38 +1,9 @@
-"use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/index.ts
-var index_exports = {};
-__export(index_exports, {
-  CreativeValidator: () => CreativeValidator
-});
-module.exports = __toCommonJS(index_exports);
+// node_modules/tsup/assets/esm_shims.js
+import { fileURLToPath } from "url";
+import path from "path";
+var getFilename = () => fileURLToPath(import.meta.url);
+var getDirname = () => path.dirname(getFilename());
+var __dirname = /* @__PURE__ */ getDirname();
 
 // src/strategies/backend/backend-image-validator.ts
 var BackendImageValidator = class {
@@ -57,10 +28,10 @@ var BackendVastValidator = class {
 };
 
 // src/utils/backend-video-analyser.ts
-var import_fluent_ffmpeg = __toESM(require("fluent-ffmpeg"), 1);
-var import_stream_buffers = __toESM(require("stream-buffers"), 1);
-var import_promises = __toESM(require("fs/promises"), 1);
-var import_path = __toESM(require("path"), 1);
+import ffmpeg from "fluent-ffmpeg";
+import StreamBuffers from "stream-buffers";
+import fs from "fs/promises";
+import path2 from "path";
 var BackendVideoAnalyser = class {
   constructor() {
   }
@@ -73,7 +44,7 @@ var BackendVideoAnalyser = class {
   };
   test() {
     console.log("test from here");
-    console.log(import_promises.default);
+    console.log(fs);
   }
   /**
    * Generates a screenshot from the middle of a video.
@@ -81,21 +52,21 @@ var BackendVideoAnalyser = class {
    * @returns {Promise<Buffer>} - A buffer of the generated screenshot.
    */
   generateThumbnail = async (file) => {
-    const tempDir = import_path.default.join(__dirname, "tmp");
-    const tempInputPath = import_path.default.join(tempDir, `temp_${Date.now()}`);
-    const tempOutputPath = import_path.default.join(tempDir, `screenshot_${Date.now()}.png`);
-    await import_promises.default.mkdir(tempDir, { recursive: true });
-    await import_promises.default.writeFile(tempInputPath, file.buffer);
+    const tempDir = path2.join(__dirname, "tmp");
+    const tempInputPath = path2.join(tempDir, `temp_${Date.now()}`);
+    const tempOutputPath = path2.join(tempDir, `screenshot_${Date.now()}.png`);
+    await fs.mkdir(tempDir, { recursive: true });
+    await fs.writeFile(tempInputPath, file.buffer);
     return new Promise((resolve, reject) => {
-      (0, import_fluent_ffmpeg.default)(tempInputPath).on("error", async (err) => {
+      ffmpeg(tempInputPath).on("error", async (err) => {
         console.error("Error generating screenshot:", err);
         reject(err);
       }).on("end", async () => {
         try {
-          const screenshotBuffer = await import_promises.default.readFile(tempOutputPath);
-          await import_promises.default.unlink(tempInputPath).catch(() => {
+          const screenshotBuffer = await fs.readFile(tempOutputPath);
+          await fs.unlink(tempInputPath).catch(() => {
           });
-          await import_promises.default.unlink(tempOutputPath).catch(() => {
+          await fs.unlink(tempOutputPath).catch(() => {
           });
           resolve(screenshotBuffer);
         } catch (readError) {
@@ -103,20 +74,20 @@ var BackendVideoAnalyser = class {
         }
       }).screenshots({
         timestamps: ["50%"],
-        filename: import_path.default.basename(tempOutputPath),
+        filename: path2.basename(tempOutputPath),
         folder: tempDir
       });
     });
   };
   analyzeMediaBuffer = async (file) => {
     return new Promise((resolve, reject) => {
-      const readableStreamBuffer = new import_stream_buffers.default.ReadableStreamBuffer({
+      const readableStreamBuffer = new StreamBuffers.ReadableStreamBuffer({
         frequency: 10,
         chunkSize: 2048
       });
       readableStreamBuffer.put(file.buffer);
       readableStreamBuffer.stop();
-      (0, import_fluent_ffmpeg.default)(readableStreamBuffer).ffprobe(async (err, data) => {
+      ffmpeg(readableStreamBuffer).ffprobe(async (err, data) => {
         if (err) {
           reject(err);
           return;
@@ -316,7 +287,6 @@ var CreativeValidator = class {
     this.validatorStrategy.validate(type, file);
   }
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+export {
   CreativeValidator
-});
+};
