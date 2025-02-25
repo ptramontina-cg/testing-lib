@@ -1,5 +1,5 @@
 import ffmpeg from "fluent-ffmpeg";
-import StreamBuffers from "stream-buffers";
+import streambuffer from "stream-buffers";
 import fs from "fs/promises";
 import path from "path";
 import { VideoOrImageMetadata } from "../types/validator";
@@ -29,7 +29,7 @@ export class BackendVideoAnalyser {
   test() {
     console.log("test from here");
     // console.log(ffmpeg);
-    // console.log(StreamBuffers);
+    // console.log(streambuffer);
     console.log(fs);
   }
 
@@ -74,7 +74,7 @@ export class BackendVideoAnalyser {
     file: Express.Multer.File
   ): Promise<VideoOrImageMetadata> {
     return new Promise((resolve, reject) => {
-      const readableStreamBuffer = new StreamBuffers.ReadableStreamBuffer({
+      const readableStreamBuffer = new streambuffer.ReadableStreamBuffer({
         frequency: 10,
         chunkSize: 2048,
       });

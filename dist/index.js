@@ -29,7 +29,7 @@ var BackendVastValidator = class {
 
 // src/utils/backend-video-analyser.ts
 import ffmpeg from "fluent-ffmpeg";
-import StreamBuffers from "stream-buffers";
+import streambuffer from "stream-buffers";
 import fs from "fs/promises";
 import path2 from "path";
 var BackendVideoAnalyser = class {
@@ -87,7 +87,7 @@ var BackendVideoAnalyser = class {
   }
   async analyzeMediaBuffer(file) {
     return new Promise((resolve, reject) => {
-      const readableStreamBuffer = new StreamBuffers.ReadableStreamBuffer({
+      const readableStreamBuffer = new streambuffer.ReadableStreamBuffer({
         frequency: 10,
         chunkSize: 2048
       });
@@ -138,8 +138,7 @@ var BackendVideoValidator = class {
   }
   async validate() {
     const backendVideoAnalyser = new BackendVideoAnalyser();
-    const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
-    console.log(result);
+    backendVideoAnalyser.test();
     return true;
   }
 };
