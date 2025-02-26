@@ -3,6 +3,7 @@ export class FrontendVideoValidator {
 
   async validate() {
     console.log(this.file);
+    console.log("video is valid in frontend");
     return true;
   }
 }
