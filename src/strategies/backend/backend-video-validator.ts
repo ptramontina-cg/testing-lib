@@ -17,7 +17,7 @@ export class BackendVideoValidator {
     // backendVideoAnalyser.test();
     const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
 
-    // console.log(result);
+    console.log(result);
 
     return true;
   }
