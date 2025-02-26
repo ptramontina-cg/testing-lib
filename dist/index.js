@@ -2645,7 +2645,7 @@ var BackendVideoValidator = class {
     this.file = file;
   }
   async validate() {
-    if (process) {
+    if (typeof process !== "undefined") {
       const backendVideoAnalyser = new BackendVideoAnalyser();
       const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
       console.log(result);
@@ -2809,7 +2809,11 @@ var FrontendValidatorStrategy = class {
 var CreativeValidator = class {
   validatorStrategy;
   constructor(validationType) {
-    this.validatorStrategy = validationType === "backend" ? new BackendValidatorStrategy() : new FrontendValidatorStrategy();
+    if (typeof window === "undefined") {
+      this.validatorStrategy = new BackendValidatorStrategy();
+    } else {
+      this.validatorStrategy = new FrontendValidatorStrategy();
+    }
   }
   async validate(type, file) {
     return await this.validatorStrategy.validate(type, file);

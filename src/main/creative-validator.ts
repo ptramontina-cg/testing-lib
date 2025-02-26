@@ -7,10 +7,16 @@ export class CreativeValidator {
   private validatorStrategy: ValidatorStrategy;
 
   constructor(validationType: AllowedValitators) {
-    this.validatorStrategy =
-      validationType === "backend"
-        ? new BackendValidatorStrategy()
-        : new FrontendValidatorStrategy();
+    // this.validatorStrategy =
+    //   validationType === "backend"
+    //     ? new BackendValidatorStrategy()
+    //     : new FrontendValidatorStrategy();
+
+    if (typeof window === "undefined") {
+      this.validatorStrategy = new BackendValidatorStrategy();
+    } else {
+      this.validatorStrategy = new FrontendValidatorStrategy();
+    }
   }
 
   async validate(
