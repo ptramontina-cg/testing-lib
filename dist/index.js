@@ -2645,9 +2645,12 @@ var BackendVideoValidator = class {
     this.file = file;
   }
   async validate() {
-    const backendVideoAnalyser = new BackendVideoAnalyser();
-    const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
-    return true;
+    return new Promise(async () => {
+      const backendVideoAnalyser = new BackendVideoAnalyser();
+      const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
+      console.log(result);
+      return true;
+    });
   }
 };
 
