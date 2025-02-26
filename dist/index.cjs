@@ -2547,12 +2547,6 @@ var import_fs = require("fs");
 var import_path = __toESM(require("path"), 1);
 var BackendVideoAnalyser = class {
   constructor() {
-    if (process && process.platform === "win32") {
-      import_fluent_ffmpeg.default.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
-      import_fluent_ffmpeg.default.setFfprobePath(
-        "C:/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe"
-      );
-    }
   }
   getResolutionQuality(width, height) {
     if (width >= 3840 && height >= 2160) return "4K";
