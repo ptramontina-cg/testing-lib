@@ -2651,7 +2651,7 @@ var BackendVideoValidator = class {
   }
   async validate() {
     const backendVideoAnalyser = new BackendVideoAnalyser();
-    backendVideoAnalyser.test();
+    const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
     return true;
   }
 };
