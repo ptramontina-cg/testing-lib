@@ -139,10 +139,10 @@ var FrontendVideoValidator = class {
 var FrontendValidatorStrategy = class {
   async validate(type, file) {
     if ((type === "image" || type === "video") && !this.isFile(file)) {
-      throw new Error("Invalid type for backend validation.");
+      throw new Error("Invalid type for frontend validation.");
     }
     if (type === "vast" && !(file instanceof String)) {
-      throw new Error("Invalid type for backend validation.");
+      throw new Error("Invalid type for frontend validation.");
     }
     switch (type) {
       case "image":
@@ -154,7 +154,7 @@ var FrontendValidatorStrategy = class {
     }
   }
   isFile(object) {
-    return "fileBits" in object && "fileName" in object && "options" in object;
+    return "name" in object && "size" in object && "type" in object;
   }
   async validateVideo(file) {
     const frontendVideoValidator = new FrontendVideoValidator(file);
