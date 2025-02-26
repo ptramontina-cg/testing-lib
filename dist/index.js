@@ -2544,7 +2544,7 @@ init_esm_shims();
 init_esm_shims();
 var import_fluent_ffmpeg = __toESM(require_fluent_ffmpeg2(), 1);
 var import_stream_buffers = __toESM(require_streambuffer(), 1);
-import fs from "fs/promises";
+import { promises as fs } from "fs";
 import path2 from "path";
 var BackendVideoAnalyser = class {
   constructor() {

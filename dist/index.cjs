@@ -2543,7 +2543,7 @@ init_cjs_shims();
 init_cjs_shims();
 var import_fluent_ffmpeg = __toESM(require_fluent_ffmpeg2(), 1);
 var import_stream_buffers = __toESM(require_streambuffer(), 1);
-var import_promises = __toESM(require("fs/promises"), 1);
+var import_fs = require("fs");
 var import_path = __toESM(require("path"), 1);
 var BackendVideoAnalyser = class {
   constructor() {
@@ -2563,7 +2563,7 @@ var BackendVideoAnalyser = class {
   }
   test() {
     console.log("test from here");
-    console.log(import_promises.default);
+    console.log(import_fs.promises);
   }
   /**
    * Generates a screenshot from the middle of a video.
@@ -2574,18 +2574,18 @@ var BackendVideoAnalyser = class {
     const tempDir = import_path.default.join(__dirname, "tmp");
     const tempInputPath = import_path.default.join(tempDir, `temp_${Date.now()}`);
     const tempOutputPath = import_path.default.join(tempDir, `screenshot_${Date.now()}.png`);
-    await import_promises.default.mkdir(tempDir, { recursive: true });
-    await import_promises.default.writeFile(tempInputPath, file.buffer);
+    await import_fs.promises.mkdir(tempDir, { recursive: true });
+    await import_fs.promises.writeFile(tempInputPath, file.buffer);
     return new Promise((resolve, reject) => {
       (0, import_fluent_ffmpeg.default)(tempInputPath).on("error", async (err) => {
         console.error("Error generating screenshot:", err);
         reject(err);
       }).on("end", async () => {
         try {
-          const screenshotBuffer = await import_promises.default.readFile(tempOutputPath);
-          await import_promises.default.unlink(tempInputPath).catch(() => {
+          const screenshotBuffer = await import_fs.promises.readFile(tempOutputPath);
+          await import_fs.promises.unlink(tempInputPath).catch(() => {
           });
-          await import_promises.default.unlink(tempOutputPath).catch(() => {
+          await import_fs.promises.unlink(tempOutputPath).catch(() => {
           });
           resolve(screenshotBuffer);
         } catch (readError) {

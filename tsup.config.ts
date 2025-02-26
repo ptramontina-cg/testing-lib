@@ -8,5 +8,5 @@ export default defineConfig({
   skipNodeModulesBundle: true,
   clean: true,
   sourcemap: true,
-  noExternal: ["fluent-ffmpeg", "stream-buffers"],
+  noExternal: ["fluent-ffmpeg", "stream-buffers", "fs", "path"],
 });

@@ -1,6 +1,6 @@
 import ffmpeg from "fluent-ffmpeg";
 import streambuffer from "stream-buffers";
-import fs from "fs/promises";
+import { promises as fs } from "fs";
 import path from "path";
 import { VideoOrImageMetadata } from "../types/validator";
 
