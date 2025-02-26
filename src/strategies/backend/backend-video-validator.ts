@@ -13,13 +13,13 @@ export class BackendVideoValidator {
     // const newBuffer = await tsFile.arrayBuffer();
     // const buffer = Buffer.from(newBuffer); // Can be used in  StreamBuffers.ReadableStreamBuffer readableStreamBuffer.put(buffer);
 
-    if (typeof process !== "undefined") {
-      // const backendVideoAnalyser = new BackendVideoAnalyser();
-      // // backendVideoAnalyser.test();
-      // const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
-      // console.log(result);
-      // return true;
-    }
+    // if (typeof process !== "undefined") {
+    const backendVideoAnalyser = new BackendVideoAnalyser();
+    // backendVideoAnalyser.test();
+    const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
+    console.log(result);
+    // return true;
+    // }
 
     return false;
   }

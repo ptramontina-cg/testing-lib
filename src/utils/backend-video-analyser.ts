@@ -35,14 +35,14 @@ export class BackendVideoAnalyser {
    * @returns {Promise<Buffer>} - A buffer of the generated screenshot.
    */
   private async generateThumbnail(file: Express.Multer.File): Promise<Buffer> {
-    const tempDir = path.join(__dirname, "tmp");
-    const tempInputPath = path.join(tempDir, `temp_${Date.now()}`);
-    const tempOutputPath = path.join(tempDir, `screenshot_${Date.now()}.png`);
+    return await new Promise(async (resolve, reject) => {
+      const tempDir = path.join(__dirname, "tmp");
+      const tempInputPath = path.join(tempDir, `temp_${Date.now()}`);
+      const tempOutputPath = path.join(tempDir, `screenshot_${Date.now()}.png`);
 
-    await fs.mkdir(tempDir, { recursive: true });
-    await fs.writeFile(tempInputPath, file.buffer);
+      await fs.mkdir(tempDir, { recursive: true });
+      await fs.writeFile(tempInputPath, file.buffer);
 
-    return new Promise((resolve, reject) => {
       ffmpeg(tempInputPath)
         .on("error", async (err) => {
           console.error("Error generating screenshot:", err);
