@@ -11,10 +11,8 @@ import { ValidationError } from "../../errors/validation-error";
 import { normalizeFileType } from "../../utils/utils";
 
 export class FrontendImageValidator {
-  constructor(private file: File) {}
-
-  async validate() {
-    if (!this.file.type.includes("image/")) {
+  async validate(file: File) {
+    if (!file.type.includes("image/")) {
       throw new ValidationError(
         `Invalid File Input: File is not an image`,
         ValidationErrorCodes.INVALID_INPUT
@@ -22,9 +20,9 @@ export class FrontendImageValidator {
     }
 
     const errors = [
-      this.validateSize(),
-      await this.validateResolution(),
-      this.validateType(),
+      this.validateSize(file),
+      await this.validateResolution(file),
+      this.validateType(file),
     ].filter((e) => e);
 
     if (errors.length) {
@@ -37,15 +35,15 @@ export class FrontendImageValidator {
     return true;
   }
 
-  private validateSize() {
-    if (this.file.size > MAX_SIZE) {
+  private validateSize(file: File) {
+    if (file.size > MAX_SIZE) {
       return `Invalid size. Maximum allowed is: ${MAX_SIZE / 1000000} MB.`;
     }
     return false;
   }
 
-  private async validateResolution() {
-    const image = await this.getImageFromFile(this.file);
+  private async validateResolution(file: File) {
+    const image = await this.getImageFromFile(file);
     if (
       image.width > MAX_WIDTH ||
       image.width < MIN_WIDTH ||
@@ -57,8 +55,8 @@ export class FrontendImageValidator {
     return false;
   }
 
-  private validateType() {
-    if (!ALLOWED_IMAGE_FORMATS.includes(normalizeFileType(this.file.type))) {
+  private validateType(file: File) {
+    if (!ALLOWED_IMAGE_FORMATS.includes(normalizeFileType(file.type))) {
       return `Invalid format. Only the following are allowed: ${ALLOWED_IMAGE_FORMATS.join(
         ", "
       )}.`;

@@ -1,8 +1,6 @@
 export class BackendVastValidator {
-  constructor(private url: string) {}
-
-  async validate() {
-    console.log("backend validate vast", this.url);
+  async validate(url: string) {
+    console.log("backend validate vast", url);
     return true;
   }
 }

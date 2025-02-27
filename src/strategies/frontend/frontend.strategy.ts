@@ -29,17 +29,17 @@ export class CreativeValidator implements FrontendValidatorStrategy {
   }
 
   private async validateVideo(file: File): Promise<boolean> {
-    const frontendVideoValidator = new FrontendVideoValidator(file);
-    return await frontendVideoValidator.validate();
+    const frontendVideoValidator = new FrontendVideoValidator();
+    return await frontendVideoValidator.validate(file);
   }
 
   private async validateImage(file: File): Promise<boolean> {
-    const frontendImageValidator = new FrontendImageValidator(file);
-    return await frontendImageValidator.validate();
+    const frontendImageValidator = new FrontendImageValidator();
+    return await frontendImageValidator.validate(file);
   }
 
   private async validateVast(url: string): Promise<boolean> {
-    const frontendVastValidator = new FrontendVastValidator(url);
-    return await frontendVastValidator.validate();
+    const frontendVastValidator = new FrontendVastValidator();
+    return await frontendVastValidator.validate(url);
   }
 }

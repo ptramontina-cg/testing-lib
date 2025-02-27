@@ -24,17 +24,17 @@ export class CreativeValidator implements BackendValidatorStrategy {
   }
 
   private async validateVideo(file: Express.Multer.File): Promise<boolean> {
-    const backendVideoValidator = new BackendVideoValidator(file);
-    return await backendVideoValidator.validate();
+    const backendVideoValidator = new BackendVideoValidator();
+    return await backendVideoValidator.validate(file);
   }
 
   private async validateImage(file: Express.Multer.File): Promise<boolean> {
-    const backendImageValidator = new BackendImageValidator(file);
-    return await backendImageValidator.validate();
+    const backendImageValidator = new BackendImageValidator();
+    return await backendImageValidator.validate(file);
   }
 
   private async validateVast(url: string): Promise<boolean> {
-    const backendVastValidator = new BackendVastValidator(url);
-    return await backendVastValidator.validate();
+    const backendVastValidator = new BackendVastValidator();
+    return await backendVastValidator.validate(url);
   }
 }

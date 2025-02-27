@@ -1,8 +1,6 @@
 export class FrontendVideoValidator {
-  constructor(private file: File) {}
-
-  async validate() {
-    console.log("frontend validate video", this.file);
+  async validate(file: File) {
+    console.log("frontend validate video", file);
     return true;
   }
 }

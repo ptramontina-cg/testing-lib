@@ -1,11 +1,9 @@
 import { BackendVideoAnalyser } from "../../utils/backend-video-analyser";
 
 export class BackendVideoValidator {
-  constructor(private file: Express.Multer.File) {}
-
-  async validate() {
+  async validate(file: Express.Multer.File) {
     const backendVideoAnalyser = new BackendVideoAnalyser();
-    const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
+    const result = await backendVideoAnalyser.analyzeMediaBuffer(file);
     console.log("backend validate vast", result);
 
     return false;

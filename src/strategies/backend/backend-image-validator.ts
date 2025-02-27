@@ -1,8 +1,6 @@
 export class BackendImageValidator {
-  constructor(private file: Express.Multer.File) {}
-
-  async validate() {
-    console.log("backend validate image", this.file);
+  async validate(file: Express.Multer.File) {
+    console.log("backend validate image", file);
     return true;
   }
 }
