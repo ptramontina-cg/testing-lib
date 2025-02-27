@@ -1,12 +1,24 @@
 import { defineConfig } from "tsup";
 
-export default defineConfig({
-  format: ["cjs", "esm"],
-  entry: ["./src/index.ts"],
-  dts: true,
-  shims: true,
-  skipNodeModulesBundle: true,
-  clean: true,
-  sourcemap: true,
-  noExternal: ["fluent-ffmpeg", "stream-buffers"],
-});
+export default defineConfig([
+  // Frontend build
+  {
+    entry: ["src/frontend.ts"],
+    format: ["esm"],
+    outDir: "dist",
+    dts: true,
+    clean: true,
+    minify: true,
+    platform: "browser",
+  },
+  // Backend build
+  {
+    entry: ["src/backend.ts"],
+    format: ["cjs"],
+    outDir: "dist",
+    dts: true,
+    minify: true,
+    platform: "node",
+    external: ["path", "fluent-ffmpeg"], // Exclude Node.js-only dependencies
+  },
+]);

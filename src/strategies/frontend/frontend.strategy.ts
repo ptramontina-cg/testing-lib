@@ -4,7 +4,7 @@ import { FrontendImageValidator } from "./frontend-image-validator";
 import { FrontendVastValidator } from "./frontend-vast-validator";
 import { FrontendVideoValidator } from "./frontend-video-validator";
 
-export class FrontendValidatorStrategy implements ValidatorStrategy {
+export class CreativeValidator implements ValidatorStrategy {
   async validate(
     type: AllowedFileTypes,
     file?: File | Express.Multer.File | string

@@ -2,20 +2,9 @@
   "name": "creative-validator",
   "private": true,
   "version": "0.0.0",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "dist/backend.cjs",
+  "browser": "dist/frontend.js",
   "type": "module",
-  "exports": {
-    "import": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "require": {
-      "types": "./dist/index.d.cts",
-      "require": "./dist/index.cjs"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "backend-dev": "tsx ./src/development/node-index.ts",
@@ -31,9 +20,7 @@
     "@types/wicg-file-system-access": "^2023.10.5",
     "nodemon": "^3.1.9",
     "tsx": "^4.19.3",
-    "typescript": "~5.7.2",
-    "vite": "^6.1.0",
-    "vite-plugin-dts": "^4.5.0"
+    "typescript": "~5.7.2"
   },
   "dependencies": {
     "fluent-ffmpeg": "^2.1.3",
