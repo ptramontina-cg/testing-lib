@@ -1,19 +1,15 @@
-import { ValidatorStrategy } from "../../interfaces/validator.interface";
+import { BackendValidatorStrategy } from "../../interfaces/validator.interface";
 import { AllowedFileTypes } from "../../types/validator";
 import { BackendImageValidator } from "./backend-image-validator";
 import { BackendVastValidator } from "./backend-vast-validator";
 import { BackendVideoValidator } from "./backend-video-validator";
 
-export class CreativeValidator implements ValidatorStrategy {
+export class CreativeValidator implements BackendValidatorStrategy {
   async validate(
     type: AllowedFileTypes,
-    file?: File | Express.Multer.File | string
+    file: Express.Multer.File | string
   ): Promise<boolean> {
-    if ((type === "image" || type === "video") && !this.isMulterFile(file)) {
-      throw new Error("Invalid type for backend validation.");
-    }
-
-    if (type === "vast" && !(file instanceof String)) {
+    if (file instanceof String && type !== "vast") {
       throw new Error("Invalid type for backend validation.");
     }
 
@@ -25,15 +21,6 @@ export class CreativeValidator implements ValidatorStrategy {
       case "vast":
         return await this.validateVast(file as string);
     }
-  }
-
-  private isMulterFile(object: any): object is Express.Multer.File {
-    return (
-      "buffer" in object &&
-      "originalname" in object &&
-      "mimetype" in object &&
-      "size" in object
-    );
   }
 
   private async validateVideo(file: Express.Multer.File): Promise<boolean> {

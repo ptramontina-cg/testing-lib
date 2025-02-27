@@ -1,8 +1,12 @@
 import { AllowedFileTypes } from "../types/validator";
 
-export interface ValidatorStrategy {
+export interface BackendValidatorStrategy {
   validate(
     type: AllowedFileTypes,
-    file?: File | Express.Multer.File | string
+    file: Express.Multer.File | string
   ): Promise<boolean>;
+}
+
+export interface FrontendValidatorStrategy {
+  validate(type: AllowedFileTypes, file: File | string): Promise<boolean>;
 }

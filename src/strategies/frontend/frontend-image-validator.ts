@@ -7,14 +7,17 @@ import {
   MIN_WIDTH,
 } from "../../constants/image.constants";
 import { normalizeFileType } from "../../utils/utils";
+
 export class FrontendImageValidator {
   constructor(private file: File) {}
 
   async validate() {
-    console.log(this.file);
+    console.log("frontend validate image", this.file);
 
-    const img = await this.getImageFromFile(this.file);
-    console.log(img.width, img.height);
+    // console.log(this.file);
+
+    // const img = await this.getImageFromFile(this.file);
+    // console.log(img.width, img.height);
 
     return true;
   }

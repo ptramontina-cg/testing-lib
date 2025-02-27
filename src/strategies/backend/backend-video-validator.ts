@@ -6,8 +6,7 @@ export class BackendVideoValidator {
   async validate() {
     const backendVideoAnalyser = new BackendVideoAnalyser();
     const result = await backendVideoAnalyser.analyzeMediaBuffer(this.file);
-
-    console.log("video is valid in backend!");
+    console.log("backend validate vast", result);
 
     return false;
   }

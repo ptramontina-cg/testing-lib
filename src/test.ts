@@ -1,7 +1,4 @@
-import * as ffmpeg from "fluent-ffmpeg";
-import * as StreamBuffers from "stream-buffers";
-import fs from "fs";
-import { CreativeValidator } from "./main/creative-validator";
+import { CreativeValidator } from "./strategies/frontend/frontend.strategy";
 
 const test: File = {
   name: "test",
@@ -9,5 +6,7 @@ const test: File = {
   type: "any",
 };
 
-const cv = new CreativeValidator("frontend");
+const cv = new CreativeValidator();
 cv.validate("image", test);
+
+

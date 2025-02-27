@@ -1,12 +1,11 @@
 type AllowedFileTypes = "image" | "video" | "vast";
 
-interface ValidatorStrategy {
-    validate(type: AllowedFileTypes, file?: File | Express.Multer.File | string): Promise<boolean>;
+interface FrontendValidatorStrategy {
+    validate(type: AllowedFileTypes, file: File | string): Promise<boolean>;
 }
 
-declare class CreativeValidator implements ValidatorStrategy {
-    validate(type: AllowedFileTypes, file?: File | Express.Multer.File | string): Promise<boolean>;
-    private isFile;
+declare class CreativeValidator implements FrontendValidatorStrategy {
+    validate(type: AllowedFileTypes, file: File | string): Promise<boolean>;
     private validateVideo;
     private validateImage;
     private validateVast;
