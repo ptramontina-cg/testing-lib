@@ -1,8 +1,10 @@
 import { FrontendValidatorStrategy } from "../../interfaces/validator.interface";
-import { AllowedFileTypes } from "../../types/validator";
+import { AllowedFileTypes } from "../../definitions/validator.types";
 import { FrontendImageValidator } from "./frontend-image-validator";
 import { FrontendVastValidator } from "./frontend-vast-validator";
 import { FrontendVideoValidator } from "./frontend-video-validator";
+import { ValidationError } from "../../errors/validation-error";
+import { ValidationErrorCodes } from "../../definitions/validator.enums";
 
 export class CreativeValidator implements FrontendValidatorStrategy {
   async validate(
@@ -10,7 +12,10 @@ export class CreativeValidator implements FrontendValidatorStrategy {
     file: File | string
   ): Promise<boolean> {
     if (file instanceof String && type !== "vast") {
-      throw new Error("Invalid type for frontend validation.");
+      throw new ValidationError(
+        `Invalid File Input: String is only allowed for VAST.`,
+        ValidationErrorCodes.INVALID_INPUT
+      );
     }
 
     switch (type) {

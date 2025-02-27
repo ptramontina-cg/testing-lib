@@ -6,38 +6,64 @@ import {
   MIN_HEIGHT,
   MIN_WIDTH,
 } from "../../constants/image.constants";
+import { ValidationErrorCodes } from "../../definitions/validator.enums";
+import { ValidationError } from "../../errors/validation-error";
 import { normalizeFileType } from "../../utils/utils";
 
 export class FrontendImageValidator {
   constructor(private file: File) {}
 
   async validate() {
-    console.log("frontend validate image", this.file);
+    if (!this.file.type.includes("image/")) {
+      throw new ValidationError(
+        `Invalid File Input: File is not an image`,
+        ValidationErrorCodes.INVALID_INPUT
+      );
+    }
 
-    // console.log(this.file);
+    const errors = [
+      this.validateSize(),
+      await this.validateResolution(),
+      this.validateType(),
+    ].filter((e) => e);
 
-    // const img = await this.getImageFromFile(this.file);
-    // console.log(img.width, img.height);
+    if (errors.length) {
+      throw new ValidationError(
+        `Invalid Image: ${errors.join(",")}`,
+        ValidationErrorCodes.INVALID_IMAGE
+      );
+    }
 
     return true;
   }
 
   private validateSize() {
-    return this.file.size > MAX_SIZE;
+    if (this.file.size > MAX_SIZE) {
+      return `Invalid size. Maximum allowed is: ${MAX_SIZE / 1000000} MB.`;
+    }
+    return false;
   }
 
   private async validateResolution() {
     const image = await this.getImageFromFile(this.file);
-    return (
+    if (
       image.width > MAX_WIDTH ||
       image.width < MIN_WIDTH ||
       image.height > MAX_HEIGHT ||
       image.height < MIN_HEIGHT
-    );
+    ) {
+      return `Invalid resolution. Min: ${MIN_WIDTH}x${MIN_HEIGHT}. Max: ${MAX_WIDTH}x${MAX_HEIGHT}.`;
+    }
+    return false;
   }
 
   private validateType() {
-    return ALLOWED_IMAGE_FORMATS.includes(normalizeFileType(this.file.type));
+    if (!ALLOWED_IMAGE_FORMATS.includes(normalizeFileType(this.file.type))) {
+      return `Invalid format. Only the following are allowed: ${ALLOWED_IMAGE_FORMATS.join(
+        ", "
+      )}.`;
+    }
+    return false;
   }
 
   private async getImageFromFile(file: File): Promise<HTMLImageElement> {

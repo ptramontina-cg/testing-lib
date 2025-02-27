@@ -1,5 +1,3 @@
-export type AllowedFileTypes = "image" | "video" | "vast";
-
 export interface VideoOrImageResolution {
   height: number;
   width: number;

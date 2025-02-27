@@ -1,5 +1,5 @@
 import { BackendValidatorStrategy } from "../../interfaces/validator.interface";
-import { AllowedFileTypes } from "../../types/validator";
+import { AllowedFileTypes } from "../../definitions/validator.types";
 import { BackendImageValidator } from "./backend-image-validator";
 import { BackendVastValidator } from "./backend-vast-validator";
 import { BackendVideoValidator } from "./backend-video-validator";

@@ -2,7 +2,7 @@ import ffmpeg from "fluent-ffmpeg";
 import streambuffer from "stream-buffers";
 import { promises as fs } from "fs";
 import path from "path";
-import { VideoOrImageMetadata } from "../types/validator";
+import { VideoOrImageMetadata } from "../definitions/validator.interfaces";
 
 export class BackendVideoAnalyser {
   constructor() {

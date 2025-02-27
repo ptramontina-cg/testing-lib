@@ -1,4 +1,4 @@
-import { AllowedFileTypes } from "../types/validator";
+import { AllowedFileTypes } from "../definitions/validator.types";
 
 export interface BackendValidatorStrategy {
   validate(
