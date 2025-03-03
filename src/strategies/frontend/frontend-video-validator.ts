@@ -1,6 +1,6 @@
 import {
   ALLOWED_DURATION_SEC,
-  ALLOWED_HOSTED_VIDEO_MIN_BITRATES_BY_RESOLUTION,
+  ALLOWED_VIDEO_MIN_BITRATES_BY_RESOLUTION,
   FRONTEND_SUPPORTED_FILE_EXTENSIONS,
   MAX_SIZE,
 } from "../../constants/video.constants";
@@ -17,61 +17,64 @@ export class FrontendVideoValidator {
       );
     }
 
-    const v = await this.getVideoFromFile(file);
+    const video = await this.getVideoFromFile(file);
 
-    console.log(v.duration); // seconds
-    console.log(v.duration / 60); // minutes
-    console.log("h", v.videoHeight, "x", "w", v.videoWidth);
+    console.log(video.duration); // seconds
+    console.log(video.duration / 60); // minutes
+    console.log("h", video.videoHeight, "x", "w", v.videoWidth);
     console.log(file.size); // bytes
     console.log(file.size / 1000); // kbytes
 
     console.log("bitrate", file.size / 1000000 / (v.duration * 0.0075));
 
-    // let errors = [this.validateSize(file.size)];
+    let errors = [this.validateSize(file)];
 
-    // if (this.isVideoSupported()) {
-    //   const video = await this.getVideoFromFile(file);
+    if (this.isVideoSupported(file)) {
+      const video = await this.getVideoFromFile(file);
 
-    //   errors.push(
-    //     this.validateBitRate(),
-    //     this.validateResolution(video),
-    //     this.validateDuration(video)
-    //   );
-    // }
+      errors.push(
+        // this.validateBitRate(),
+        this.validateResolution(video.height),
+        this.validateDuration(video.duration)
+      );
+    }
 
-    // errors = errors.filter((e) => e);
+    errors = errors.filter((e) => e);
 
-    // if (errors.length) {
-    //   throw new ValidationError(
-    //     `Invalid Video: ${errors.join(", ")}`,
-    //     ValidationErrorCodes.INVALID_VIDEO
-    //   );
-    // }
+    if (errors.length) {
+      throw new ValidationError(
+        `Invalid Video: ${errors.join(", ")}`,
+        ValidationErrorCodes.INVALID_VIDEO
+      );
+    }
 
     return true;
   }
 
   private validateSize(video: File): boolean | string {
     if (video.size > MAX_SIZE) {
-      return `Invalid size. Maximum allowed is: ${MAX_SIZE / 1000000} MB.`;
+      return `Invalid size - Maximum allowed is: ${MAX_SIZE / 1000000} MB.`;
     }
     return false;
   }
 
-  private validateBitRate() {
-    console.log();
+  private validateBitRate(): string | boolean {
+    // To be implemented
+    return false;
   }
 
-  private validateResolution(video: HTMLVideoElement) {
-    const resolution = this.heightToResolution(video.videoHeight);
-    if (resolution in ALLOWED_HOSTED_VIDEO_MIN_BITRATES_BY_RESOLUTION) {
-      return "Resolution not supported. Please use 2160p, 1280p, 1080p, 720p or 432p.";
+  private validateResolution(height: number): string | boolean {
+    if (height in ALLOWED_VIDEO_MIN_BITRATES_BY_RESOLUTION) {
+      return "Resolution not supported - Please use 2160p, 1280p, 1080p, 720p or 432p.";
     }
     return false;
   }
 
-  private validateDuration(video: HTMLVideoElement) {
-    return Math.round(video.duration) + "" in ALLOWED_DURATION_SEC;
+  private validateDuration(duration: number): string | boolean {
+    if (!ALLOWED_DURATION_SEC.includes(duration)) {
+      return `The uploaded video has duration ${duration}sec which is not supported - Please use one of the following durations: 15s, 30s, 60s`;
+    }
+    return false;
   }
 
   /**
@@ -79,7 +82,7 @@ export class FrontendVideoValidator {
    * If the video is not of this type, everything but the size is validated.
    * Everything else should be validated by the backend.
    */
-  private isVideoSupported(video: File) {
+  private isVideoSupported(video: File): boolean {
     return FRONTEND_SUPPORTED_FILE_EXTENSIONS.includes(
       normalizeFileType(video.type)
     );
@@ -97,9 +100,5 @@ export class FrontendVideoValidator {
         video.src = url;
       });
     });
-  }
-
-  private heightToResolution(height: number): number {
-    return height;
   }
 }
