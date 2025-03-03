@@ -50,16 +50,16 @@ export class FrontendImageValidator {
       image.height > MAX_HEIGHT ||
       image.height < MIN_HEIGHT
     ) {
-      return `Invalid resolution. Min: ${MIN_WIDTH}x${MIN_HEIGHT}. Max: ${MAX_WIDTH}x${MAX_HEIGHT}.`;
+      return `Invalid resolution - Min: ${MIN_WIDTH}x${MIN_HEIGHT} - Max: ${MAX_WIDTH}x${MAX_HEIGHT}`;
     }
     return false;
   }
 
   private validateType(file: File) {
     if (!ALLOWED_IMAGE_FORMATS.includes(normalizeFileType(file.type))) {
-      return `Invalid format. Only the following are allowed: ${ALLOWED_IMAGE_FORMATS.join(
+      return `Invalid format - Only the following are allowed: ${ALLOWED_IMAGE_FORMATS.join(
         ", "
-      )}.`;
+      )}`;
     }
     return false;
   }

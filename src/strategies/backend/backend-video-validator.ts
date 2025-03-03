@@ -60,7 +60,6 @@ export class BackendVideoValidator {
   }
 
   validateBitRate(bitRate: number, height: number) {
-    console.log(">>", height);
     if (!(height in ALLOWED_HOSTED_VIDEO_MIN_BITRATES_BY_RESOLUTION)) {
       return "Invalid bitrate - Didn't match with resolution.";
     }
