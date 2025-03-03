@@ -27,7 +27,7 @@ export class FrontendImageValidator {
 
     if (errors.length) {
       throw new ValidationError(
-        `Invalid Image: ${errors.join(",")}`,
+        `Invalid Image: ${errors.join(", ")}`,
         ValidationErrorCodes.INVALID_IMAGE
       );
     }

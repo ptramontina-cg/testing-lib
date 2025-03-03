@@ -4,14 +4,14 @@ import { promises as fs } from "fs";
 import path from "path";
 import { VideoOrImageMetadata } from "../definitions/validator.interfaces";
 
-export class BackendVideoAnalyser {
+export class BackendMediaAnalyzer {
   constructor() {
-    // if (process && process.platform === "win32") {
-    //   ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
-    //   ffmpeg.setFfprobePath(
-    //     "C:/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe"
-    //   );
-    // }
+    if (process && process.platform === "win32") {
+      ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
+      ffmpeg.setFfprobePath(
+        "C:/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe"
+      );
+    }
   }
 
   private getResolutionQuality(width: number, height: number): string {
@@ -20,13 +20,6 @@ export class BackendVideoAnalyser {
     if (width >= 1920 && height >= 1080) return "Full HD";
     if (width >= 1280 && height >= 720) return "HD";
     return "SD";
-  }
-
-  test() {
-    console.log("test from here");
-    // console.log(ffmpeg);
-    // console.log(streambuffer);
-    console.log(fs);
   }
 
   /**
