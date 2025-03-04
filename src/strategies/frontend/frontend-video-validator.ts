@@ -19,21 +19,13 @@ export class FrontendVideoValidator {
 
     const video = await this.getVideoFromFile(file);
 
-    console.log(video.duration); // seconds
-    console.log(video.duration / 60); // minutes
-    console.log("h", video.videoHeight, "x", "w", v.videoWidth);
-    console.log(file.size); // bytes
-    console.log(file.size / 1000); // kbytes
-
-    console.log("bitrate", file.size / 1000000 / (v.duration * 0.0075));
-
     let errors = [this.validateSize(file)];
 
     if (this.isVideoSupported(file)) {
       const video = await this.getVideoFromFile(file);
 
       errors.push(
-        // this.validateBitRate(),
+        this.validateBitRate(file.size, video.duration, video.videoHeight),
         this.validateResolution(video.height),
         this.validateDuration(video.duration)
       );
@@ -58,9 +50,31 @@ export class FrontendVideoValidator {
     return false;
   }
 
-  private validateBitRate(): string | boolean {
-    // To be implemented
-    return false;
+  private validateBitRate(
+    size: number,
+    duration: number,
+    height: number
+  ): string | boolean {
+    if (!(height in ALLOWED_VIDEO_MIN_BITRATES_BY_RESOLUTION)) {
+      return "Invalid bitrate - Didn't match with resolution.";
+    }
+
+    duration = Math.round(duration);
+    const sizeInBits = size * 8;
+    const sizeInKbits = sizeInBits / 1000;
+
+    const avgBitRate = sizeInKbits / duration;
+
+    const allowedBitRate =
+      ALLOWED_VIDEO_MIN_BITRATES_BY_RESOLUTION[
+        height as keyof typeof ALLOWED_VIDEO_MIN_BITRATES_BY_RESOLUTION
+      ];
+
+    if (avgBitRate >= allowedBitRate) {
+      return false;
+    }
+
+    return `Video has a bitrate of ${avgBitRate} kbps which is incorrect for ${height}p resolution - Please the following or above: ${allowedBitRate}`;
   }
 
   private validateResolution(height: number): string | boolean {
@@ -71,6 +85,7 @@ export class FrontendVideoValidator {
   }
 
   private validateDuration(duration: number): string | boolean {
+    duration = Math.round(duration);
     if (!ALLOWED_DURATION_SEC.includes(duration)) {
       return `The uploaded video has duration ${duration}sec which is not supported - Please use one of the following durations: 15s, 30s, 60s`;
     }
