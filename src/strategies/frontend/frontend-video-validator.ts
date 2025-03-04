@@ -63,7 +63,7 @@ export class FrontendVideoValidator {
     const sizeInBits = size * 8;
     const sizeInKbits = sizeInBits / 1000;
 
-    const avgBitRate = sizeInKbits / duration;
+    const avgBitRate = Math.round(sizeInKbits / duration);
 
     const allowedBitRate =
       ALLOWED_VIDEO_MIN_BITRATES_BY_RESOLUTION[
