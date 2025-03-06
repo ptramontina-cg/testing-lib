@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "test:frontend": "yarn build && serve",
-    "test:backend": "tsx ./src/development/node-index.ts",
+    "test:backend": "tsx ./src/development/node-tester.ts",
     "build": "tsup",
     "preview": "vite preview",
     "makework": "tsx ./src/test.ts"

@@ -19,10 +19,12 @@ export class FrontendImageValidator {
       );
     }
 
+    const image = await this.getImageFromFile(file);
+
     const errors = [
-      this.validateSize(file),
-      await this.validateResolution(file),
-      this.validateType(file),
+      this.validateSize(file.size),
+      this.validateResolution(image.width, image.height),
+      this.validateType(file.type),
     ].filter((e) => e);
 
     if (errors.length) {
@@ -35,28 +37,27 @@ export class FrontendImageValidator {
     return true;
   }
 
-  private validateSize(file: File) {
-    if (file.size > MAX_SIZE) {
+  private validateSize(size: number) {
+    if (size > MAX_SIZE) {
       return `Invalid size. Maximum allowed is: ${MAX_SIZE / 1000000} MB.`;
     }
     return false;
   }
 
-  private async validateResolution(file: File) {
-    const image = await this.getImageFromFile(file);
+  private async validateResolution(width: number, height: number) {
     if (
-      image.width > MAX_WIDTH ||
-      image.width < MIN_WIDTH ||
-      image.height > MAX_HEIGHT ||
-      image.height < MIN_HEIGHT
+      width > MAX_WIDTH ||
+      width < MIN_WIDTH ||
+      height > MAX_HEIGHT ||
+      height < MIN_HEIGHT
     ) {
       return `Invalid resolution - Min: ${MIN_WIDTH}x${MIN_HEIGHT} - Max: ${MAX_WIDTH}x${MAX_HEIGHT}`;
     }
     return false;
   }
 
-  private validateType(file: File) {
-    if (!ALLOWED_IMAGE_FORMATS.includes(normalizeFileType(file.type))) {
+  private validateType(type: string) {
+    if (!ALLOWED_IMAGE_FORMATS.includes(normalizeFileType(type))) {
       return `Invalid format - Only the following are allowed: ${ALLOWED_IMAGE_FORMATS.join(
         ", "
       )}`;

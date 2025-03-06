@@ -96,8 +96,6 @@ export class BackendMediaAnalyzer {
           format: data.format.format_name + "",
         };
 
-        console.log("result.bit_rate", videoOrImageStream.bit_rate);
-
         // Add video-specific properties and generate thumbnail if it's a video
         if (file.mimetype.startsWith("video")) {
           result.durationInSeconds = videoOrImageStream.duration

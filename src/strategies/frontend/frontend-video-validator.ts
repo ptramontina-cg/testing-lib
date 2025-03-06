@@ -19,7 +19,7 @@ export class FrontendVideoValidator {
 
     const video = await this.getVideoFromFile(file);
 
-    let errors = [this.validateSize(file)];
+    let errors = [this.validateSize(file.size)];
 
     if (this.isVideoSupported(file)) {
       const video = await this.getVideoFromFile(file);
@@ -43,8 +43,8 @@ export class FrontendVideoValidator {
     return true;
   }
 
-  private validateSize(video: File): boolean | string {
-    if (video.size > MAX_SIZE) {
+  private validateSize(size: number): boolean | string {
+    if (size > MAX_SIZE) {
       return `Invalid size - Maximum allowed is: ${MAX_SIZE / 1000000} MB.`;
     }
     return false;

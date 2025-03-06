@@ -19,6 +19,7 @@ export class BackendVideoValidator {
       this.validateFormat(videoMetadata.format.split(",")),
       this.validateDuration(videoMetadata.durationInSeconds ?? 0),
       this.validateResolution(videoMetadata.resolution.height),
+      this.validateSize(file.size),
       this.validateBitRate(
         videoMetadata.bitRate ?? 0,
         videoMetadata.resolution?.height
@@ -35,7 +36,7 @@ export class BackendVideoValidator {
     return false;
   }
 
-  validateFormat(formats: string[]): string | boolean {
+  private validateFormat(formats: string[]): string | boolean {
     for (const format of formats) {
       if (ALLOWED_VIDEO_FORMATS.includes(normalizeFileType(format))) {
         return false;
@@ -45,14 +46,14 @@ export class BackendVideoValidator {
     return "Incorrect file format. Use MP4, FLV, or AVI instead.";
   }
 
-  validateSize(size: number): string | boolean {
+  private validateSize(size: number): string | boolean {
     if (size > MAX_SIZE) {
       return `Invalid size - Maximum allowed is: ${MAX_SIZE / 1000000} MB.`;
     }
     return false;
   }
 
-  validateDuration(duration: number): string | boolean {
+  private validateDuration(duration: number): string | boolean {
     if (ALLOWED_DURATION_SEC.includes(duration)) {
       return false;
     }
@@ -60,14 +61,14 @@ export class BackendVideoValidator {
     return `The uploaded video has duration ${duration}sec which is not supported - Please use one of the following durations: 15s, 30s, 60s`;
   }
 
-  validateResolution(height: number): string | boolean {
+  private validateResolution(height: number): string | boolean {
     if (ALLOWED_VIDEO_SIZES_PX.includes(height ?? 0)) {
       return false;
     }
     return "Resolution not supported - Please use 2160p, 1280p, 1080p, 720p or 432p";
   }
 
-  validateBitRate(bitRate: number, height: number) {
+  private validateBitRate(bitRate: number, height: number) {
     if (!(height in ALLOWED_VIDEO_MIN_BITRATES_BY_RESOLUTION)) {
       return "Invalid bitrate - Didn't match with resolution.";
     }
