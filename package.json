@@ -1,16 +1,14 @@
 {
   "name": "creative-validator",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/backend.cjs",
   "browser": "dist/frontend.js",
   "type": "module",
   "scripts": {
     "test:frontend": "yarn build && serve",
-    "test:backend": "tsx ./src/development/node-tester.ts",
+    "test:backend": "tsx ./src/tester/node-tester.ts",
     "build": "tsup",
-    "preview": "vite preview",
-    "makework": "tsx ./src/test.ts"
   },
   "devDependencies": {
     "@types/fluent-ffmpeg": "^2.1.27",
