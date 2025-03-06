@@ -11,6 +11,16 @@ export default defineConfig([
     minify: true,
     platform: "browser",
   },
+  // Test build
+  {
+    entry: ["src/iife.ts"],
+    format: ["iife"],
+    outDir: "dist/global",
+    dts: true,
+    clean: true,
+    minify: true,
+    platform: "browser",
+  },
   // Backend build
   {
     entry: ["src/backend.ts"],

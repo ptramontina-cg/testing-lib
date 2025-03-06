@@ -6,8 +6,8 @@
   "browser": "dist/frontend.js",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "backend-dev": "tsx ./src/development/node-index.ts",
+    "test:frontend": "yarn build && serve",
+    "test:backend": "tsx ./src/development/node-index.ts",
     "build": "tsup",
     "preview": "vite preview",
     "makework": "tsx ./src/test.ts"
@@ -26,6 +26,7 @@
     "axios": "^1.8.1",
     "fluent-ffmpeg": "^2.1.3",
     "path": "^0.12.7",
+    "serve": "^14.2.4",
     "stream-buffers": "^3.0.3",
     "tsup": "^8.3.6",
     "xml2js": "^0.6.2"

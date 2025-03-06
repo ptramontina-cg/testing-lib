@@ -4,10 +4,110 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Creative Validator Test</title>
+    <script src="/dist/global/iife.global.js"></script>
+    <style>
+      * {
+        font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";    
+        font-weight: 600;
+        line-height: 20px;
+      }
+      .button {
+        appearance: none;
+        background-color: #2ea0a4;
+        border: 0px solid #206c6e;
+        border-radius: 6px;
+        box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        padding: 6px 16px;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+        white-space: nowrap;
+      }      
+      .button-content {
+        text-align: center;
+      }
+      .banner {
+        appearance: none;
+        border: 1px solid;
+        border-radius: 6px;
+        box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+        box-sizing: border-box;
+        margin: 20px;
+        padding: 30px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        text-align: center;
+        font-size: 20px;
+        border-radius: 5px;
+      }
+      .success {
+        background-color: #2ea44f;
+        color: #fff;
+      }
+      .error{
+        background-color: #c44949;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/development/index.ts"></script>
+    <div class="button-content">
+      <button id="button-selector" class="button">Select file</button> 
+    </div>
+    
+    <div id="valid-element" class="banner success" >
+      Valid file
+    </div>
+    <div id="invalid-element" class="banner error">
+      Invalid file
+    </div>
+    
+    <script>
+      const validElement = document.getElementById('valid-element');      
+      const invalidElement = document.getElementById('invalid-element');    
+      validElement.hidden = true;
+      invalidElement.hidden = true;  
+
+      const button = document.getElementById('button-selector');
+      const pickerOpts = {
+        types: [
+          {
+            description: "Images",
+            accept: {
+              "image/*": [".png", ".gif", ".jpeg", ".jpg"],
+              "video/*": [],
+            },
+          },
+        ],
+        excludeAcceptAllOption: true,
+        multiple: false,
+      };
+      button.addEventListener('click', async () => { 
+        
+        validElement.hidden = true;
+        invalidElement.hidden = true;
+
+        const [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+        const file = await fileHandle.getFile()
+
+        const cv = new CreativeValidator();
+        try {
+          await cv.validate(file.type.includes('video') ? 'video' : 'image', file)
+          validElement.hidden = false
+        } catch (e) {
+          invalidElement.textContent = e.message
+          invalidElement.hidden = false;
+        }
+      })
+    </script>
   </body>
 </html>
