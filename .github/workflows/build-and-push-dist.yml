@@ -35,8 +35,8 @@ jobs:
       - name: Commit and Push Dist Folder
         if: success() # Only run if changes detected
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@cloudgeometry.com"
           git add dist
           git commit -m 'chore: update dist folder [skip ci]' || echo "No changes to commit"
           git push
