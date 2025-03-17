@@ -31,10 +31,11 @@ jobs:
       - name: Check for Changes in Dist
         id: dist-check
         run: |
-          git diff --exit-code dist || echo "Changes detected in dist" > dist-changes.txt
+          git diff --exit-code dist
+        continue-on-error: true
 
       - name: Commit and Push Dist Folder
-        if: success() && steps.dist-check.outputs.diff-result == 'Changes detected in dist'
+        if: steps.dist-check.outcome == 'failure' # Run only if 'git diff' found changes (exit code 1)
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@cloudgeometry.com"
