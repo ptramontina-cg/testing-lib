@@ -3,7 +3,7 @@ name: Build and Push Dist
 on:
   push:
     branches:
-      - main # Change if your default branch is different
+      - "!main" # excludes main
     paths-ignore:
       - "dist/**"
 
