@@ -2,8 +2,8 @@ name: Build and Push Dist
 
 on:
   push:
-    branches:
-      - "!main" # excludes main
+    branches-ignore:
+      - main # This will exclude the 'main' branch
     paths-ignore:
       - "dist/**"
 
