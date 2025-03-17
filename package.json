@@ -8,7 +8,7 @@
   "scripts": {
     "test:frontend": "yarn build && serve",
     "test:backend": "tsx ./src/tester/node-tester.ts",
-    "build": "tsup",
+    "build": "tsup"
   },
   "devDependencies": {
     "@types/fluent-ffmpeg": "^2.1.27",
