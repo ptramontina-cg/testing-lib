@@ -1,0 +1,45 @@
+name: Build and Push Dist
+
+on:
+  push:
+    branches:
+      - main  # Change if your default branch is different
+    paths-ignore:
+      - 'dist/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Change if you're using a different Node.js version
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run TSUP to Build
+        run: npx tsup
+
+      - name: Check for Changes in Dist
+        run: |
+          git diff --exit-code dist || echo "Changes detected in dist"
+
+      - name: Commit and Push Dist Folder
+        if: success()  # Only run if changes detected
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add dist
+          git commit -m 'chore: update dist folder [skip ci]' || echo "No changes to commit"
+          git push
+
+      - name: Done
+        run: echo "Build and push completed!"
