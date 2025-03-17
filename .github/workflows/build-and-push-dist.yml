@@ -3,9 +3,9 @@ name: Build and Push Dist
 on:
   push:
     branches:
-      - main  # Change if your default branch is different
+      - main # Change if your default branch is different
     paths-ignore:
-      - 'dist/**'
+      - "dist/**"
 
 jobs:
   build:
@@ -20,10 +20,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Change if you're using a different Node.js version
+          node-version: "20" # Change if you're using a different Node.js version
 
       - name: Install Dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
       - name: Run TSUP to Build
         run: npx tsup
@@ -33,7 +33,7 @@ jobs:
           git diff --exit-code dist || echo "Changes detected in dist"
 
       - name: Commit and Push Dist Folder
-        if: success()  # Only run if changes detected
+        if: success() # Only run if changes detected
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
