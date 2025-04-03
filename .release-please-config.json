@@ -1,0 +1,6 @@
+{
+  "branches": ["main"],
+  "release-type": "node",
+  "changelog-path": "CHANGELOG.md",
+  "pull-request-title-pattern": "release v${version}"
+}
